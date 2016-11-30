@@ -28,7 +28,7 @@
 
 /* Background */
 .bg-lines {
-  background: url(../images/kphome/bg-lines.png) top left no-repeat;
+  background: url(images/kphome/bg-lines.png) top left no-repeat;
 }
 
 
@@ -108,7 +108,7 @@
 }
 
 .bullets li {
-  background: url(../images/kphome/bullets.png) no-repeat;
+  background: url(images/kphome/bullets.png) no-repeat;
   background-position: -13px 0;
   cursor: pointer;
   font-size: 0.7em;
@@ -118,12 +118,12 @@
 }
 
 li.active-bullet {
-  background: url(../images/kphome/bullets.png) no-repeat;
+  background: url(images/kphome/bullets.png) no-repeat;
   background-position: 2px 0;
 }
 
 .bullets li:hover {
-  background: url(../images/kphome/bullets.png) no-repeat;
+  background: url(images/kphome/bullets.png) no-repeat;
   background-position: -28px 0;
 }
 
@@ -189,7 +189,7 @@ li.active-bullet {
 }
 
 .tab-info-top-extension {
-  background: #314355 url(../images/kphome/tab-left-side-bg.gif) top left no-repeat;
+  background: #314355 url(images/kphome/tab-left-side-bg.gif) top left no-repeat;
   margin: 0 0 0 15px;
   padding: 0;
   height: 10px;
@@ -197,7 +197,7 @@ li.active-bullet {
 }
 
 .tab-info-tab-title {
-  background: url(../images/kphome/img-noise-10x10.png);
+  background: url(images/kphome/img-noise-10x10.png);
   border-top: 1px solid #D5D5D5;
   border-right: 1px solid #D5D5D5;
   border-bottom: none;
@@ -223,7 +223,7 @@ li.active-bullet {
 }
 
 .tab-info-copy-text {
-  background: url(../images/kphome/img-noise-10x10.png);
+  background: url(images/kphome/img-noise-10x10.png);
   border-right: 1px solid #D5D5D5;
   border-left: 1px solid #D5D5D5;
   clear: left;
@@ -237,7 +237,7 @@ li.active-bullet {
 }
 
 .tab-info-footer-shadow {
-  background: url(../images/kphome/cell-footer-drop-shadow.jpg) bottom center no-repeat;
+  background: url(images/kphome/cell-footer-drop-shadow.jpg) bottom center no-repeat;
   border-top: 1px solid #C0C0C0;
   height: 8px;
 }
@@ -418,7 +418,7 @@ li.active-bullet {
 
 /* HORIZONTAL LINE */
 div.h-line {
-  background: url(../images/kphome/line-star.gif) center top no-repeat;
+  background: url(images/kphome/line-star.gif) center top no-repeat;
   border: 1px solid #FFFFFF;
   height: 22px;
   margin-bottom: 10px;
@@ -596,7 +596,7 @@ a.context-link {
 /* Right copy */
 /* Social network and stats */
 .col-stats {
-  background: #314355 url(../images/kphome/stats-bottom-bg.jpg) center bottom no-repeat;
+  background: #314355 url(images/kphome/stats-bottom-bg.jpg) center bottom no-repeat;
   color: #FFFFFF;
   height: 345px;
   margin-bottom: 20px;
