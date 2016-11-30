@@ -4,6 +4,8 @@
  * @file
  * Based on Bartiks page template, this template renders the frontpage of KnowPulse.
  */
+
+$module_path = drupal_get_path('module','kp_frontpage');
 ?>
 <div id="page-wrapper"><div id="page">
 
@@ -207,7 +209,7 @@
                     ?>
                     <li>
                       <a href="<?php print url('organism/' . $view['genus'] . '/' . $view['species']); ?>">
-                        <img src="<?php print url($directory . '/images/kphome/crops-' . str_replace(' ', '-', strtolower($view['title'])) . '.jpg'); ?>" class="tab-info-img" height="107" width="107" alt="<?php print $gs; ?>" title="<?php print $gs; ?>" />
+                        <img src="<?php print url($module_path . '/images/kphome/crops-' . str_replace(' ', '-', strtolower($view['title'])) . '.jpg'); ?>" class="tab-info-img" height="107" width="107" alt="<?php print $gs; ?>" title="<?php print $gs; ?>" />
                         <?php print $view['title'] . '<em>' . $gs . '</em>'; ?>
                       </a>
                     </li>
@@ -284,7 +286,7 @@
 
           <div class="info-col main-copy-right-container">
             <div class="col-stats">
-              <h2 class="all-trim">Data Available <span style="float: right;"><img src="<?php print url('sites/all/themes/kptheme/images/kphome/icon-stats-more-info.gif');?>" alt="More information" title="More information" height="22" width="22" id="btn-more-info" /></span></h2>
+              <h2 class="all-trim">Data Available <span style="float: right;"><img src="<?php print url($module_path . '/images/kphome/icon-stats-more-info.gif');?>" alt="More information" title="More information" height="22" width="22" id="btn-more-info" /></span></h2>
               <?php
                 for ($i = 0; $i < 2; $i++) :
                   $stats = ($i == 0) ? $stats_bar_chart : $stats_bubble_chart;
