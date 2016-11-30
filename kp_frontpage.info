@@ -1,0 +1,4 @@
+package = KnowPulse Extensions
+name = KP Frontpage
+description = The Frontpage for KnowPulse
+core = 7.x

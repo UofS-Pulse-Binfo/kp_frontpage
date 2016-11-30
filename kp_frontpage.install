@@ -1,0 +1,64 @@
+<?php
+/**
+ * @file
+ * Specific to the installation of the module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function kp_frontpage_install() {
+
+  $schema = array (
+    'table' => 'kp_homepage_stats',
+    'fields' => array (
+      'count' => array (
+        'type' => 'int',
+      ),
+      'type' => array (
+        'type' => 'varchar',
+        'length' => 50,
+      ),
+      'chart' => array (
+        'type' => 'varchar',
+        'length' => 2,
+      ),
+    ),
+  );
+  $query = "SELECT COUNT(feature_id) AS count, 'Sequence', 'br' 
+              FROM feature 
+              WHERE type_id IN ('255', '442', '251', '447', '109')
+            UNION
+            SELECT COUNT(feature_id) AS count, 'Variant', 'br' 
+              FROM feature 
+              WHERE type_id IN ('1664', '1112', '796')
+            UNION
+            SELECT COUNT(feature.feature_id) AS count, 'Marker', 'br' 
+              FROM feature feature 
+              LEFT JOIN featureprop featureprop_feature ON feature.feature_id = featureprop_feature.feature_id 
+              WHERE feature.type_id IN ('3686') AND featureprop_feature.type_id IN ('3966')
+            UNION
+            SELECT COUNT(stock_id) AS count, 'Germplasm', 'bl' 
+              FROM stock 
+              WHERE type_id NOT IN (SELECT cvterm_id FROM {cvterm} WHERE name='DNA')           
+            UNION
+            SELECT COUNT(feature_id) AS count, 'Genotype Calls', 'bl' 
+              FROM feature 
+              WHERE type_id IN ('255', '442', '251', '447', '109')
+            UNION
+            SELECT COUNT(DISTINCT t1.cvterm_id) AS count, 'Traits', 'bl' 
+              FROM cvterm AS t1 
+              INNER JOIN pheno_measurements AS t2 ON t1.cvterm_id = t2.type_id 
+              WHERE name NOT IN('Planting Date (date)', '# of Seeds Planted (count)')            
+            UNION
+            SELECT COUNT(plant_id) AS count, 'Phenotypes', 'bl' 
+              FROM pheno_plant";
+
+  tripal_add_mview('kp_homepage_stats', 'kp_frontpage', $schema, $query, 'Saving stats for use on the frontpage.');
+
+  // Populate the mview.
+  $mview_id = tripal_get_mview_id('kp_homepage_stats');
+  tripal_populate_mview($mview_id);
+
+}
+
