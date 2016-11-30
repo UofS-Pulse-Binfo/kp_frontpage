@@ -96,3 +96,9 @@ function kptheme_preprocess_page(&$vars, $hook) {
   }
 }
 
+/**
+ * Implementation of hook_views_api()
+ */
+function kp_frontpage_views_api() {
+  return array('api' => 3.0);
+}

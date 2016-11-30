@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * This file provides the views export for the following view:
+ * KP Homepage: Footer Publication Slideshow.
+ */
+
+$view = new view();
+$view->name = 'kp_homepage_footer_publication_slideshow_view';
+$view->description = 'A slideshow of chado publications for the homepage.';
+$view->tag = 'KP Homepage';
+$view->base_table = 'pub';
+$view->human_name = 'KP Homepage: Footer Publication Slideshow';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'Publications';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '5';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'list';
+$handler->display->display_options['style_options']['row_class'] = 'slideshow-slide';
+$handler->display->display_options['style_options']['default_row_class'] = FALSE;
+$handler->display->display_options['style_options']['row_class_special'] = FALSE;
+$handler->display->display_options['style_options']['wrapper_class'] = '';
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+/* Relationship: Chado Pub: pub_id => Pubprop (pub_id) */
+$handler->display->display_options['relationships']['pub_id_to_pubprop']['id'] = 'pub_id_to_pubprop';
+$handler->display->display_options['relationships']['pub_id_to_pubprop']['table'] = 'pub';
+$handler->display->display_options['relationships']['pub_id_to_pubprop']['field'] = 'pub_id_to_pubprop';
+$handler->display->display_options['relationships']['pub_id_to_pubprop']['label'] = 'PubProp Authors';
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['label'] = '';
+$handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+$handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+/* Field: Chado Pub: Pub Id */
+$handler->display->display_options['fields']['pub_id']['id'] = 'pub_id';
+$handler->display->display_options['fields']['pub_id']['table'] = 'pub';
+$handler->display->display_options['fields']['pub_id']['field'] = 'pub_id';
+$handler->display->display_options['fields']['pub_id']['label'] = '';
+$handler->display->display_options['fields']['pub_id']['exclude'] = TRUE;
+$handler->display->display_options['fields']['pub_id']['element_label_colon'] = FALSE;
+/* Field: Chado Pub: Pyear */
+$handler->display->display_options['fields']['pyear']['id'] = 'pyear';
+$handler->display->display_options['fields']['pyear']['table'] = 'pub';
+$handler->display->display_options['fields']['pyear']['field'] = 'pyear';
+$handler->display->display_options['fields']['pyear']['label'] = '';
+$handler->display->display_options['fields']['pyear']['exclude'] = TRUE;
+$handler->display->display_options['fields']['pyear']['element_label_colon'] = FALSE;
+/* Field: Chado Pub: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'pub';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = '';
+$handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+$handler->display->display_options['fields']['title']['alter']['path'] = 'node/[nid]';
+$handler->display->display_options['fields']['title']['element_type'] = 'h2';
+$handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+/* Field: Chado Pubprop: Value */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'pubprop';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['relationship'] = 'pub_id_to_pubprop';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['value']['alter']['text'] = '[value] <a href="pub/[pub_id]">More Information</a>';
+$handler->display->display_options['fields']['value']['alter']['max_length'] = '160';
+$handler->display->display_options['fields']['value']['alter']['more_link'] = TRUE;
+$handler->display->display_options['fields']['value']['alter']['more_link_text'] = 'More Information';
+$handler->display->display_options['fields']['value']['alter']['more_link_path'] = 'node/[nid]';
+$handler->display->display_options['fields']['value']['element_type'] = 'p';
+$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['value']['element_default_classes'] = FALSE;
+/* Sort criterion: Chado Pub: Pyear */
+$handler->display->display_options['sorts']['pyear']['id'] = 'pyear';
+$handler->display->display_options['sorts']['pyear']['table'] = 'pub';
+$handler->display->display_options['sorts']['pyear']['field'] = 'pyear';
+$handler->display->display_options['sorts']['pyear']['order'] = 'DESC';
+/* Filter criterion: Chado Cvterm: Name */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'cvterm';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['relationship'] = 'pub_id_to_pubprop';
+$handler->display->display_options['filters']['name']['value'] = 'Authors';

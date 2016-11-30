@@ -1,0 +1,176 @@
+<?php
+
+/**
+ * @file
+ * This file provides the views export for the following view:
+ * KP Homepage: Footer Project Slideshow.
+ */
+
+$view = new view();
+$view->name = 'kp_homepage_footer_project_slideshow_view';
+$view->description = 'A slideshow of chado projects for the homepage.';
+$view->tag = 'KP Homepage';
+$view->base_table = 'project';
+$view->human_name = 'KP Homepage: Footer Project Slideshow';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['use_more'] = TRUE;
+$handler->display->display_options['use_more_always'] = TRUE;
+$handler->display->display_options['use_more_text'] = 'More Information';
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '5';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['style_plugin'] = 'list';
+$handler->display->display_options['style_options']['row_class'] = 'slideshow-slide';
+$handler->display->display_options['style_options']['default_row_class'] = FALSE;
+$handler->display->display_options['style_options']['row_class_special'] = FALSE;
+$handler->display->display_options['style_options']['wrapper_class'] = '';
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+/* Relationship: Project: Project => Node */
+$handler->display->display_options['relationships']['project_id']['id'] = 'project_id';
+$handler->display->display_options['relationships']['project_id']['table'] = 'chado_project';
+$handler->display->display_options['relationships']['project_id']['field'] = 'project_id';
+/* Relationship: Chado Project: project_id => Projectprop (project_id) */
+$handler->display->display_options['relationships']['project_id_to_projectprop']['id'] = 'project_id_to_projectprop';
+$handler->display->display_options['relationships']['project_id_to_projectprop']['table'] = 'project';
+$handler->display->display_options['relationships']['project_id_to_projectprop']['field'] = 'project_id_to_projectprop';
+/* Field: Content: Nid */
+$handler->display->display_options['fields']['nid']['id'] = 'nid';
+$handler->display->display_options['fields']['nid']['table'] = 'node';
+$handler->display->display_options['fields']['nid']['field'] = 'nid';
+$handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+/* Field: Content: Date */
+$handler->display->display_options['fields']['field_date_month_year']['id'] = 'field_date_month_year';
+$handler->display->display_options['fields']['field_date_month_year']['table'] = 'field_data_field_date_month_year';
+$handler->display->display_options['fields']['field_date_month_year']['field'] = 'field_date_month_year';
+$handler->display->display_options['fields']['field_date_month_year']['relationship'] = 'project_id';
+$handler->display->display_options['fields']['field_date_month_year']['label'] = '';
+$handler->display->display_options['fields']['field_date_month_year']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_date_month_year']['element_class'] = 'project-date';
+$handler->display->display_options['fields']['field_date_month_year']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_date_month_year']['settings'] = array(
+  'format_type' => 'month_year_granularity',
+  'fromto' => 'both',
+  'multiple_number' => '',
+  'multiple_from' => '',
+  'multiple_to' => '',
+  'show_remaining_days' => 0,
+);
+/* Field: Chado Project: Name */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'project';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['label'] = '';
+$handler->display->display_options['fields']['name']['alter']['make_link'] = TRUE;
+$handler->display->display_options['fields']['name']['alter']['path'] = 'node/[nid]';
+$handler->display->display_options['fields']['name']['element_type'] = 'h2';
+$handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['name']['element_default_classes'] = FALSE;
+/* Field: Description */
+$handler->display->display_options['fields']['value']['id'] = 'value';
+$handler->display->display_options['fields']['value']['table'] = 'projectprop';
+$handler->display->display_options['fields']['value']['field'] = 'value';
+$handler->display->display_options['fields']['value']['relationship'] = 'project_id_to_projectprop';
+$handler->display->display_options['fields']['value']['ui_name'] = 'Description';
+$handler->display->display_options['fields']['value']['label'] = '';
+$handler->display->display_options['fields']['value']['alter']['max_length'] = '160';
+$handler->display->display_options['fields']['value']['alter']['more_link'] = TRUE;
+$handler->display->display_options['fields']['value']['alter']['more_link_text'] = 'More Information';
+$handler->display->display_options['fields']['value']['alter']['more_link_path'] = 'node/[nid]';
+$handler->display->display_options['fields']['value']['alter']['trim'] = TRUE;
+$handler->display->display_options['fields']['value']['element_type'] = 'p';
+$handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['value']['element_default_classes'] = FALSE;
+/* Field: Content: Related Species */
+$handler->display->display_options['fields']['field_organism']['id'] = 'field_organism';
+$handler->display->display_options['fields']['field_organism']['table'] = 'field_data_field_organism';
+$handler->display->display_options['fields']['field_organism']['field'] = 'field_organism';
+$handler->display->display_options['fields']['field_organism']['relationship'] = 'project_id';
+$handler->display->display_options['fields']['field_organism']['label'] = '';
+$handler->display->display_options['fields']['field_organism']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_organism']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_organism']['settings'] = array(
+  'link' => 1,
+);
+$handler->display->display_options['fields']['field_organism']['delta_offset'] = '0';
+/* Field: Content: Research Area */
+$handler->display->display_options['fields']['field_research_area']['id'] = 'field_research_area';
+$handler->display->display_options['fields']['field_research_area']['table'] = 'field_data_field_research_area';
+$handler->display->display_options['fields']['field_research_area']['field'] = 'field_research_area';
+$handler->display->display_options['fields']['field_research_area']['relationship'] = 'project_id';
+$handler->display->display_options['fields']['field_research_area']['label'] = '';
+$handler->display->display_options['fields']['field_research_area']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_research_area']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_research_area']['settings'] = array(
+  'link' => 1,
+);
+$handler->display->display_options['fields']['field_research_area']['delta_offset'] = '0';
+/* Sort criterion: Chado Project: Name */
+$handler->display->display_options['sorts']['name']['id'] = 'name';
+$handler->display->display_options['sorts']['name']['table'] = 'project';
+$handler->display->display_options['sorts']['name']['field'] = 'name';
+/* Contextual filter: Content: Related Species (field_organism) */
+$handler->display->display_options['arguments']['field_organism_target_id']['id'] = 'field_organism_target_id';
+$handler->display->display_options['arguments']['field_organism_target_id']['table'] = 'field_data_field_organism';
+$handler->display->display_options['arguments']['field_organism_target_id']['field'] = 'field_organism_target_id';
+$handler->display->display_options['arguments']['field_organism_target_id']['relationship'] = 'project_id';
+$handler->display->display_options['arguments']['field_organism_target_id']['title_enable'] = TRUE;
+$handler->display->display_options['arguments']['field_organism_target_id']['title'] = '%1 Projects';
+$handler->display->display_options['arguments']['field_organism_target_id']['default_argument_type'] = 'fixed';
+$handler->display->display_options['arguments']['field_organism_target_id']['summary']['number_of_records'] = '0';
+$handler->display->display_options['arguments']['field_organism_target_id']['summary']['format'] = 'default_summary';
+$handler->display->display_options['arguments']['field_organism_target_id']['summary_options']['items_per_page'] = '25';
+/* Contextual filter: Content: Research Area (field_research_area) */
+$handler->display->display_options['arguments']['field_research_area_target_id']['id'] = 'field_research_area_target_id';
+$handler->display->display_options['arguments']['field_research_area_target_id']['table'] = 'field_data_field_research_area';
+$handler->display->display_options['arguments']['field_research_area_target_id']['field'] = 'field_research_area_target_id';
+$handler->display->display_options['arguments']['field_research_area_target_id']['relationship'] = 'project_id';
+$handler->display->display_options['arguments']['field_research_area_target_id']['default_argument_type'] = 'fixed';
+$handler->display->display_options['arguments']['field_research_area_target_id']['summary']['format'] = 'default_summary';
+/* Filter criterion: Chado Cvterm: Name */
+$handler->display->display_options['filters']['name_1']['id'] = 'name_1';
+$handler->display->display_options['filters']['name_1']['table'] = 'cvterm';
+$handler->display->display_options['filters']['name_1']['field'] = 'name';
+$handler->display->display_options['filters']['name_1']['relationship'] = 'project_id_to_projectprop';
+$handler->display->display_options['filters']['name_1']['value'] = 'project_description';
+$handler->display->display_options['filters']['name_1']['group'] = 1;
+/* Filter criterion: Chado Project: Name */
+$handler->display->display_options['filters']['name']['id'] = 'name';
+$handler->display->display_options['filters']['name']['table'] = 'project';
+$handler->display->display_options['filters']['name']['field'] = 'name';
+$handler->display->display_options['filters']['name']['operator'] = 'contains';
+$handler->display->display_options['filters']['name']['group'] = 1;
+$handler->display->display_options['filters']['name']['expose']['operator_id'] = '';
+$handler->display->display_options['filters']['name']['expose']['label'] = 'Name Contains';
+$handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+$handler->display->display_options['filters']['name']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  3 => 0,
+);
+$handler->display->display_options['filters']['name']['max_length'] = '40';
+/* Filter criterion: Content: Type (field_project_type) */
+$handler->display->display_options['filters']['field_project_type_value']['id'] = 'field_project_type_value';
+$handler->display->display_options['filters']['field_project_type_value']['table'] = 'field_data_field_project_type';
+$handler->display->display_options['filters']['field_project_type_value']['field'] = 'field_project_type_value';
+$handler->display->display_options['filters']['field_project_type_value']['relationship'] = 'project_id';
+$handler->display->display_options['filters']['field_project_type_value']['value'] = array(
+  'main' => 'main',
+);
+/* Filter criterion: Content: Is UofS Project? (field_uofs_project) */
+$handler->display->display_options['filters']['field_uofs_project_value']['id'] = 'field_uofs_project_value';
+$handler->display->display_options['filters']['field_uofs_project_value']['table'] = 'field_data_field_uofs_project';
+$handler->display->display_options['filters']['field_uofs_project_value']['field'] = 'field_uofs_project_value';
+$handler->display->display_options['filters']['field_uofs_project_value']['relationship'] = 'project_id';
+$handler->display->display_options['filters']['field_uofs_project_value']['value'] = array(
+  1 => '1',
+);
