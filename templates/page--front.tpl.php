@@ -22,20 +22,28 @@ $module_path = drupal_get_path('module','kp_frontpage');
       <?php print render($page['menu_second']); ?>
     <?php endif; ?>
   </div>
-  <div id="header" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>">
+  <div id="header" style="height: 115px;" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>">
 
   <div class="section clearfix">
 
     <?php if ($logo): ?>
 
       <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" height="87" width="309" />
       </a>
 
     <?php endif; ?>
 
     <!-- Omnibox Search bar!!!  -->
-    <div id="kp-header-search-box">
+    <div id="kp-header-search-box" style="margin: -10px 0 0 0;">
+
+      <div style="position: absolute; top: -65px; right: 0">
+        <div id="frontpage-start-tour">
+          <div id="frontpage-tour-help">Need Help?</div>
+          <a href="#" id="frontpage-tour-button">Start Tour</a>
+        </div>
+      </div>
+
       <?php
         $render_arr = drupal_get_form('tripal_core_search_block');
         print drupal_render($render_arr);
@@ -58,12 +66,6 @@ $module_path = drupal_get_path('module','kp_frontpage');
          </form>
        </div>
      </div>
-
-
-    <div id="frontpage-start-tour">
-      <div id="frontpage-tour-help">Need Help?</div>
-      <a href="#" id="frontpage-tour-button">Start Tour</a>
-    </div>
 
 
     <?php endif; ?>
@@ -112,7 +114,13 @@ $module_path = drupal_get_path('module','kp_frontpage');
   <?php endif; ?>
 
   <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
-    <?php if ($breadcrumb): ?>
+    <?php
+    if (isset($breadcrumb)) {
+      unset($breadcrumb);
+    }
+
+    if (isset($breadcrumb)):
+    ?>
       <div id="breadcrumb"><?php print $breadcrumb; ?></div>
     <?php endif; ?>
 
@@ -167,12 +175,13 @@ $module_path = drupal_get_path('module','kp_frontpage');
      // Browser is not IE ver 8 and below. Enjoy!
      else:
      ?>
-
         <div id="main-slideshow-container">
-          <div id="main-slideshow" class="container-row bg-lines">
+          <div id="main-slideshow" class="container-row">
             <div class="info-col chevron-left"><span>&lang;</span></div>
             <div class="info-col slide-info">
-              <?php print views_embed_view('kp_homepage_main_slideshow_view', 'default'); ?>
+              <div id="bg-main-slider">
+                <?php print views_embed_view('kp_frontpage_main_slideshow', 'default'); ?>
+              </div>
             </div>
             <div class="info-col chevron-right"><span>&rang;</span></div>
             <div class="clear-no-height">&nbsp;</div>
@@ -187,11 +196,14 @@ $module_path = drupal_get_path('module','kp_frontpage');
           <div class="info-col main-copy-left-container">
             <div id="infographics-container">
             <h2 class="h-section-title">&#9632; Explore <span>KnowPulse</span></h2>
-              <?php print views_embed_view('kp_homepage_infographics_view', 'default'); ?>
+              <?php print views_embed_view('kp_frontpage_infographics', 'default'); ?>
             </div>
             <div class="h-line clear-left"><hr /></div>
             <div id="general-info-container" class="info-text-block">
-              <?php print views_embed_view('kp_homepage_general_information_view', 'default'); ?>
+              <div id="general-information">
+                <?php print views_embed_view('kp_frontpage_general_information', 'default'); ?>
+              </div>
+              <div class="tab-info-footer-shadow">&nbsp;</div>
             </div>
 
             <div class="container-row tab-info-block">
@@ -233,11 +245,11 @@ $module_path = drupal_get_path('module','kp_frontpage');
                 <div class="tab-info-copy-wrapper">
                   <div class="container-row tab-info-tools-container">
                     <div class="info-col tab-info-tools-left">
-                      <?php print views_embed_view('kp_homepage_tools_left_column_view', 'default'); ?>
+                      <?php print views_embed_view('kp_frontpage_tools_left_column', 'default'); ?>
                     </div>
                     <div class="info-col tab-info-tools-center">&nbsp;</div>
                     <div class="info-col tab-info-tools-right">
-                      <?php print views_embed_view('kp_homepage_tools_right_column_view', 'default'); ?>
+                      <?php print views_embed_view('kp_frontpage_tools_right_column', 'default'); ?>
                     </div>
                     <div class="clear-no-height">&nbsp;</div>
                   </div>
@@ -316,7 +328,8 @@ $module_path = drupal_get_path('module','kp_frontpage');
               </div>
             </div>
             <div class="col-social-network">
-              <?php print views_embed_view('kp_homepage_social_network_view', 'default'); ?>
+              <h2 class="h-section-title">&#9632; News & <span>Updates</span></h2>
+              <?php print views_embed_view('kp_frontpage_news_and_updates', 'default'); ?>
             </div>
           </div>
           <div class="clear-no-height">&nbsp;</div>

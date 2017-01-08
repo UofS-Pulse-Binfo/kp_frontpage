@@ -8,9 +8,60 @@
  * Implements hook_install().
  */
 function kp_frontpage_install() {
+  // Register the content type.
+  node_types_rebuild();
+  $types = node_type_get_types();
+  node_add_body_field($types['kp_frontpage_cms']);
 
+  // Array to hold sections of KP Frontpage where content is rendered into.
+  $opt_show_in = array(
+    // * Main slideshow. Default form to this value.
+    'main_slideshow'       => 'KP Frontpage Main Slideshow',
+    // Explore KP text and infographics.
+    'explore_infographics' => 'KP Frontpage Explore KP Infographics',
+    // General information.
+    'general_information'  => 'KP Frontpage General Information',
+    // Tools section - left and right column area.
+    'tools_left'           => 'KP Frontpage Tools Left Column',
+    'tools_right'          => 'KP Frontpage Tools Right Column',
+    // Social network right column.
+    'news_updates'         => 'KP Frontpage News and Updates',
+  );
+
+  // Add a content type field - used to target content to a particular section in the frontpage.
+  $show_in = array(
+    'field_name' => 'kp_frontpage_show_in',
+    'label' => 'Show Content:',
+    'type' => 'list_text',
+    'settings' => array(
+      'allowed_values' => $opt_show_in,
+    ),
+  );
+
+  field_create_field($show_in);
+
+  // Create instance of the field, show content in.
+  $default_value = array_values($opt_show_in)[0];
+  $i = array(
+    'field_name' => 'kp_frontpage_show_in',
+    'entity_type' => 'node',
+    'bundle' => 'kp_frontpage_cms',
+    'label' => 'Show Content:',
+    'description' => 'Select section of the frontpage to show this content.',
+    'required' => TRUE,
+    'default_value' => array(
+      0 => array('value' => $default_value)
+    ),
+    'widget' => array(
+      'type' => 'options_select',
+    ),
+  );
+
+  field_create_instance($i);
+
+  // Create materialized view used by visualizations in Data Available section.
   $schema = array (
-    'table' => 'kp_homepage_stats',
+    'table' => 'kp_frontpage_stats',
     'fields' => array (
       'count' => array (
         'type' => 'int',
@@ -25,40 +76,147 @@ function kp_frontpage_install() {
       ),
     ),
   );
-  $query = "SELECT COUNT(feature_id) AS count, 'Sequence', 'br' 
-              FROM feature 
-              WHERE type_id IN ('255', '442', '251', '447', '109')
-            UNION
-            SELECT COUNT(feature_id) AS count, 'Variant', 'br' 
-              FROM feature 
-              WHERE type_id IN ('1664', '1112', '796')
-            UNION
-            SELECT COUNT(feature.feature_id) AS count, 'Marker', 'br' 
-              FROM feature feature 
-              LEFT JOIN featureprop featureprop_feature ON feature.feature_id = featureprop_feature.feature_id 
-              WHERE feature.type_id IN ('3686') AND featureprop_feature.type_id IN ('3966')
-            UNION
-            SELECT COUNT(stock_id) AS count, 'Germplasm', 'bl' 
-              FROM stock 
-              WHERE type_id NOT IN (SELECT cvterm_id FROM {cvterm} WHERE name='DNA')           
-            UNION
-            SELECT COUNT(feature_id) AS count, 'Genotype Calls', 'bl' 
-              FROM feature 
-              WHERE type_id IN ('255', '442', '251', '447', '109')
-            UNION
-            SELECT COUNT(DISTINCT t1.cvterm_id) AS count, 'Traits', 'bl' 
-              FROM cvterm AS t1 
-              INNER JOIN pheno_measurements AS t2 ON t1.cvterm_id = t2.type_id 
-              WHERE name NOT IN('Planting Date (date)', '# of Seeds Planted (count)')            
-            UNION
-            SELECT COUNT(plant_id) AS count, 'Phenotypes', 'bl' 
-              FROM pheno_plant";
 
-  tripal_add_mview('kp_homepage_stats', 'kp_frontpage', $schema, $query, 'Saving stats for use on the frontpage.');
+
+  // Cvterm names required.
+  $cname = array(
+    'bac',         // 0
+    'chromosome',  // 1
+    'contig',      // 2
+    'est',         // 3
+    'read_pair',   // 4
+    'indel',       // 5
+    'mnp',         // 6
+    'snp',         // 7
+    'marker',      // 8
+    'marker_type', // 9
+    'dna',         // 10
+    'planting date (date)',  // 11
+    '# of seeds planted (count)',  // 12
+  );
+
+  // chado.FEATURE/ SEQUENCE
+  // bac, chromosome, contig, est, read_pair.
+  $tmp = array($cname[0], $cname[1], $cname[2], $cname[3], $cname[4]);
+  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
+  $sql_seq = sprintf("
+    SELECT COUNT(feature_id) AS count, 'Sequence', 'br'
+    FROM feature
+    WHERE type_id IN(%s)", $ids);
+
+  // chado.FEATURE/ VARIANT
+  // indel, mnp, snp.
+  $tmp = array($cname[5], $cname[6], $cname[7]);
+  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
+  $sql_var = sprintf("
+    SELECT COUNT(feature_id) AS count, 'Variant', 'br'
+    FROM feature
+    WHERE type_id IN(%s)", $ids);
+
+  // chado.FEATURE/ MARKER
+  // marker and marker_type. NOTE: marker_type is a feature_property.
+  $tmp = array($cname[8]);
+  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
+  $tmp = array($cname[9]);
+  $id2 = kp_frontpage_function_get_id($tmp, 'feature_property');
+  $sql_mar = sprintf("
+    SELECT COUNT(feature.feature_id) AS count, 'Marker', 'br'
+    FROM feature feature LEFT JOIN featureprop featureprop_feature ON feature.feature_id = featureprop_feature.feature_id
+    WHERE feature.type_id IN(%s) AND featureprop_feature.type_id IN(%s)", $ids, $id2);
+
+  // chado.STOCK/ GERMPLASM
+  // dna
+  $ids = '\'' . $cname[10] . '\'';
+  $sql_ger = sprintf("
+    SELECT COUNT(stock_id) AS count, 'Germplasm', 'bl'
+    FROM stock
+    WHERE type_id NOT IN(SELECT cvterm_id FROM {cvterm} WHERE LOWER(TRIM(name)) = %s)", $ids);
+
+  // NOTE:
+  // This is not final. Still working on genotype module.
+  $tmp = array($cname[0], $cname[1], $cname[2], $cname[3], $cname[4]);
+  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
+  $sql_gen = sprintf("
+    SELECT COUNT(feature_id) AS count, 'Genotype Calls', 'bl'
+    FROM feature
+    WHERE type_id IN(%s)", $ids);
+
+  // PHENOTYPES
+  // planting date and # of seeds planted.
+  $ids = '\'' . $cname[11] . '\', \'' . $cname[12] . '\'';
+  $sql_pen = sprintf("
+    SELECT COUNT(DISTINCT t1.cvterm_id) AS count, 'Traits', 'bl'
+    FROM cvterm AS t1
+    INNER JOIN pheno_measurements AS t2 ON t1.cvterm_id = t2.type_id
+    WHERE LOWER(TRIM(name)) NOT IN(%s)", $ids);
+
+  $sql_raw = "SELECT COUNT(plant_id) AS count, 'Phenotypes', 'bl' FROM pheno_plant";
+
+  // Construct the final SQL for materialized view.
+  $u = ' UNION ';
+  $sql = $sql_seq . $u . $sql_var . $u . $sql_mar . $u . $sql_ger . $u . $sql_gen . $u . $sql_pen . $u . $sql_raw;
+
+  // Create the materialized view using tripal_add_mview().
+  tripal_add_mview('kp_frontpage_stats', 'kp_frontpage', $schema, $sql, 'Saving stats for use on the frontpage.');
 
   // Populate the mview.
-  $mview_id = tripal_get_mview_id('kp_homepage_stats');
+  $mview_id = tripal_get_mview_id('kp_frontpage_stats');
   tripal_populate_mview($mview_id);
-
 }
 
+
+/**
+ * Implements hook_uninstall().
+ */
+function kp_frontpage_uninstall() {
+  // Content type
+  $type = 'kp_frontpage_cms';
+
+  $sql = "SELECT nid FROM {node} WHERE type = :type";
+  $args = array(':type' => $type);
+  $r = db_query($sql, $args)
+    ->fetchAllKeyed(0, 0);
+
+  $n_ids = array_keys($r);
+
+  // Delete nodes.
+  node_delete_multiple($n_ids);
+
+  // Delete custom field show content in field.
+  field_delete_field('kp_frontpage_show_in');
+
+  // Delete content type.
+  node_type_delete($type);
+  field_purge_batch(500);
+
+  // Delete materialized view.
+  $mview_id = tripal_get_mview_id('kp_frontpage_stats');
+  if (isset($mview_id) AND $mview_id > 0) {
+    tripal_delete_mview($mview_id);
+  }
+}
+
+
+/**
+ * Function return cvterm id of given cvterm name.
+ *
+ * @param $name
+ *   An array of cvterm name.
+ * @param $cv
+ *   A string containing the type of cv requested (sequence or feature_property).
+ *
+ * @return array
+ *   An array of cvterm id corresponding to a given name.
+ */
+function kp_frontpage_function_get_id($name, $cv) {
+  // Fetch all cvterm_id.
+  $sql = "SELECT cvterm_id FROM {cvterm} AS t1 INNER JOIN {cv} AS t2 USING(cv_id)
+          WHERE LOWER(TRIM(t1.name)) IN(:name) AND LOWER(TRIM(t2.name)) = :cv";
+
+  $args = array(':name' => $name, ':cv' => $cv);
+  $r = chado_query($sql, $args)
+    ->fetchAllKeyed(0, 0);
+
+  $cvterm_id = array_keys($r);
+  return implode(',', $cvterm_id);
+}

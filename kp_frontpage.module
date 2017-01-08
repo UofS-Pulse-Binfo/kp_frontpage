@@ -47,7 +47,7 @@ function kptheme_preprocess_page(&$vars, $hook) {
     // KP Main slideshow and footer slideshows (Project and Publication).
     // Note: for footer slideshow we just render the first 5 view rows.
     $arr_views = array(
-      'main_slideshow_view'     => 'kp_homepage_main_slideshow_view',
+      'main_slideshow_view'     => 'kp_frontpage_main_slideshow',
       'copy_crops_view'         => 'uofs_crop_species',
       'footer_project_view'     => 'kp_homepage_footer_project_slideshow_view',
       'footer_publication_view' => 'kp_homepage_footer_publication_slideshow_view'
@@ -77,7 +77,7 @@ function kptheme_preprocess_page(&$vars, $hook) {
     // Array to hol values required by bubble chart
     $arr_stats_bubble = array();
 
-    $sql = "SELECT * FROM {kp_homepage_stats} ORDER BY chart ASC";
+    $sql = "SELECT * FROM {kp_frontpage_stats} ORDER BY chart ASC";
     $result = chado_query($sql);
     foreach($result as $stat) {
       if ($stat->chart == 'br') {
@@ -101,4 +101,36 @@ function kptheme_preprocess_page(&$vars, $hook) {
  */
 function kp_frontpage_views_api() {
   return array('api' => 3.0);
+}
+
+/**
+ * Implements hook_node_info().
+ */
+function kp_frontpage_node_info() {
+  $content_type = array(
+    // Machine name.
+    'kp_frontpage_cms' => array(
+      // Human-readable name.
+      'name' => t('KP Frontpage Content'),
+      // Description.
+      'description' => t('Manage KP frontpage content.'),
+      // Title.
+      'has_title' => TRUE,
+      'title_label' => t('Content Title:'),
+      // Base name for implementation. Usually the module name.
+      'base' => 'kp_frontpage',
+      // Disable option to let administrators change the machine
+      // name of this content type.
+      'locked' => TRUE,
+    )
+  );
+
+  return $content_type;
+}
+
+/**
+ * Implements hook_form().
+ */
+function kp_frontpage_form($node, $form_state) {
+  return node_content_form($node, $form_state);
 }
