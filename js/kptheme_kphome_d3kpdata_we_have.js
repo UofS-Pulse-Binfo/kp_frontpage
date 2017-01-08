@@ -1,7 +1,9 @@
 (function ($) {
   Drupal.behaviors.KPdataWeHave = {
     attach: function (context, settings) {
-      bgColor = d3.scale.category20();
+      bgColor = d3.scale.ordinal()
+        .domain([0, 1, 2, 3, 4, 5])
+        .range(['#1C77B4', '#85B668', '#AEC7E8', '#3E7506', '#759392', '#C1BD6B']); //d3.scale.category20();
 
       // Tool tip to show details when svg element is selected.
       var infoBox = d3.select('body')
@@ -65,26 +67,26 @@
       // X Axis. Scale number in the x axis to short values.
       // (eg. 1000 to 1K)
       var xscale = d3.scale.linear()
-			  .domain([0, d3.max(barValues)])
-				.range([0, chartObj.chartAreaW])
-				.nice();
+        .domain([0, d3.max(barValues)])
+        .range([0, chartObj.chartAreaW])
+        .nice();
 
-      var	xAxis = d3.svg.axis();
-			xAxis
-				.orient('bottom')
-				.scale(xscale)
-				.tickFormat(d3.format('s'))
-				.ticks(chartObj.barTicks);
+      var  xAxis = d3.svg.axis();
+      xAxis
+        .orient('bottom')
+        .scale(xscale)
+        .tickFormat(d3.format('s'))
+        .ticks(chartObj.barTicks);
 
       // Create a g container in main bar chart container
       // to hold all bars.
-			var containerBar = barChartWrapper
+      var containerBar = barChartWrapper
         .selectAll('g')
         .data(barCaption);
 
-			// In the bar container, create a g container containing
-			// bar (polygon), rect and text
-			var eachBar = containerBar.enter()
+      // In the bar container, create a g container containing
+      // bar (polygon), rect and text
+      var eachBar = containerBar.enter()
         .append('g')
         .attr('transform', function(d, i) {
           return 'translate(0,' + i * chartObj.rectGutter + ')';
@@ -103,19 +105,19 @@
           infoBox.transition().style({'opacity' : 1, 'display' : 'none'});
         });
 
-			// A rectangular container and acts as a background for each
-			// bar. Extends to the the max data in the x axis.
-			eachBar.append('rect')
-			  .attr('class', 'bg-gray')
-			  .attr('width', chartObj.chartAreaW)
-			  .attr('height', chartObj.barH)
-			  .attr('transform', function(d, i) {
-			    return 'translate(' + chartObj.paddingL + ', '+ i * chartObj.barH +')';
-			  })
-			  .style('opacity', 0.1);
+      // A rectangular container and acts as a background for each
+      // bar. Extends to the the max data in the x axis.
+      eachBar.append('rect')
+        .attr('class', 'bg-gray')
+        .attr('width', chartObj.chartAreaW)
+        .attr('height', chartObj.barH)
+        .attr('transform', function(d, i) {
+          return 'translate(' + chartObj.paddingL + ', '+ i * chartObj.barH +')';
+        })
+        .style('opacity', 0.1);
 
-			// The bar (polygon).
-			eachBar.append('polygon')
+      // The bar (polygon).
+      eachBar.append('polygon')
         .attr('points', function(d, i) {
           var polyObj = {};
             // Draw polygon.
@@ -149,8 +151,8 @@
           .ease('back')
           .style('opacity', 1);
 
-			// Label each bar (polygon)
-			eachBar.append('text')
+      // Label each bar (polygon)
+      eachBar.append('text')
         .attr('x', 0)
         .transition()
         .duration(500)
@@ -170,11 +172,11 @@
       // x axis
       barChartWrapper.append('g')
         .style('opacity', 0.4)
-			  .attr('class', 'barchart-axis')
+        .attr('class', 'barchart-axis')
         .attr('transform', function() {
           return 'translate(' + chartObj.paddingL + ',' + ((chartObj.chartAreaH + chartObj.rectGutter) - 1) + ')';
         })
-			  .call(xAxis);
+        .call(xAxis);
 
 
 
