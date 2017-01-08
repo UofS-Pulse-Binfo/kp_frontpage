@@ -89,7 +89,7 @@ function kp_frontpage_install() {
     'mnp',         // 6
     'snp',         // 7
     'marker',      // 8
-    'marker_type', // 9
+    'genetic_marker', // 9
     'dna',         // 10
     'planting date (date)',  // 11
     '# of seeds planted (count)',  // 12
@@ -114,15 +114,15 @@ function kp_frontpage_install() {
     WHERE type_id IN(%s)", $ids);
 
   // chado.FEATURE/ MARKER
-  // marker and marker_type. NOTE: marker_type is a feature_property.
+  // marker and genetic_marker
   $tmp = array($cname[8]);
   $ids = kp_frontpage_function_get_id($tmp, 'sequence');
   $tmp = array($cname[9]);
-  $id2 = kp_frontpage_function_get_id($tmp, 'feature_property');
+  $id2 = kp_frontpage_function_get_id($tmp, 'sequence');
   $sql_mar = sprintf("
     SELECT COUNT(feature.feature_id) AS count, 'Marker', 'br'
-    FROM feature feature LEFT JOIN featureprop featureprop_feature ON feature.feature_id = featureprop_feature.feature_id
-    WHERE feature.type_id IN(%s) AND featureprop_feature.type_id IN(%s)", $ids, $id2);
+    FROM feature feature
+    WHERE feature.type_id IN(%s, %s)", $ids, $id2);
 
   // chado.STOCK/ GERMPLASM
   // dna
@@ -134,14 +134,11 @@ function kp_frontpage_install() {
 
   // NOTE:
   // This is not final. Still working on genotype module.
-  $tmp = array($cname[0], $cname[1], $cname[2], $cname[3], $cname[4]);
-  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
   $sql_gen = sprintf("
-    SELECT COUNT(feature_id) AS count, 'Genotype Calls', 'bl'
-    FROM feature
-    WHERE type_id IN(%s)", $ids);
+    SELECT COUNT(genotype_call_id) AS count, 'Genotype Calls', 'bl'
+    FROM genotype_call");
 
-  // PHENOTYPES
+  // TRAITS
   // planting date and # of seeds planted.
   $ids = '\'' . $cname[11] . '\', \'' . $cname[12] . '\'';
   $sql_pen = sprintf("
@@ -150,7 +147,15 @@ function kp_frontpage_install() {
     INNER JOIN pheno_measurements AS t2 ON t1.cvterm_id = t2.type_id
     WHERE LOWER(TRIM(name)) NOT IN(%s)", $ids);
 
-  $sql_raw = "SELECT COUNT(plant_id) AS count, 'Phenotypes', 'bl' FROM pheno_plant";
+  // PHENOTYPES
+  // The unique combination of plant and trait is a phenotype.
+  $sql_raw = "
+    SELECT count(combo) AS count, 'Phenotypes', 'bl'
+    FROM (
+      SELECT plant_id||':'||type_id as combo 
+      FROM pheno_measurements 
+      GROUP BY plant_id, type_id
+    ) t";
 
   // Construct the final SQL for materialized view.
   $u = ' UNION ';
