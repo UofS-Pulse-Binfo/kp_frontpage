@@ -958,17 +958,6 @@ div.kp-homepage-tool-tip {
   display: none !important;
 }
 
-/* KP Search box */
-#kp-header-search-box {
-  float: right;
-  margin-top: 20px;
-}
-
-#kp-header-search-box input.form-text {
-  width: 200px;
-}
-
-
 /* News and updates */
 .block-news-updates {
   background-color: #3A4F61;

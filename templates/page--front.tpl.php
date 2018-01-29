@@ -9,19 +9,6 @@ $module_path = drupal_get_path('module','kp_frontpage');
 ?>
 <div id="page-wrapper"><div id="page">
 
-  <!-- First Menu -->
-  <div class="menu-first menu-main">
-    <?php if ($page['menu_first']): ?>
-      <?php print render($page['menu_first']); ?>
-    <?php endif; ?>
-  </div>
-
-  <!-- Second Menu -->
-  <div class="menu-second menu-main">
-    <?php if ($page['menu_second']): ?>
-      <?php print render($page['menu_second']); ?>
-    <?php endif; ?>
-  </div>
   <div id="header" style="height: 115px;" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>">
 
   <div class="section clearfix">
@@ -34,42 +21,21 @@ $module_path = drupal_get_path('module','kp_frontpage');
 
     <?php endif; ?>
 
-    <!-- Omnibox Search bar!!!  -->
-    <div id="kp-header-search-box" style="margin: -10px 0 0 0;">
-
-      <div style="position: absolute; top: -65px; right: 0">
-        <div id="frontpage-start-tour">
-          <div id="frontpage-tour-help">Need Help?</div>
-          <a href="#" id="frontpage-tour-button">Start Tour</a>
-        </div>
-      </div>
-
+    <!-- Omnibox Search bar!!! -->
+    <div id="kp-header-search-box">
       <?php
-        $render_arr = drupal_get_form('tripal_core_search_block');
+        $render_arr = drupal_get_form('search_form');
         print drupal_render($render_arr);
       ?>
     </div>
 
+    <!-- Need help button which is only on the front page -->
     <?php if ($variables['is_front'] === TRUE): ?>
-     <div id="container-control-panel" style="display: none;">
-       <div class="container-panel">
-         <ul>
-           <li>Need Help? <a href="#" id="frontpage-tour-button">Start Tour</a> - <a href="#">Site Map</a></li>
-           <li>&nbsp;</li>
-           <li><a href="#" id="link-favourites" rel="sidebar">Bookmark KP</a></li>
-         </ul>
-       </div>
-       <div class="container-panel">
-         <form action="#" method="post">
-           <span><input type="text" name="txt_search" id="txt_search"></span>
-           <span><input type="submit" value="Search"></span>
-         </form>
-       </div>
+     <div id="frontpage-start-tour">
+      <span id="frontpage-tour-help">Need Help?</span>
+      <a href="#" id="frontpage-tour-button">Start Tour</a>
      </div>
-
-
     <?php endif; ?>
-
 
     <?php if ($site_name || $site_slogan): ?>
       <div id="name-and-slogan"<?php if ($hide_site_name && $hide_site_slogan) { print ' class="element-invisible"'; } ?>>
