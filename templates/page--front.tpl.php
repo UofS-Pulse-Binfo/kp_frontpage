@@ -51,7 +51,7 @@ $module_path = drupal_get_path('module','kp_frontpage');
       ?>
     </div>
 
-<1--
+<!--
     <?php if ($variables['is_front'] === TRUE): ?>
      <div id="container-control-panel" style="display: none;">
        <div class="container-panel">
@@ -285,7 +285,7 @@ $module_path = drupal_get_path('module','kp_frontpage');
                   <div class="info-col slide-info">
                     <h2 class="section-title">&#9632; Publications:</h2>
                     <a href="<?php print url('research/publications')?>" class="context-link">&raquo; More Publications</a>
-                    <?php print views_embed_view('kp_homepage_footer_publication_slideshow_view', 'default'); ?>
+                    <?php print views_embed_view('kp_frontpage_footer_publication_slideshow_tripal_3', 'default'); ?>
                   </div>
                   <div class="info-col chevron-right"><span>&rang;</span></div>
                   <div class="clear-no-height">&nbsp;</div>
