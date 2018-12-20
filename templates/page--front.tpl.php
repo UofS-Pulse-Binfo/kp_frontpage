@@ -267,7 +267,7 @@ $module_path = drupal_get_path('module','kp_frontpage');
                   <div class="info-col slide-info">
                     <h2 class="section-title">&#9632; Projects:</h2>
                     <a href="<?php print url('research/projects');?>" class="context-link">&raquo; More Projects</a>
-                    <?php print views_embed_view('kp_homepage_footer_project_slideshow_view', 'default'); ?>
+                    <?php print views_embed_view('kp_frontpage_footer_projects_slideshow_tripal_3', 'default'); ?>
                   </div>
                   <div class="info-col chevron-right"><span>&rang;</span></div>
                   <div class="clear-no-height">&nbsp;</div>
