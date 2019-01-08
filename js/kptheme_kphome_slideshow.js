@@ -3,55 +3,12 @@
     attach: function (context, settings) {
       var speed = 1200;
 
-      // Initialize auto loop slider vars.
-      var i = 0;
-      // Main slideshow count slides
-      var mSlides = $('#main-slideshow ul:first-child li').length;
-
-      var moreInfo = $('#stat-more-info');
-      $('#btn-more-info')
-      .mouseover(function(){
-        moreInfo.show();
-      })
-      .mouseout(function() {
-        moreInfo.hide();
-      });
-
-
       // Load first slide right away.
-      $('#main-slideshow ul:first-child li').eq(0).fadeIn('fast');
       $('#footer-slideshow-project ul:first-child li').eq(0).fadeIn('fast');
       $('#footer-slideshow-publication ul:first-child li').eq(0).fadeIn('fast');
 
       // Select first bullet.
       $('.bullets li:first-child').addClass('active-bullet');
-
-      // Start slider.
-      var int = self.setInterval(autoSlider, speed * 5);
-
-      function autoSlider() {
-        // Since the first slide (index 0) is active already,
-        // start at 1 - next slide.
-        if (i == 0) {
-          i = 1;
-        }
-
-        // When last slide is reached, start at first slide (index 0).
-        if (i == mSlides) {
-          i = 0;
-        }
-
-        // When main slideshow container size is less than 1372px
-        // do not initiate auto slide.
-        if ($('#main-slideshow-container').width() < 1300) {
-          stopSlider();
-          return;
-        }
-
-        // Slide...
-        slide('main-slideshow', i);
-        i++;
-      }
 
       // Attach listener to right and left link.
       $('.chevron-right, .chevron-left').click(function() {
@@ -130,12 +87,6 @@
       // Function to return the number of rows in a given parent container
       function liSize(parent) {
         return $('#' + parent + ' .slideshow-slide').length;
-      }
-
-
-      // Stop auto slider
-      function stopSlider() {
-        int = window.clearInterval(int);
       }
     }
   };

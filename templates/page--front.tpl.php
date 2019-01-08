@@ -177,22 +177,6 @@ $module_path = drupal_get_path('module','kp_frontpage');
      // Browser is not IE ver 8 and below. Enjoy!
      else:
      ?>
-        <div id="main-slideshow-container">
-          <div id="main-slideshow" class="container-row">
-            <div class="info-col chevron-left"><span>&lang;</span></div>
-            <div class="info-col slide-info">
-              <div id="bg-main-slider">
-                <?php print views_embed_view('kp_frontpage_main_slideshow', 'default'); ?>
-              </div>
-            </div>
-            <div class="info-col chevron-right"><span>&rang;</span></div>
-            <div class="clear-no-height">&nbsp;</div>
-          </div>
-           <ul class="bullets">
-            <?php print str_repeat('<li>&nbsp;</li>', $main_slideshow_view); ?>
-          </ul>
-        </div>
-
         <!-- 2 COL LAYOUT -->
         <div class="container-row main-copy-container">
           <div class="info-col main-copy-left-container">
