@@ -161,7 +161,7 @@ $module_path = drupal_get_path('module','kp_frontpage');
                         $gs = $view['genus'] . ' ' . $view['species'];
                     ?>
                     <li>
-                      <a href="<?php print url('organism/' . $view['genus'] . '/' . $view['species']); ?>">
+                      <a href="<?php print url( $view['genus'] . '/' . $view['species']); ?>">
                         <img src="<?php print url($module_path . '/images/kphome/crops-' . str_replace(' ', '-', strtolower($view['title'])) . '.jpg'); ?>" class="tab-info-img" height="107" width="107" alt="<?php print $gs; ?>" title="<?php print $gs; ?>" />
                         <?php print $view['title'] . '<em>' . $gs . '</em>'; ?>
                       </a>
