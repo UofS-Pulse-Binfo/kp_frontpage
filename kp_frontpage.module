@@ -49,7 +49,7 @@ function kptheme_preprocess_page(&$vars, $hook) {
     $arr_views = array(
       'copy_crops_view'         => 'uofs_crop_species',
       'footer_project_view'     => 'kp_homepage_footer_project_slideshow_view',
-      'footer_publication_view' => 'kp_homepage_footer_publication_slideshow_view'
+      'footer_publication_view' => 'kp_frontpage_footer_publication_slideshow_tripal_3'
     );
 
     foreach($arr_views as $i => $view) {
