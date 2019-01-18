@@ -8,21 +8,6 @@
 $module_path = drupal_get_path('module','kp_frontpage');
 ?>
 <div id="page-wrapper"><div id="page">
-
-  <!-- First Menu
-  <div class="menu-first menu-main">
-    <?php if ($page['menu_first']): ?>
-      <?php print render($page['menu_first']); ?>
-    <?php endif; ?>
-  </div> -->
-
-  <!-- Second Menu
-  <div class="menu-second menu-main">
-    <?php if ($page['menu_second']): ?>
-      <?php print render($page['menu_second']); ?>
-    <?php endif; ?>
-  </div> -->
-
   <div id="header" style="height: 115px;" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>">
 
   <div class="section clearfix">
@@ -37,41 +22,11 @@ $module_path = drupal_get_path('module','kp_frontpage');
 
     <!-- Omnibox Search bar!!!  -->
     <div id="kp-header-search-box" style="margin: -10px 0 0 0;">
-<!--
-      <div style="position: absolute; top: -65px; right: 0">
-        <div id="frontpage-start-tour">
-          <div id="frontpage-tour-help">Need Help?</div>
-          <a href="#" id="frontpage-tour-button">Start Tour</a>
-        </div>
-      </div>
--->
       <?php
         $render_arr = drupal_get_form('search_form');
         print drupal_render($render_arr);
       ?>
     </div>
-
-<1--
-    <?php if ($variables['is_front'] === TRUE): ?>
-     <div id="container-control-panel" style="display: none;">
-       <div class="container-panel">
-         <ul>
-           <li>Need Help? <a href="#" id="frontpage-tour-button">Start Tour</a> - <a href="#">Site Map</a></li>
-           <li>&nbsp;</li>
-           <li><a href="#" id="link-favourites" rel="sidebar">Bookmark KP</a></li>
-         </ul>
-       </div>
-       <div class="container-panel">
-         <form action="#" method="post">
-           <span><input type="text" name="txt_search" id="txt_search"></span>
-           <span><input type="submit" value="Search"></span>
-         </form>
-       </div>
-     </div>
-
-
-    <?php endif; ?>
--->
 
     <?php if ($site_name || $site_slogan): ?>
       <div id="name-and-slogan"<?php if ($hide_site_name && $hide_site_slogan) { print ' class="element-invisible"'; } ?>>
@@ -177,27 +132,11 @@ $module_path = drupal_get_path('module','kp_frontpage');
      // Browser is not IE ver 8 and below. Enjoy!
      else:
      ?>
-        <div id="main-slideshow-container">
-          <div id="main-slideshow" class="container-row">
-            <div class="info-col chevron-left"><span>&lang;</span></div>
-            <div class="info-col slide-info">
-              <div id="bg-main-slider">
-                <?php print views_embed_view('kp_frontpage_main_slideshow', 'default'); ?>
-              </div>
-            </div>
-            <div class="info-col chevron-right"><span>&rang;</span></div>
-            <div class="clear-no-height">&nbsp;</div>
-          </div>
-           <ul class="bullets">
-            <?php print str_repeat('<li>&nbsp;</li>', $main_slideshow_view); ?>
-          </ul>
-        </div>
-
         <!-- 2 COL LAYOUT -->
         <div class="container-row main-copy-container">
           <div class="info-col main-copy-left-container">
             <div id="infographics-container">
-            <h2 class="h-section-title">&#9632; Explore <span>KnowPulse</span></h2>
+            <h2 class="h-section-title"></h2>
               <?php print views_embed_view('kp_frontpage_infographics', 'default'); ?>
             </div>
             <div class="h-line clear-left"><hr /></div>
