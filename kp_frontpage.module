@@ -48,7 +48,7 @@ function kptheme_preprocess_page(&$vars, $hook) {
     // Note: for footer slideshow we just render the first 5 view rows.
     $arr_views = array(
       'copy_crops_view'         => 'uofs_crop_species',
-      'footer_project_view'     => 'kp_homepage_footer_project_slideshow_view',
+      'footer_project_view'     => 'kp_frontpage_footer_projects_slideshow_tripal_3',
       'footer_publication_view' => 'kp_frontpage_footer_publication_slideshow_tripal_3'
     );
 
