@@ -20,14 +20,6 @@ $module_path = drupal_get_path('module','kp_frontpage');
 
     <?php endif; ?>
 
-    <!-- Omnibox Search bar!!!  -->
-    <div id="kp-header-search-box" style="margin: -10px 0 0 0;">
-      <?php
-        $render_arr = drupal_get_form('search_form');
-        print drupal_render($render_arr);
-      ?>
-    </div>
-
     <?php if ($site_name || $site_slogan): ?>
       <div id="name-and-slogan"<?php if ($hide_site_name && $hide_site_slogan) { print ' class="element-invisible"'; } ?>>
 
