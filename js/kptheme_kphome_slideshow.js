@@ -3,6 +3,16 @@
     attach: function (context, settings) {
       var speed = 1200;
 
+      // More information button in Data Available Section.
+      var moreInfo = $('#stat-more-info');
+      $('#btn-more-info')
+      .mouseover(function(){
+        moreInfo.show();
+      })
+      .mouseout(function() {
+        moreInfo.hide();
+      });
+
       // Load first slide right away.
       $('#footer-slideshow-project ul:first-child li').eq(0).fadeIn('fast');
       $('#footer-slideshow-publication ul:first-child li').eq(0).fadeIn('fast');
@@ -42,9 +52,6 @@
         // Slide...
         slide(parentId, liNo);
       });
-
-      // Attach listener to main slideshow
-      $('#main-slideshow').mouseover(stopSlider);
 
       // Function to load next or previous slide.
       function slide(parent, go) {
