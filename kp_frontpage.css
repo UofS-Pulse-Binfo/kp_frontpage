@@ -436,6 +436,10 @@ a.kpfrontpage-navigation-white {
     pointer-events: none;
   }
 
+   #kpfrontpage-copy-explore-data-tools li.kpfrontpage-tools-spacer {
+    background: none;
+    pointer-events: none;
+  }
 
   /* // */
 
