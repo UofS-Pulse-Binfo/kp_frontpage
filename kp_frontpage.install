@@ -70,7 +70,7 @@ function kp_frontpage_install() {
     'bundle' => 'kp_frontpage_cms',
     'label' => 'Link to Page:',
     'description' => 'Link this news/events to a page. Include http:// part of the address.',
-    'required' => TRUE,
+    'required' => FALSE,
     'default_value' => 'http://',
     'widget' => array(
       'type' => 'textfield'

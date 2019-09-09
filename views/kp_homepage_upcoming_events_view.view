@@ -50,8 +50,11 @@ $handler->display->display_options['fields']['kp_frontpage_link_to']['table'] = 
 $handler->display->display_options['fields']['kp_frontpage_link_to']['field'] = 'kp_frontpage_link_to';
 $handler->display->display_options['fields']['kp_frontpage_link_to']['label'] = '';
 $handler->display->display_options['fields']['kp_frontpage_link_to']['exclude'] = TRUE;
+$handler->display->display_options['fields']['kp_frontpage_link_to']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['kp_frontpage_link_to']['alter']['text'] = ' <a href="[kp_frontpage_link_to-value]" target="_blank" class="kpnews-explore">More information</a>';
 $handler->display->display_options['fields']['kp_frontpage_link_to']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['kp_frontpage_link_to']['element_default_classes'] = FALSE;
+$handler->display->display_options['fields']['kp_frontpage_link_to']['hide_empty'] = TRUE;
 /* Field: Content: Title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
 $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -60,7 +63,7 @@ $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
 $handler->display->display_options['fields']['title']['alter']['text'] = '<div class="kpfrontpage-copy-explore-data-extra-title">
   [title]
-  <a href="[kp_frontpage_link_to]" target="_blank" class="kpnews-explore">More information</a>
+  [kp_frontpage_link_to]
  </div>
 [kp_frontpage_banner]';
 $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
