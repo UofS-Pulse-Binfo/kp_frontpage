@@ -186,8 +186,9 @@ a.kpfrontpage-navigation-white {
   border-left: 10px solid #3A7F21;
   border-top: none;
   padding-top: 20px;
+  padding-right: 20px;
   height: 40px;
-  width: 370px;
+  width: auto;
 }
 
   #kpfrontpage-userpanel li {

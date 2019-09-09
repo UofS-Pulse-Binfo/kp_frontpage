@@ -9,13 +9,17 @@
  * Implements hook_preprocess_page().
  */
 function kptheme_preprocess_page(&$vars, $hook) {
+  // Embed style, JS file, prepare preprocess vars and site stats,
+  // only when it is the frontpage.
+
   if (drupal_is_front_page()) {
-    // Embed style and JS file only when it is the frontpage.
+    $vars['path_host'] = $GLOBALS['base_url'];
+
     $path = drupal_get_path('module', 'kp_frontpage');
     drupal_add_css($path . '/kp_frontpage.css');
     drupal_add_js ($path . '/js/kp_frontpage.js', array('scope' => 'footer'));
 
-    $vars['path_images'] = $path . '/images/';
+    $vars['path_images'] = $vars['path_host'] . '/' . $path . '/images/';
 
     // Stats about data.
     $sql = "SELECT * FROM {kp_frontpage_stats}";

@@ -13,7 +13,7 @@
            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
              <img src="<?php print $logo; ?>" alt="KnowPulse Home" title="KnowPulse Home" height="75" width="250" border="0" />
            </a>
-           <div id="kpfrontpage-userpanel" class="kpfrontpage-element-right kpfrontpage-bg-navyblue kpfrontpage-bg-diagonallines">
+           <div id="kpfrontpage-userpanel" class="kpfrontpage-element-right kpfrontpage-bg-navyblue">
              <ul class="kpfrontpage-horizontal-list">
                <?php if (user_is_logged_in()) {
                  // User is logged in, show more option in this panel.
@@ -28,23 +28,17 @@
                    ?>
                  </div>
                </li>
-               <li><a href="admin/content/bio_data/add" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
-               <li><a href="user/logout" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Sign out.">Logout</a></li>
+               <li><a href="<?php print $path_host. '/admin/content/bio_data/add/kp-frontpage-cms'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
+               <li><a href="<?php print $path_host. '/admin/content/bio_data/add'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
+               <li><a href="<?php print $path_host . '/user/logout'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Sign out.">Logout</a></li>
 
                <?php
                } else {
                  // Current user is not logged in, show login link and login form.
                ?>
 
-               <li class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropwindow">
-                <a href="user" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Login to KnowPulse.">Sign in KP</a>
-               </li>
-               <li>
-                 <a href="user/register" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Create an account in KnowPulse.">Signup an Account</a>
-               </li>
-               <li>
-                 <a href="user/password" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Create an account in KnowPulse.">Request Password</a>
-               </li>
+               <li class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropwindow"><a href="user" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Login to KnowPulse.">Sign in KP</a></li>
+               <li><a href="user/register" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Create an account in KnowPulse.">Signup an Account</a></li>
 
                <?php } ?>
              </ul>
