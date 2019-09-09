@@ -146,14 +146,24 @@
                    // PHENOTYPES:
                    //
                    //
+                   $set_ctr = 0;
+                   $set = array('Phenotypes:', 'Raw Phenotypes:');
+
                    foreach ($page['sidebar_second']['menu_menu-phenotypic-data'] as $p) {
                      foreach ($p as $x) {
                        if (strlen($x['title']) > 5) {
                          printf($li, $x['href'], $x['title']);
                        }
 
+                       $i = 0;
                        foreach($x as $u) {
                          if (strlen($u['#title']) > 5) {
+                           if ($i == 0) {
+                             print '<li>' . $set[ $set_ctr ] . '</li>';
+                             $set_ctr = 1;
+                           }
+
+                           $i++;
                            printf($li, $u['#href'], $u['#title']);
                          }
                        }
