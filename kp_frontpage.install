@@ -132,8 +132,8 @@ function kp_frontpage_install() {
     WHERE type_id NOT IN (SELECT cvterm_id FROM {cvterm} WHERE LOWER(TRIM(name)) = 'dna') UNION";
 
   $sql .= ' ';
-  $sql .= "SELECT COUNT(genotype_call_id) AS count, 'Genotype Calls'
-    FROM {genotype_call} WHERE genotype_call_id < 10 UNION";
+  $sql .= "SELECT CAST(reltuples AS int) AS count, 'Genotype Calls'
+    FROM pg_class WHERE relname = 'genotype_call' UNION";
 
   $sql .= ' ';
   $sql .= "SELECT COUNT(combo) AS count, 'Phenotypes'
