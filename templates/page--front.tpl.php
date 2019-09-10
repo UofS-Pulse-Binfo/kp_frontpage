@@ -5,8 +5,6 @@
  */
 ?>
 
-
-
 <div id="page-wrapper">
   <div id="page">
     <div id="kpfrontpage-page-wrapper">
@@ -150,9 +148,10 @@
                    //
                    foreach ($page['sidebar_second']['menu_menu-phenotypic-data'] as $link) {
                      if (is_array($link)) {
-                       if ($link['#attributes']['class'][1] == 'expanded') {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'last') {
+                         $class = ($link['#attributes']['class'][1] == 'expanded') ? 'kpfrontpage-horizontal-list' : '';
                          // Print the title set and begin list element.
-                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul class="kpfrontpage-horizontal-list">';
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul class="' . $class . '">';
 
                          foreach($link['#below'] as $sublink) {
                            if (strlen($sublink['#title']) > 5) {
@@ -178,7 +177,7 @@
                    //
                    foreach ($page['sidebar_second']['menu_menu-genomic-data'] as $link) {
                      if (is_array($link)) {
-                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'leaf') {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'leaf' || $link['#attributes']['class'][1] == 'last') {
                          // Print the title set and begin list element.
                          print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul>';
 
