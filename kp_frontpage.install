@@ -128,12 +128,12 @@ function kp_frontpage_install() {
   );
 
   // Count phenotypes, genomic data and germplasm.
-  $sql = "SELECT COUNT(stock_id) AS count, 'Germplasm' FROM stock
-    WHERE type_id NOT IN (SELECT cvterm_id FROM cvterm WHERE LOWER(TRIM(name)) = 'dna') UNION";
+  $sql = "SELECT COUNT(stock_id) AS count, 'Germplasm' FROM {stock}
+    WHERE type_id NOT IN (SELECT cvterm_id FROM {cvterm} WHERE LOWER(TRIM(name)) = 'dna') UNION";
 
   $sql .= ' ';
   $sql .= "SELECT COUNT(genotype_call_id) AS count, 'Genotype Calls'
-    FROM genotype_call WHERE genotype_call_id < 10 UNION";
+    FROM {genotype_call} WHERE genotype_call_id < 10 UNION";
 
   $sql .= ' ';
   $sql .= "SELECT COUNT(combo) AS count, 'Phenotypes'

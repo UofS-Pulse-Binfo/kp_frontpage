@@ -7,7 +7,7 @@
  */
 
 $view = new view();
-$view->name = 'kp_frontpage_news_and_updates';
+$view->name = 'kp_frontpage_news_and_update';
 $view->description = 'Add news and updates to KP Frontpage';
 $view->tag = 'default';
 $view->base_table = 'node';

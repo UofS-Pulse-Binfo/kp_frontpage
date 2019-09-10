@@ -28,7 +28,7 @@
                    ?>
                  </div>
                </li>
-               <li><a href="<?php print $path_host. '/admin/content/bio_data/add/kp-frontpage-cms'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
+               <li><a href="<?php print $path_host. '/node/add/kp-frontpage-cms'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
                <li><a href="<?php print $path_host. '/admin/content/bio_data/add'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
                <li><a href="<?php print $path_host . '/user/logout'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Sign out.">Logout</a></li>
 
@@ -240,7 +240,7 @@
                  </div>
                  <div class="kpfrontpage-copy-explore-data-entry-bullets">
                    <?php
-                   $news = views_get_view_result('kp_frontpage_news_and_updates', 'default');
+                   $news = views_get_view_result('kp_frontpage_news_and_update', 'default');
                    $news_count = count($news);
                    print str_repeat('<div>&nbsp;</div>', $news_count);
                    ?>
