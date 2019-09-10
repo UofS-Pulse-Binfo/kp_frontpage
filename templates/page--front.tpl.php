@@ -5,6 +5,8 @@
  */
 ?>
 
+
+
 <div id="page-wrapper">
   <div id="page">
     <div id="kpfrontpage-page-wrapper">
@@ -139,39 +141,30 @@
                      <span><?php print $data_stats['Phenotypes']['short_value']; ?></span> Phenotypes
                    </div>
                    <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Phenotypic Data</h2>
-                   <ul class="kpfrontpage-horizontal-list">
                    <?php
+                   // List element format.
                    $li = '<li>&nbsp;&nbsp;<a href="%s">&#9724; %s</a></li>';
 
                    // PHENOTYPES:
                    //
                    //
-                   $set_ctr = 0;
-                   $set = array('Phenotypes:', 'Raw Phenotypes:');
+                   foreach ($page['sidebar_second']['menu_menu-phenotypic-data'] as $link) {
+                     if (is_array($link)) {
+                       if ($link['#attributes']['class'][1] == 'expanded') {
+                         // Print the title set and begin list element.
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul class="kpfrontpage-horizontal-list">';
 
-                   foreach ($page['sidebar_second']['menu_menu-phenotypic-data'] as $p) {
-                     foreach ($p as $x) {
-                       if (strlen($x['title']) > 5) {
-                         printf($li, $x['href'], $x['title']);
-                       }
-
-                       $i = 0;
-                       foreach($x as $u) {
-                         if (strlen($u['#title']) > 5) {
-                           if ($i == 0) {
-                             print '<li>' . $set[ $set_ctr ] . '</li>';
-                             $set_ctr = 1;
+                         foreach($link['#below'] as $sublink) {
+                           if (strlen($sublink['#title']) > 5) {
+                             printf($li, $sublink['#href'], $sublink['#title']);
                            }
-
-                           $i++;
-                           printf($li, $u['#href'], $u['#title']);
                          }
+                         print '</ul><div class="kpfrontpage-clearfloat">&nbsp;</div>';
+
                        }
                      }
                    }
                    ?>
-                   </ul>
-                   <div class="kpfrontpage-clearfloat">&nbsp;</div>
                  </div>
                  <div>
                    <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Genotype Calls']['long_value']; ?>">
@@ -183,16 +176,19 @@
                    // GENOMIC DATA:
                    //
                    //
-                   foreach ($page['sidebar_second']['menu_menu-genomic-data'] as $p) {
-                     foreach ($p as $x) {
-                       if (strlen($x['title']) > 5) {
-                         printf($li, $x['href'], $x['title']);
-                       }
+                   foreach ($page['sidebar_second']['menu_menu-genomic-data'] as $link) {
+                     if (is_array($link)) {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'leaf') {
+                         // Print the title set and begin list element.
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul>';
 
-                       foreach($x as $u) {
-                         if (strlen($u['#title']) > 5) {
-                           printf($li, $u['#href'], $u['#title']);
-                          }
+                         foreach($link['#below'] as $sublink) {
+                           if (strlen($sublink['#title']) > 5) {
+                             printf($li, $sublink['#href'], $sublink['#title']);
+                           }
+                         }
+                         print '</ul><div class="kpfrontpage-clearfloat">&nbsp;</div>';
+
                        }
                      }
                    }
@@ -210,16 +206,19 @@
                    // GERMPLASM:
                    //
                    //
-                   foreach ($page['sidebar_second']['menu_menu-germplasm'] as $p) {
-                     foreach ($p as $x) {
-                       if (strlen($x['title']) > 3) {
-                         printf($li, $x['href'], $x['title']);
-                       }
+                   foreach ($page['sidebar_second']['menu_menu-germplasm'] as $link) {
+                     if (is_array($link)) {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'last') {
+                         // Print the title set and begin list element.
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul>';
 
-                       foreach($x as $u) {
-                         if (strlen($u['#title']) > 5) {
-                           printf($li, $u['#href'], $u['#title']);
-                          }
+                         foreach($link['#below'] as $sublink) {
+                           if (strlen($sublink['#title']) > 5) {
+                             printf($li, $sublink['#href'], $sublink['#title']);
+                           }
+                         }
+                         print '</ul><div class="kpfrontpage-clearfloat">&nbsp;</div>';
+
                        }
                      }
                    }

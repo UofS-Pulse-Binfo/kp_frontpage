@@ -81,7 +81,7 @@
                // style="display: none;"
                ?>
 
-               <ul style="display: none;">
+               <ul>
                  <li class="kpfrontpage-tools-spacer">&nbsp;</li>
 
                  <li>
@@ -106,4 +106,9 @@
 
                  <li class="kpfrontpage-tools-spacer">&nbsp;</li>
                </ul>
+<?php
+  // Defaults to show the first 2 rows (sets of 6). The frontend will add a reveal link to show
+  // other sets beyond this point. Link is unavailable when only showing this 2 sets.
 
+  // Add more set here...
+?>

@@ -100,6 +100,15 @@
         window.location.href = loc;
       });
 
+      // When list of of tools becomes more than 3 (sets of 6) the first 2 rows are visible,
+      // and the rest becomes hidden. In case there's a 3rd or 4th row provide a link to reveal.
+      if ($('#kpfrontpage-copy-explore-data-tools ul').length > 2) {
+        $('#kpfrontpage-copy-explore-data-tools > a').css('visibility', 'visible');
+      }
+      else {
+        $('#kpfrontpage-copy-explore-data-tools > a').css('visibility', 'hidden');
+      }
+
 
       // NEWS, UPDATES, UPCOMING EVENTS SLIDESHOW:
       // Select first bullet.

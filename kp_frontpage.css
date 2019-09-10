@@ -385,14 +385,13 @@ a.kpfrontpage-navigation-white {
 
   /* // */
 
-
   #kpfrontpage-copy-explore-data-tools li {
     background: url(images/background/bg-tool-hexagon.gif) top center no-repeat;
     cursor: pointer;
     display: inline;
     float: left;
     height: 190px;
-    margin: 0 23px;
+    margin: 0 23px 10px 23px;
     padding-top: 30px;
     position: relative;
     text-align: center;
@@ -453,7 +452,7 @@ a.kpfrontpage-navigation-white {
     margin: 0 14px;
     padding: 10px 20px;
     position: relative;
-    height: 220px;
+    height: 250px;
     width: 335.9px;
 
     -webkit-box-shadow: inset 0px -1px 61px -49px rgba(0,0,0,0.75);
