@@ -37,8 +37,8 @@
                  // Current user is not logged in, show login link and login form.
                ?>
 
-               <li class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropwindow"><a href="user" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Login to KnowPulse.">Sign in KP</a></li>
-               <li><a href="user/register" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Create an account in KnowPulse.">Signup an Account</a></li>
+               <li class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropwindow"><a href="user" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Login to KnowPulse.">Sign in</a></li>
+               <li><a href="user/register" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Create an account in KnowPulse.">Create an Account</a></li>
 
                <?php } ?>
              </ul>
