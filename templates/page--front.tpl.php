@@ -81,15 +81,14 @@
            <!-- /#quick start -->
            <div id="kpfrontpage-copy-quickstart">
              <div class="kpfrontpage-element-left">
-               <input id="kpfrontpage-copy-quickstart-searchbox" type="text" value="Find germplasm, publications, experiments and more..." title="Search all of KnowPulse: Find germplasm, publications, experiments and more..." />
-               <input id="kpfrontpage-copy-quickstart-searchbutton" type="image" src="<?php print $path_images . 'infographics/infographics-quickstart-search.jpg'; ?>" alt="Submit" />
+               <h1>New to KnowPulse: <a href="https://knowpulse.usask.ca/MapViewer">Genetic Maps</a></h1>
              </div>
 
-             <div class="kpfrontpage-element-right">
-               <ul class="kpfrontpage-horizontal-list">
-                 <li><a href="research/projects" title="Explore KnowPulse see our experiments.">Our Experiments</a></li>
-                 <li><a href="research/publications" title="Explore KnowPulse browse our publications.">Browse Publications</a></li>
-                 <li><a href="germplasm/accession" title="Explore KnowPulse search germplasm.">Search Germplasm</a></li>
+             <div class="kpfrontpage-element-right" title="Data in KnowPulse: Phenotypes, Genotypes and Germplasm">
+               <ul class="kpfrontpage-horizontal-list kpfrontpage-link-slide">
+                 <li><a href="#" title="Data - Phenotypes.">Phenotypes</a></li>
+                 <li><a href="#" title="Data - Genotypes.">Genotypes</a></li>
+                 <li><a href="#" title="Data - Germplasm.">Germplasm</a></li>
                </ul>
              </div>
              <div class="kpfrontpage-clearfloat">&nbsp;</div>
@@ -304,7 +303,3 @@
     <!-- /#page, /#page-wrapper -->
   </div>
 </div>
-
-
-
-

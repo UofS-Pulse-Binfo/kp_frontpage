@@ -1,8 +1,13 @@
 (function ($) {
   Drupal.behaviors.KPFrontpage = {
     attach: function (context, settings) {
-      // SEARCH BOX:
+
+      /**
+       Quick Access Updates while site-wide search in development.
+       SEARCH BOX
+      **/
       // Clear form entry for ease of typing strings.
+      /*
       $('#kpfrontpage-copy-quickstart-searchbox')
       .focus(function() {
         $(this).val('');
@@ -10,6 +15,22 @@
       .focusout(function() {
         if ($(this).val() == '') {
           $(this).val('Search KnowPulse: CDC Redberry or AGILE Eperiment...');
+        }
+      });
+      */
+
+      /**
+       Quick Access Updates while site-wide search in development.
+       LINKS
+      **/
+      $('.kpfrontpage-link-slide a').click(function(e) {
+        e.preventDefault();
+        // Stop scroll just about where the DATA heading is.
+        var stopAt = $('#kpfrontpage-copy-explore-data-data');
+        if (stopAt.length) {
+          $('html, body').stop().animate({
+            scrollTop: (stopAt.offset().top - 200)
+          }, 700);
         }
       });
 
