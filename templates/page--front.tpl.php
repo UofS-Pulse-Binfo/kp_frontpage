@@ -106,7 +106,7 @@
                // Module page $module_path required:
                include_once('kpfrontpage-crops.php');
                ?>
-               <a href="http://localhost/KnowPulse-TEST/research/species" target="_blank" alt="link opens a new window" title="link opens a new window" class="kpfrontpage-element-right kpfrontpage-more">&#9724; View other species of interest
+               <a href="research/species" target="_blank" alt="link opens a new window" title="link opens a new window" class="kpfrontpage-element-right kpfrontpage-more">&#9724; View other species of interest
                <img src="<?php print $path_images . 'infographics/infographics-new-window.gif'; ?>" align="absmiddle" /></a>
                <div class="kpfrontpage-clearfloat">&nbsp;</div>
              </div>
