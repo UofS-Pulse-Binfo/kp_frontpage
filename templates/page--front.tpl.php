@@ -233,7 +233,7 @@
                <div id="kpfrontpage-copy-explore-data-extra-news" class="kpfrontpage-element-left">
                  <h4>News and Updates</h4>
                  <div class="kpfrontpage-copy-explore-data-entry kpfrontpage-bg-diagonallines">
-                   <?php print views_embed_view('kp_frontpage_news_and_updates', 'default'); ?>
+                   <?php print views_embed_view('kp_frontpage_news_and_update', 'default'); ?>
                  </div>
                  <div class="kpfrontpage-copy-explore-data-entry-bullets">
                    <?php
