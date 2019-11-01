@@ -15,17 +15,10 @@ function kp_frontpage_install() {
 
   // Array to hold sections of KP Frontpage where content is rendered into.
   $opt_show_in = array(
-    // * Main slideshow. Default form to this value.
-    'main_slideshow'       => 'KP Frontpage Main Slideshow',
-    // Explore KP text and infographics.
-    'explore_infographics' => 'KP Frontpage Explore KP Infographics',
-    // General information.
-    'general_information'  => 'KP Frontpage General Information',
-    // Tools section - left and right column area.
-    'tools_left'           => 'KP Frontpage Tools Left Column',
-    'tools_right'          => 'KP Frontpage Tools Right Column',
+    'news_updates'  => 'KP Frontpage News and Updates',
     // Social network right column.
-    'news_updates'         => 'KP Frontpage News and Updates',
+    'news_events'   => 'KP Frontpage Upcoming Events',
+
   );
 
   // Add a content type field - used to target content to a particular section in the frontpage.
@@ -59,6 +52,67 @@ function kp_frontpage_install() {
 
   field_create_instance($i);
 
+  // Add a content type field - to allow user to enter in url an item points to.
+  $link_to = array(
+    'field_name' => 'kp_frontpage_link_to',
+    'label' => 'Link to Page:',
+    'type' => 'text',
+    'settings' => array(
+      'max_length' => 400,
+    ),
+  );
+
+  field_create_field($link_to);
+  unset($i);
+  $i = array(
+    'field_name' => 'kp_frontpage_link_to',
+    'entity_type' => 'node',
+    'bundle' => 'kp_frontpage_cms',
+    'label' => 'Link to Page:',
+    'description' => 'Link this news/events to a page. Include http:// part of the address.',
+    'required' => FALSE,
+    'default_value' => 'http://',
+    'widget' => array(
+      'type' => 'textfield'
+    ),
+  );
+
+  field_create_instance($i);
+
+  // Add a content type field - upload new/events banner image.
+  $banner = array(
+    'field_name' => 'kp_frontpage_banner',
+    'label' => 'News/Event Banner:',
+    'type' => 'image',
+    'settings' => array(
+      'file_extensions' => 'png gif jpg jpeg gif',
+    ),
+  );
+
+  field_create_field($banner);
+  unset($i);
+  $i = array(
+    'field_name' => 'kp_frontpage_banner',
+    'entity_type' => 'node',
+    'bundle' => 'kp_frontpage_cms',
+    'label' => 'Banner Image:',
+    'description' => 'Main image of news or events',
+    'required' => TRUE,
+    'default_value' => '',
+    'widget' => array(
+      'type' => 'image'
+    ),
+  );
+
+  field_create_instance($i);
+
+  // Drupal magic adds unecessary fields - body and URL redirects field, take them out.
+  // There is another one but we need it - Content Title.
+  if ($body = field_info_instance('node', 'body', 'kp_frontpage_cms')) {
+    field_delete_instance($body);
+  }
+
+
   // Create materialized view used by visualizations in Data Available section.
   $schema = array (
     'table' => 'kp_frontpage_stats',
@@ -70,96 +124,20 @@ function kp_frontpage_install() {
         'type' => 'varchar',
         'length' => 50,
       ),
-      'chart' => array (
-        'type' => 'varchar',
-        'length' => 2,
-      ),
     ),
   );
 
+  // Count phenotypes, genomic data and germplasm.
+  $sql = "SELECT COUNT(stock_id) AS count, 'Germplasm' FROM {stock}
+    WHERE type_id NOT IN (SELECT cvterm_id FROM {cvterm} WHERE LOWER(TRIM(name)) = 'dna') UNION";
 
-  // Cvterm names required.
-  $cname = array(
-    'bac',         // 0
-    'chromosome',  // 1
-    'contig',      // 2
-    'est',         // 3
-    'read_pair',   // 4
-    'indel',       // 5
-    'mnp',         // 6
-    'snp',         // 7
-    'marker',      // 8
-    'genetic_marker', // 9
-    'dna',         // 10
-    'planting date (date)',  // 11
-    '# of seeds planted (count)',  // 12
-  );
+  $sql .= ' ';
+  $sql .= "SELECT CAST(reltuples AS int) AS count, 'Genotype Calls'
+    FROM pg_class WHERE relname = 'genotype_call' UNION";
 
-  // chado.FEATURE/ SEQUENCE
-  // bac, chromosome, contig, est, read_pair.
-  $tmp = array($cname[0], $cname[1], $cname[2], $cname[3], $cname[4]);
-  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
-  $sql_seq = sprintf("
-    SELECT COUNT(feature_id) AS count, 'Sequence', 'br'
-    FROM feature
-    WHERE type_id IN(%s)", $ids);
-
-  // chado.FEATURE/ VARIANT
-  // indel, mnp, snp.
-  $tmp = array($cname[5], $cname[6], $cname[7]);
-  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
-  $sql_var = sprintf("
-    SELECT COUNT(feature_id) AS count, 'Variant', 'br'
-    FROM feature
-    WHERE type_id IN(%s)", $ids);
-
-  // chado.FEATURE/ MARKER
-  // marker and genetic_marker
-  $tmp = array($cname[8]);
-  $ids = kp_frontpage_function_get_id($tmp, 'sequence');
-  $tmp = array($cname[9]);
-  $id2 = kp_frontpage_function_get_id($tmp, 'sequence');
-  $sql_mar = sprintf("
-    SELECT COUNT(feature.feature_id) AS count, 'Marker', 'br'
-    FROM feature feature
-    WHERE feature.type_id IN(%s, %s)", $ids, $id2);
-
-  // chado.STOCK/ GERMPLASM
-  // dna
-  $ids = '\'' . $cname[10] . '\'';
-  $sql_ger = sprintf("
-    SELECT COUNT(stock_id) AS count, 'Germplasm', 'bl'
-    FROM stock
-    WHERE type_id NOT IN(SELECT cvterm_id FROM {cvterm} WHERE LOWER(TRIM(name)) = %s)", $ids);
-
-  // NOTE:
-  // This is not final. Still working on genotype module.
-  $sql_gen = sprintf("
-    SELECT COUNT(genotype_call_id) AS count, 'Genotype Calls', 'bl'
-    FROM genotype_call");
-
-  // TRAITS
-  // planting date and # of seeds planted.
-  $ids = '\'' . $cname[11] . '\', \'' . $cname[12] . '\'';
-  $sql_pen = sprintf("
-    SELECT COUNT(DISTINCT t1.cvterm_id) AS count, 'Traits', 'bl'
-    FROM cvterm AS t1
-    INNER JOIN pheno_measurements AS t2 ON t1.cvterm_id = t2.type_id
-    WHERE LOWER(TRIM(name)) NOT IN(%s)", $ids);
-
-  // PHENOTYPES
-  // The unique combination of plant and trait is a phenotype.
-  $sql_raw = "
-    SELECT count(combo) AS count, 'Phenotypes', 'bl'
-    FROM (
-      SELECT plant_id||':'||type_id as combo 
-      FROM pheno_measurements 
-      GROUP BY plant_id, type_id
-    ) t";
-
-  // Construct the final SQL for materialized view.
-  $u = ' UNION ';
-  $sql = $sql_seq . $u . $sql_var . $u . $sql_mar . $u . $sql_ger . $u . $sql_gen . $u . $sql_pen . $u . $sql_raw;
+  $sql .= ' ';
+  $sql .= "SELECT COUNT(combo) AS count, 'Phenotypes'
+    FROM (SELECT plant_id || ':' || type_id AS combo FROM pheno_measurements GROUP BY plant_id, type_id) t";
 
   // Create the materialized view using tripal_add_mview().
   tripal_add_mview('kp_frontpage_stats', 'kp_frontpage', $schema, $sql, 'Saving stats for use on the frontpage.');
@@ -199,29 +177,4 @@ function kp_frontpage_uninstall() {
   if (isset($mview_id) AND $mview_id > 0) {
     tripal_delete_mview($mview_id);
   }
-}
-
-
-/**
- * Function return cvterm id of given cvterm name.
- *
- * @param $name
- *   An array of cvterm name.
- * @param $cv
- *   A string containing the type of cv requested (sequence or feature_property).
- *
- * @return array
- *   An array of cvterm id corresponding to a given name.
- */
-function kp_frontpage_function_get_id($name, $cv) {
-  // Fetch all cvterm_id.
-  $sql = "SELECT cvterm_id FROM {cvterm} AS t1 INNER JOIN {cv} AS t2 USING(cv_id)
-          WHERE LOWER(TRIM(t1.name)) IN(:name) AND LOWER(TRIM(t2.name)) = :cv";
-
-  $args = array(':name' => $name, ':cv' => $cv);
-  $r = chado_query($sql, $args)
-    ->fetchAllKeyed(0, 0);
-
-  $cvterm_id = array_keys($r);
-  return implode(',', $cvterm_id);
 }

@@ -4,6 +4,53 @@
  * The main code for KP Frontpage.
  */
 
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function kptheme_preprocess_page(&$vars, $hook) {
+  // Embed style, JS file, prepare preprocess vars and site stats,
+  // only when it is the frontpage.
+
+  if (drupal_is_front_page()) {
+    $vars['path_host'] = $GLOBALS['base_url'];
+
+    $path = drupal_get_path('module', 'kp_frontpage');
+    drupal_add_css($path . '/kp_frontpage.css');
+    drupal_add_js ($path . '/js/kp_frontpage.js', array('scope' => 'footer'));
+
+    $vars['path_images'] = $vars['path_host'] . '/' . $path . '/images/';
+
+    // Stats about data.
+    $sql = "SELECT * FROM {kp_frontpage_stats}";
+    $result = chado_query($sql);
+    $arr_stats_bar = array();
+
+    foreach($result as $stat) {
+      // Bar chart.
+      $arr_stats_bar[$stat->type] = array(
+        'short_value' => kp_frontpage_shortval($stat->count),
+        'long_value'  => number_format($stat->count),
+      );
+    }
+
+    $vars['data_stats'] = $arr_stats_bar;
+  }
+}
+
+/**
+ * Implements hook_contextual_links_view_alter().
+ * Credits: https://www.drupal.org/forum/support/post-installation/2011-01-26/turn-off-contextual-links-in-d7.
+ */
+function kp_frontpage_contextual_links_view_alter(&$element, $items) {
+  // Disable contextual links on views as it messes up markup.
+  // For example: the link uses ul in the news section which uses ul as well
+  // and trying to find the actual number of li in news includes the li in contextual links.
+  if (isset($element['#element']['#views_contextual_links_info'])) {
+    unset($element['#links']);
+  }
+}
+
 /**
  * Implements hook_theme_registry_alter().
  */
@@ -29,73 +76,6 @@ function kp_frontpage_theme_registry_alter(&$theme_registry) {
 }
 
 /**
- * Implements hook_preprocess_page().
- */
-function kptheme_preprocess_page(&$vars, $hook) {
-
-  // Only in homepage of KP
-  if (drupal_is_front_page()) {
-    $d3_lib = libraries_get_path('d3');
-    drupal_add_js($d3_lib . '/d3.js');
-
-    $path = drupal_get_path('module', 'kp_frontpage');
-    drupal_add_css($path . '/kp_frontpage.css');
-
-    drupal_add_js($path  . '/js/kptheme_kphome_d3kpdata_we_have.js');
-    drupal_add_js($path  . '/js/kptheme_kphome_slideshow.js');
-
-    // KP Main slideshow and footer slideshows (Project and Publication).
-    // Note: for footer slideshow we just render the first 5 view rows.
-    $arr_views = array(
-      'copy_crops_view'         => 'uofs_crop_species',
-      'footer_project_view'     => 'kp_frontpage_footer_projects_slideshow_tripal_3',
-      'footer_publication_view' => 'kp_frontpage_footer_publication_slideshow_tripal_3'
-    );
-
-    foreach($arr_views as $i => $view) {
-      $vtemp = views_get_view_result($view, 'default');
-
-      if ($i == 'copy_crops_view') {
-        $arr_view_rows = array();
-        foreach($vtemp as $v) {
-          array_push($arr_view_rows, array('title'   => $v->organism_common_name,
-                                           'genus'   => $v->organism_genus,
-                                           'species' => $v->organism_species));
-        }
-
-        $vars[$i] = $arr_view_rows;
-      }
-      else {
-        $vars[$i] = count($vtemp);
-      }
-    }
-
-    // KnowPulse Stats
-    // Array to hold values required by bar chart
-    $arr_stats_bar = array();
-    // Array to hol values required by bubble chart
-    $arr_stats_bubble = array();
-
-    $sql = "SELECT * FROM {kp_frontpage_stats} ORDER BY chart ASC";
-    $result = chado_query($sql);
-    foreach($result as $stat) {
-      if ($stat->chart == 'br') {
-        // Bar chart.
-        $arr_stats_bar[$stat->type] = $stat->count;
-      }
-      else {
-        // Bubble chart.
-        $arr_stats_bubble[$stat->type] = $stat->count;
-      }
-    }
-
-    // Register preprocess variables.
-    $vars['stats_bar_chart'] = $arr_stats_bar;
-    $vars['stats_bubble_chart'] = $arr_stats_bubble;
-  }
-}
-
-/**
  * Implementation of hook_views_api()
  */
 function kp_frontpage_views_api() {
@@ -106,6 +86,7 @@ function kp_frontpage_views_api() {
  * Implements hook_node_info().
  */
 function kp_frontpage_node_info() {
+
   $content_type = array(
     // Machine name.
     'kp_frontpage_cms' => array(
@@ -132,4 +113,34 @@ function kp_frontpage_node_info() {
  */
 function kp_frontpage_form($node, $form_state) {
   return node_content_form($node, $form_state);
+}
+
+/**
+ * Shortens a number in K/M/B.
+ *
+ * @param $value
+ *   An integer containing the number to be formatted.
+ *
+ * @return string
+ *   Shortened result.
+ */
+function kp_frontpage_shortval($value) {
+  if ($value < 1000) {
+    // Hundred and less.
+    $value = $value;
+  }
+  else if ($value < 1000000) {
+    // Thousand.
+    $value = round($value / 1000, 0) . 'K';
+  }
+  else if ($value < 1000000000) {
+    // Million.
+    $value = round($value / 1000000, 0) . 'M';
+  }
+  else {
+    // Billion.
+    $value = round($value / 1000000000, 0) . 'B';
+  }
+
+  return $value;
 }

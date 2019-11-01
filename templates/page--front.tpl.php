@@ -1,312 +1,305 @@
 <?php
-
 /**
  * @file
  * Based on Bartiks page template, this template renders the frontpage of KnowPulse.
  */
-
-$module_path = drupal_get_path('module','kp_frontpage');
 ?>
-<div id="page-wrapper"><div id="page">
-  <div id="header" style="height: 115px;" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>">
 
-  <div class="section clearfix">
+<div id="page-wrapper">
+  <div id="page">
+    <div id="kpfrontpage-page-wrapper">
+       <div id="kpfrontpage-content-wrapper">
+         <div id="kpfrontpage-header">
+           <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+             <img src="<?php print $logo; ?>" alt="KnowPulse Home" title="KnowPulse Home" height="75" width="250" border="0" />
+           </a>
+           <div id="kpfrontpage-userpanel" class="kpfrontpage-element-right kpfrontpage-bg-navyblue">
+             <ul class="kpfrontpage-horizontal-list">
+               <?php if (user_is_logged_in()) {
+                 // User is logged in, show more option in this panel.
+               ?>
 
-    <?php if ($logo): ?>
+               <li class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropwindow">
+                 <a href="#" class="kpfrontpage-navigation-white" title="Explore KnowPulse: My Rawphenotypes panel.">My Raw Phenotypes</a>
+                 <div class="kpfrontpage-popupwindow">
+                   <?php
+                   // Rawphenotypes Control Panel.
+                   print render($page['sidebar_second']['rawpheno_rawpheno_notification_block']);
+                   ?>
+                 </div>
+               </li>
+               <li><a href="<?php print $path_host. '/node/add/kp-frontpage-cms'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
+               <li><a href="<?php print $path_host. '/admin/content/bio_data/add'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
+               <li><a href="<?php print $path_host . '/user/logout'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Sign out.">Logout</a></li>
 
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" height="87" width="309" />
-      </a>
+               <?php
+               } else {
+                 // Current user is not logged in, show login link and login form.
+               ?>
 
-    <?php endif; ?>
+               <li class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropwindow"><a href="user" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Login to KnowPulse.">Sign in</a></li>
+               <li><a href="user/register" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Create an account in KnowPulse.">Create an Account</a></li>
 
-    <?php if ($site_name || $site_slogan): ?>
-      <div id="name-and-slogan"<?php if ($hide_site_name && $hide_site_slogan) { print ' class="element-invisible"'; } ?>>
+               <?php } ?>
+             </ul>
+             <div class="kpfrontpage-clearfloat">&nbsp;</div>
+           </div>
+         </div>
+         <!-- /#header -->
 
-        <?php if ($site_name): ?>
-          <?php if ($title): ?>
-            <div id="site-name"<?php if ($hide_site_name) { print ' class="element-invisible"'; } ?>>
-              <strong>
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </strong>
-            </div>
-          <?php else: /* Use h1 when the content title is empty */ ?>
-            <h1 id="site-name"<?php if ($hide_site_name) { print ' class="element-invisible"'; } ?>>
-              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-            </h1>
-          <?php endif; ?>
-        <?php endif; ?>
+         <div id="kpfrontpage-copy">
+           <!-- /#quick summary -->
+           <div id="kpfrontpage-copy-summary">
+             <h2>&#9724; Explore KnowPulse:</h2>
+             <p>a web-resource focused on <span class="kpfrontpage-text-italic">diversity data</span> for pulse crop improvement.</p>
 
-        <?php if ($site_slogan): ?>
-          <div id="site-slogan"<?php if ($hide_site_slogan) { print ' class="element-invisible"'; } ?>>
-            <?php print $site_slogan; ?>
-          </div>
-        <?php endif; ?>
+             <div class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropmenu kpfrontpage-element-right">
+               <img src="<?php print $path_images . 'infographics/infographics-side-menu.png'; ?>" alt="Explore KnowPulse" title="Explore KnowPulse" />
+               <div id="kpfrontpage-copy-summary-menu" class="kpfrontpage-popupwindow">
+                 <?php
+                 // Render side navigation into a drop down menu.
+                 print '<ul id="kpfrontpage-copy-summary-menu-main">';
+                 $m = array_keys($page['sidebar_second']);
+                 $markup = '';
 
-      </div> <!-- /#name-and-slogan -->
-    <?php endif; ?>
+                 for($i = 2; $i < 7; $i++) {
+                   if (trim($m[$i]) != '#sorted') {
+                     $markup .= render($page['sidebar_second'][ $m[$i] ]);
+                     print '<li id="' . str_replace('_', '-', $m[$i]) . '" class="kpfrontpage-navigation-horizontal-bar">'
+                       . '&#x276F; ' . $page['sidebar_second'][ $m[$i] ]['#block']->subject . '</li>';
+                   }
 
-    <?php print render($page['header']); ?>
+                 }
 
-  </div></div> <!-- /.section, /#header -->
+                 print '</ul>' . $markup;
+                 ?>
+               </div>
+             </div>
+             <div class="kpfrontpage-clearfloat">&nbsp;</div>
+           </div>
 
-  <?php if ($messages): ?>
-    <div id="messages"><div class="section clearfix">
-      <?php print $messages; ?>
-    </div></div> <!-- /.section, /#messages -->
-  <?php endif; ?>
+           <!-- /#quick start -->
+           <div id="kpfrontpage-copy-quickstart">
+             <div class="kpfrontpage-element-left">
+               <h1>New to KnowPulse: <a href="https://knowpulse.usask.ca/MapViewer">Genetic Maps</a></h1>
+             </div>
 
-  <?php if ($page['featured']): ?>
-    <div id="featured"><div class="section clearfix">
-      <?php print render($page['featured']); ?>
-    </div></div> <!-- /.section, /#featured -->
-  <?php endif; ?>
+             <div class="kpfrontpage-element-right" title="Data in KnowPulse: Phenotypes, Genotypes and Germplasm">
+               <ul class="kpfrontpage-horizontal-list kpfrontpage-link-slide">
+                 <li><a href="#" title="Data - Phenotypes.">Phenotypes</a></li>
+                 <li><a href="#" title="Data - Genotypes.">Genotypes</a></li>
+                 <li><a href="#" title="Data - Germplasm.">Germplasm</a></li>
+               </ul>
+             </div>
+             <div class="kpfrontpage-clearfloat">&nbsp;</div>
+           </div>
 
-  <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
-    <?php
-    if (isset($breadcrumb)) {
-      unset($breadcrumb);
-    }
+           <!-- /#explore kp -->
+           <div id="kpfrontpage-copy-explore-data">
+             <!-- /#CROPS -->
+             <div id="kpfrontpage-copy-explore-data-crops">
+               <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Crops</span></h1>
+               <?php
+               // CROPS:
+               //
+               //
+               // Module page $module_path required:
+               include_once('kpfrontpage-crops.php');
+               ?>
+               <a href="research/species" target="_blank" alt="link opens a new window" title="link opens a new window" class="kpfrontpage-element-right kpfrontpage-more">&#9724; View other species of interest
+               <img src="<?php print $path_images . 'infographics/infographics-new-window.gif'; ?>" align="absmiddle" /></a>
+               <div class="kpfrontpage-clearfloat">&nbsp;</div>
+             </div>
 
-    if (isset($breadcrumb)):
-    ?>
-      <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-    <?php endif; ?>
+             <!-- /#TOOLS -->
+             <div id="kpfrontpage-copy-explore-data-tools">
+               <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Tools</span></h1>
+               <div id="kpfrontpage-popupwindow-remote-window">
+                 <div>&nbsp;</div>
+               </div>
+               <?php
+               // TOOLS:
+               //
+               //
+               include_once('kpfrontpage-tools.php');
+               ?>
+               <div class="kpfrontpage-clearfloat">&nbsp;</div>
+               <a href="#" class="kpfrontpage-element-right kpfrontpage-more">&#9724; View other bioinformatics tools</a>
+             </div>
 
-    <?php if ($page['sidebar_first']): ?>
-      <div id="sidebar-first" class="column sidebar"><div class="section">
-        <?php print render($page['sidebar_first']); ?>
-      </div></div> <!-- /.section, /#sidebar-first -->
-    <?php endif; ?>
+             <div class="kpfrontpage-clearfloat">&nbsp;</div>
 
-    <div id="content" class="column"><div class="section">
+             <!-- /#DATA -->
+             <div id="kpfrontpage-copy-explore-data-data">
+               <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Data</span></h1>
+               <div>
+                 <div>
+                   <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Phenotypes']['long_value']; ?>">
+                     <span><?php print $data_stats['Phenotypes']['short_value']; ?></span> Phenotypes
+                   </div>
+                   <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Phenotypic Data</h2>
+                   <?php
+                   // List element format.
+                   $li = '<li>&nbsp;&nbsp;<a href="%s">&#9724; %s</a></li>';
 
+                   // PHENOTYPES:
+                   //
+                   //
+                   foreach ($page['sidebar_second']['menu_menu-phenotypic-data'] as $link) {
+                     if (is_array($link)) {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'last') {
+                         $class = ($link['#attributes']['class'][1] == 'expanded') ? 'kpfrontpage-horizontal-list' : '';
+                         // Print the title set and begin list element.
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul class="' . $class . '">';
 
-      <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-      <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
+                         foreach($link['#below'] as $sublink) {
+                           if (strlen($sublink['#title']) > 5) {
+                             printf($li, $sublink['#href'], $sublink['#title']);
+                           }
+                         }
+                         print '</ul><div class="kpfrontpage-clearfloat">&nbsp;</div>';
 
+                       }
+                     }
+                   }
+                   ?>
+                 </div>
+                 <div>
+                   <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Genotype Calls']['long_value']; ?>">
+                     <span><?php print $data_stats['Genotype Calls']['short_value']; ?></span> Genotype Calls
+                   </div>
+                   <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Genomic Data</h2>
+                   <ul>
+                   <?php
+                   // GENOMIC DATA:
+                   //
+                   //
+                   foreach ($page['sidebar_second']['menu_menu-genomic-data'] as $link) {
+                     if (is_array($link)) {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'leaf' || $link['#attributes']['class'][1] == 'last') {
+                         // Print the title set and begin list element.
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul>';
 
-      <!-- BEGIN NEW LAYOUT -->
+                         foreach($link['#below'] as $sublink) {
+                           if (strlen($sublink['#title']) > 5) {
+                             printf($li, $sublink['#href'], $sublink['#title']);
+                           }
+                         }
+                         print '</ul><div class="kpfrontpage-clearfloat">&nbsp;</div>';
 
+                       }
+                     }
+                   }
+                   ?>
+                   </ul>
+                   <div class="kpfrontpage-clearfloat">&nbsp;</div>
+                 </div>
+                 <div>
+                   <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Germplasm']['long_value']; ?>">
+                     <span><?php print $data_stats['Germplasm']['short_value']; ?></span> Germplasm
+                   </div>
+                   <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Germplasm</h2>
+                   <ul>
+                   <?php
+                   // GERMPLASM:
+                   //
+                   //
+                   foreach ($page['sidebar_second']['menu_menu-germplasm'] as $link) {
+                     if (is_array($link)) {
+                       if ($link['#attributes']['class'][1] == 'expanded' || $link['#attributes']['class'][1] == 'last') {
+                         // Print the title set and begin list element.
+                         print '<a href="' . $link['#href'] . '">&#9724; ' . $link['#title'] . '</a><ul>';
 
-      <?php
-      // Sorry, IE ver 8 and below. Can't load the new layout to you.
-      // This will force you to download a recent version and let's move forward.
-      if (preg_match('/(?i)msie [1-8]/', $_SERVER['HTTP_USER_AGENT'])) :
-      ?>
+                         foreach($link['#below'] as $sublink) {
+                           if (strlen($sublink['#title']) > 5) {
+                             printf($li, $sublink['#href'], $sublink['#title']);
+                           }
+                         }
+                         print '</ul><div class="kpfrontpage-clearfloat">&nbsp;</div>';
 
-        <?php if ($title): ?>
-          <h1 class="title" id="page-title">
-            <?php print $title; ?>
-          </h1>
-        <?php endif; ?>
+                       }
+                     }
+                   }
+                   ?>
+                   </ul>
+                   <div class="kpfrontpage-clearfloat">&nbsp;</div>
+                 </div>
+               </div>
+               <p>* Current data includes sequence and genotypic data for Chickpea, Common Bean, Field Pea and Lentil.</p>
+             </div>
 
-        <?php print render($title_suffix); ?>
-        <?php if ($tabs): ?>
-          <div class="tabs">
-            <?php print render($tabs); ?>
-          </div>
-        <?php endif; ?>
+             <!-- /#NEWS, UPDATS, UPCOMING EVENTS AND WORKSHOPS -->
+             <div id="kpfrontpage-copy-explore-data-extra" class="kpfrontpage-bg-navyblue">
+               <div id="kpfrontpage-copy-explore-data-extra-news" class="kpfrontpage-element-left">
+                 <h4>News and Updates</h4>
+                 <div class="kpfrontpage-copy-explore-data-entry kpfrontpage-bg-diagonallines">
+                   <?php print views_embed_view('kp_frontpage_news_and_update', 'default'); ?>
+                 </div>
+                 <div class="kpfrontpage-copy-explore-data-entry-bullets">
+                   <?php
+                   $news = views_get_view_result('kp_frontpage_news_and_update', 'default');
+                   $news_count = count($news);
+                   print str_repeat('<div>&nbsp;</div>', $news_count);
+                   ?>
+                 </div>
+               </div>
+               <div id="kpfrontpage-copy-explore-data-extra-events" class="kpfrontpage-element-left">
+                 <h4>Upcoming Events <a href="https://knowpulse.usask.ca/research/workshops" class="kpfrontpage-navigation-white">&#9724; Workshops</a></h4>
+                 <div class="kpfrontpage-copy-explore-data-entry kpfrontpage-bg-diagonallines">
+                   <?php print views_embed_view('kp_frontpage_upcoming_events', 'default'); ?>
+                 </div>
+                 <div class="kpfrontpage-copy-explore-data-entry-bullets">
+                   <?php
+                   $events = views_get_view_result('kp_frontpage_upcoming_events', 'default');
+                   $events_count = count($events);
+                   print str_repeat('<div>&nbsp;</div>', $events_count);
+                   ?>
+                 </div>
+               </div>
+               <div class="kpfrontpage-clearfloat">&nbsp;</div>
+             </div>
+           </div>
+         </div>
+         <!-- /#copy -->
+       </div>
 
-        <?php print render($page['help']); ?>
+       <div class="kpfrontpage-clearfloat">&nbsp;</div>
+       <div id="kpfrontpage-footer-info">
+         <div>
+           <div class="kpfrontpage-element-left">
+             <h4 style="font-size: 1.2em">University of Saskatchewan Pulse Crop Research</h4>
+             <p>The <a href="https://agbio.usask.ca/research/centres-and-facilities/crop-development-centre.php" target="_blank">Crop Development Centre at the University of Saskatchewan</a> is well known as a major research center for pulse crop breeding and genetics (classical and molecular).</p>
+           </div>
 
-        <?php if ($action_links): ?>
-          <ul class="action-links">
-            <?php print render($action_links); ?>
-          </ul>
-        <?php endif; ?>
+           <div class="kpfrontpage-element-right">
+             <h4 style="font-size: 1.2em">What are Pulses?</h4>
+             <p>Pulses are the dried, edible seeds of plants in the legume family and are both very high in protein and fibre, and low in fat. Dried peas, edible beans, lentils and chickpeas are the most common varieties of pulses.</p>
+           </div>
+         </div>
+       </div>
+    </div>
 
-        <?php print render($page['content']); ?>
-        <?php print $feed_icons; ?>
+  <div class="kpfrontpage-clearfloat">&nbsp;</div>
 
-     <?php
-     // Browser is not IE ver 8 and below. Enjoy!
-     else:
-     ?>
-        <!-- 2 COL LAYOUT -->
-        <div class="container-row main-copy-container">
-          <div class="info-col main-copy-left-container">
-            <div id="infographics-container">
-            <h2 class="h-section-title"></h2>
-              <?php print views_embed_view('kp_frontpage_infographics', 'default'); ?>
-            </div>
-            <div class="h-line clear-left"><hr /></div>
-            <div id="general-info-container" class="info-text-block">
-              <div id="general-information">
-                <?php print views_embed_view('kp_frontpage_general_information', 'default'); ?>
-              </div>
-              <div class="tab-info-footer-shadow">&nbsp;</div>
-            </div>
-
-            <div class="container-row tab-info-block">
-              <div class="tab-info-top-extension">&nbsp;</div>
-              <div class="tab-info-tab-title">
-                <h2 class="text-white"><a href="<?php print url('research/crop-species');?>">Crops</a></h2>
-                <a href="research/crop-species" class="context-link">&raquo; More Crops</a>
-              </div>
-              <div class="tab-info-copy-text">
-                <div class="tab-info-copy-wrapper">
-                  <ul id="tab-info-crops" class="all-trim">
-                    <?php
-                      foreach($copy_crops_view as $view) :
-                        $gs = $view['genus'] . ' ' . $view['species'];
-                    ?>
-                    <li>
-                      <a href="<?php print url( $view['genus'] . '/' . $view['species']); ?>">
-                        <img src="<?php print url($module_path . '/images/kphome/crops-' . str_replace(' ', '-', strtolower($view['title'])) . '.jpg'); ?>" class="tab-info-img" height="107" width="107" alt="<?php print $gs; ?>" title="<?php print $gs; ?>" />
-                        <?php print $view['title'] . '<em>' . $gs . '</em>'; ?>
-                      </a>
-                    </li>
-                    <?php
-                      endforeach;
-                    ?>
-                  </ul>
-                  <div class="clear-no-height">&nbsp;</div>
-                </div>
-              </div>
-              <div class="tab-info-footer-shadow">&nbsp;</div>
-            </div>
-
-            <div class="container-row tab-info-block">
-              <div class="tab-info-top-extension">&nbsp;</div>
-              <div class="tab-info-tab-title">
-                <h2 class="text-white"><a href="<?php print url('data');?>">Tools</a></h2>
-                <a href="<?php print url('data');?>" class="context-link">&raquo; More Tools</a>
-              </div>
-              <div class="tab-info-copy-text">
-                <div class="tab-info-copy-wrapper">
-                  <div class="container-row tab-info-tools-container">
-                    <div class="info-col tab-info-tools-left">
-                      <?php print views_embed_view('kp_frontpage_tools_left_column', 'default'); ?>
-                    </div>
-                    <div class="info-col tab-info-tools-center">&nbsp;</div>
-                    <div class="info-col tab-info-tools-right">
-                      <?php print views_embed_view('kp_frontpage_tools_right_column', 'default'); ?>
-                    </div>
-                    <div class="clear-no-height">&nbsp;</div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab-info-footer-shadow">&nbsp;</div>
-            </div>
-
-            <div id="footer-slideshow" class="container-row footer-slideshow-container">
-              <div class="info-col footer-slideshow-left">
-                <div id="footer-slideshow-project" class="container-row">
-                  <div class="info-col chevron-left"><span>&lang;</span></div>
-                  <div class="info-col slide-info">
-                    <h2 class="section-title">&#9632; Projects:</h2>
-                    <a href="<?php print url('research/projects');?>" class="context-link">&raquo; More Projects</a>
-                    <?php print views_embed_view('kp_frontpage_footer_projects_slideshow_tripal_3', 'default'); ?>
-                  </div>
-                  <div class="info-col chevron-right"><span>&rang;</span></div>
-                  <div class="clear-no-height">&nbsp;</div>
-                </div>
-                <ul class="bullets">
-                  <?php print str_repeat('<li>&nbsp;</li>', $footer_project_view); ?>
-                </ul>
-              </div>
-              <div class="info-col footer-slideshow-center">
-                &nbsp;<div class="h-line clear-left"><hr /></div>
-              </div>
-              <div class="info-col footer-slideshow-right">
-                <div id="footer-slideshow-publication" class="container-row">
-                  <div class="info-col chevron-left"><span>&lang;</span></div>
-                  <div class="info-col slide-info">
-                    <h2 class="section-title">&#9632; Publications:</h2>
-                    <a href="<?php print url('research/publications')?>" class="context-link">&raquo; More Publications</a>
-                    <?php print views_embed_view('kp_frontpage_footer_publication_slideshow_tripal_3', 'default'); ?>
-                  </div>
-                  <div class="info-col chevron-right"><span>&rang;</span></div>
-                  <div class="clear-no-height">&nbsp;</div>
-                </div>
-                <ul class="bullets">
-                  <?php print str_repeat('<li>&nbsp;</li>', $footer_publication_view); ?>
-                </ul>
-              </div>
-              <div class="clear-no-height">&nbsp;</div>
-            </div>
-          </div>
-
-          <div class="info-col main-copy-right-container">
-            <div class="col-stats">
-              <h2 class="all-trim">Data Available <span style="float: right;"><img src="<?php print url($module_path . '/images/kphome/icon-stats-more-info.gif');?>" alt="More information" title="More information" height="22" width="22" id="btn-more-info" /></span></h2>
-              <?php
-                for ($i = 0; $i < 2; $i++) :
-                  $stats = ($i == 0) ? $stats_bar_chart : $stats_bubble_chart;
-
-                  foreach($stats as $t => $v) :
-                    print '<input type="hidden" class="statset-' . $i . '" id="' . str_replace(' ', '-', trim($t)) . '" value="' . $v . '">';
-                  endforeach;
-                endfor;
-              ?>
-              <svg id="kp-chart">
-                <defs>
-                  <filter id="d-shadow" x="0" y="0">
-                    <feOffset result="offOut" in="SourceAlpha" dx="2" dy="0" />
-                    <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
-                    <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                  </filter>
-                  <filter id="c-glow" x="-20%" y="-20%" width="200%" height="200%">
-                    <feOffset result="offOut" in="SourceAlpha" dx="2" dy="0" />
-                    <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
-                    <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-                  </filter>
-                </defs>
-              </svg>
-              <div id="stat-more-info">
-                <span>&#x25B2;</span>
-                <p>Current data includes sequence and genotypic data for <br /><br />&bull; Chickpea<br /> &bull; Common Bean<br /> &bull; Field Pea<br /> &bull; Lentil</p>
-              </div>
-            </div>
-            <div class="col-social-network">
-              <h2 class="h-section-title">&#9632; News & <span>Updates</span></h2>
-              <?php print views_embed_view('kp_frontpage_news_and_updates', 'default'); ?>
-            </div>
-          </div>
-          <div class="clear-no-height">&nbsp;</div>
-        </div>
-
-      <?php endif; ?>
-
-
-      <!-- END NEW LAYOUT -->
-    </div></div> <!-- /.section, /#content -->
-
-    <?php if ($page['sidebar_second']): ?>
-      <div id="sidebar-second" class="column sidebar"><div class="section">
-        <?php print render($page['sidebar_second']); ?>
-      </div></div> <!-- /.section, /#sidebar-second -->
-    <?php endif; ?>
-
-  </div></div> <!-- /#main, /#main-wrapper -->
-
-  <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-    <div id="triptych-wrapper"><div id="triptych" class="clearfix">
-      <?php print render($page['triptych_first']); ?>
-      <?php print render($page['triptych_middle']); ?>
-      <?php print render($page['triptych_last']); ?>
-    </div></div> <!-- /#triptych, /#triptych-wrapper -->
-  <?php endif; ?>
-
-  <div id="footer-wrapper"><div class="section">
-
-    <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
+  <div id="footer-wrapper">
+    <div class="section">
+      <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
       <div id="footer-columns" class="clearfix">
-        <?php print render($page['footer_firstcolumn']); ?>
+        <?php print render($page['footer_firstcolumn']);  ?>
         <?php print render($page['footer_secondcolumn']); ?>
-        <?php print render($page['footer_thirdcolumn']); ?>
+        <?php print render($page['footer_thirdcolumn']);  ?>
         <?php print render($page['footer_fourthcolumn']); ?>
       </div> <!-- /#footer-columns -->
-    <?php endif; ?>
+      <?php endif; ?>
 
-    <?php if ($page['footer']): ?>
+      <?php if ($page['footer']): ?>
       <div id="footer" class="clearfix">
         <?php print render($page['footer']); ?>
       </div> <!-- /#footer -->
-    <?php endif; ?>
-
-  </div></div> <!-- /.section, /#footer-wrapper -->
-
-</div></div> <!-- /#page, /#page-wrapper -->
+      <?php endif; ?>
+      <!-- /.section, /#footer-wrapper -->
+      </div>
+    </div>
+    <!-- /#page, /#page-wrapper -->
+  </div>
+</div>
