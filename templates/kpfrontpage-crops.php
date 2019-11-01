@@ -53,7 +53,7 @@
                        More Lens Species
                        <ul>
                          <li><a href="Lens/culinaris">&#9724; L. culinaris</a>&nbsp;</li>
-                         <li><a href="Lens/erviudes">&#9724; L. ervoides</a>&nbsp;</li>
+                         <li><a href="Lens/ervoides">&#9724; L. ervoides</a>&nbsp;</li>
                          <li><a href="Lens/lamottei">&#9724; L. lamottei</a>&nbsp;</li>
                          <li><a href="Lens/nigricans">&#9724; L. nigricans</a>&nbsp;</li>
                          <li><a href="Lens/odemensis">&#9724; L. odemensis</a>&nbsp;</li>
@@ -68,9 +68,9 @@
                      <div>
                        More Phaseolus Species
                        <ul>
-                         <li><a href="Phaseolus/acutifolius">&#9724; L. acutifolius</a>&nbsp;</li>
+                         <li><a href="Phaseolus/acutifolius">&#9724; P. acutifolius</a>&nbsp;</li>
                          <li><a href="Phaseolus/coccineus">&#9724; P. coccineus</a>&nbsp;</li>
-                         <li><a href="Phaseolus/vulgaris">&#9724; L. vulgaris</a>&nbsp;</li>
+                         <li><a href="Phaseolus/vulgaris">&#9724; P. vulgaris</a>&nbsp;</li>
                        </ul>
                      </div>
                      <a href="Phaseolus/vulgaris"><img src="<?php echo $path_images . 'crops-img/drybean.jpg'; ?>" /></a>
