@@ -6,6 +6,14 @@
 ?>
 
 <div id="page-wrapper">
+ <?php if ($page['highlighted'] || $_SERVER['HTTP_HOST'] == 'localhost') { ?>
+ <div id="highlighted">
+   <div id="higlighted-content-main-page">
+     <?php print ($page['highlighted']) ? render($page['highlighted']) : 'This is a KnowPulse Clone.'; ?>
+   </div>
+ </div>
+<?php } ?>
+
   <div id="page">
     <div id="kpfrontpage-page-wrapper">
        <div id="kpfrontpage-content-wrapper">
@@ -29,7 +37,12 @@
                  </div>
                </li>
                <li><a href="<?php print $path_host. '/node/add/kp-frontpage-cms'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
-               <li><a href="<?php print $path_host. '/admin/content/bio_data/add'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
+               <li><a href="<?php print $path_host. '/tripal_hq/bio_data'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
+
+               <?php if (user_access('administer site configuration')) { ?>
+               <li><a href="<?php print $path_host. '/tripal_hq/admin'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Approve Biological Content.">Approve Data</a></li>
+               <?php } ?>
+
                <li><a href="<?php print $path_host . '/user/logout'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Sign out.">Logout</a></li>
 
                <?php
@@ -86,9 +99,9 @@
 
              <div class="kpfrontpage-element-right" title="Data in KnowPulse: Phenotypes, Genotypes and Germplasm">
                <ul class="kpfrontpage-horizontal-list kpfrontpage-link-slide">
-                 <li><a href="#" title="Data - Phenotypes.">Phenotypes</a></li>
-                 <li><a href="#" title="Data - Genotypes.">Genotypes</a></li>
-                 <li><a href="#" title="Data - Germplasm.">Germplasm</a></li>
+                 <li><a id="go-phenotypes" href="#" title="Data - Phenotypes.">Phenotypes</a></li>
+                 <li><a id="go-genotypes" href="#" title="Data - Genotypes.">Genotypes</a></li>
+                 <li><a id="go-germplasm" href="#" title="Data - Germplasm.">Germplasm</a></li>
                </ul>
              </div>
              <div class="kpfrontpage-clearfloat">&nbsp;</div>
@@ -134,7 +147,7 @@
                <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Data</span></h1>
                <div>
                  <div>
-                   <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Phenotypes']['long_value']; ?>">
+                   <div id ="data-go-phenotypes" class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Phenotypes']['long_value']; ?>">
                      <span><?php print $data_stats['Phenotypes']['short_value']; ?></span> Phenotypes
                    </div>
                    <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Phenotypic Data</h2>
@@ -165,7 +178,7 @@
                    ?>
                  </div>
                  <div>
-                   <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Genotype Calls']['long_value']; ?>">
+                   <div id="data-go-genotypes" class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Genotype Calls']['long_value']; ?>">
                      <span><?php print $data_stats['Genotype Calls']['short_value']; ?></span> Genotype Calls
                    </div>
                    <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Genomic Data</h2>
@@ -195,7 +208,7 @@
                    <div class="kpfrontpage-clearfloat">&nbsp;</div>
                  </div>
                  <div>
-                   <div class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Germplasm']['long_value']; ?>">
+                   <div id="data-go-germplasm" class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Germplasm']['long_value']; ?>">
                      <span><?php print $data_stats['Germplasm']['short_value']; ?></span> Germplasm
                    </div>
                    <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Germplasm</h2>

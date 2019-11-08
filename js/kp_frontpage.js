@@ -26,10 +26,13 @@
       $('.kpfrontpage-link-slide a').click(function(e) {
         e.preventDefault();
         // Stop scroll just about where the DATA heading is.
-        var stopAt = $('#kpfrontpage-copy-explore-data-data');
+        // When page is reduced, make the link go to specific data section.
+        var contentWrapper = $('#kpfrontpage-copy').width();
+        var stopAt = (contentWrapper == 850) ? $('#data-' + e.target.id) : $('#kpfrontpage-copy-explore-data-data');
+
         if (stopAt.length) {
           $('html, body').stop().animate({
-            scrollTop: (stopAt.offset().top - 200)
+            scrollTop: (stopAt.offset().top)
           }, 700);
         }
       });
