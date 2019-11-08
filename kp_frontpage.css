@@ -128,13 +128,13 @@ a.kpfrontpage-navigation-white {
   font-size: 1.0em;
 }
 
-  #highlighted > div {
+  #higlighted-content-main-page {
     margin: 0 auto;
     padding: 8px 0;
     width: 1280px;
   }
 
-  #highlighted div > span {
+  #higlighted-content-main-page > span {
     color: #FF0000;
     font-weight: bold;
     margin: 0;
