@@ -6,7 +6,7 @@
 ?>
 
 <div id="page-wrapper">
- <?php if ($page['highlighted'] || $_SERVER['HTTP_HOST'] == 'localhosts') { ?>
+ <?php if ($page['highlighted'] || $_SERVER['HTTP_HOST'] == 'localhost') { ?>
  <div id="highlighted">
    <div><?php print ($_SERVER['HTTP_HOST'] == 'localhost') ? '<span>This is a clone of KnowPulse</span>' : render($page['highlighted']); ?></div>
  </div>
