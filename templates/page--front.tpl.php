@@ -8,7 +8,9 @@
 <div id="page-wrapper">
  <?php if ($page['highlighted'] || $_SERVER['HTTP_HOST'] == 'localhost') { ?>
  <div id="highlighted">
-   <div id="higlighted-content-main-page"><?php print ($_SERVER['HTTP_HOST'] == 'localhost') ? '<span>This is a clone of KnowPulse</span>' : render($page['highlighted']); ?></div>
+   <div id="higlighted-content-main-page">
+     <?php print ($page['highlighted']) ? render($page['highlighted']) : 'This is a KnowPulse Clone.'; ?>
+   </div>
  </div>
 <?php } ?>
 
@@ -35,7 +37,12 @@
                  </div>
                </li>
                <li><a href="<?php print $path_host. '/node/add/kp-frontpage-cms'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add news, updates and upcoming events.">Add News & Events</a></li>
-               <li><a href="<?php print $path_host. '/tripal_hq/admin'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
+               <li><a href="<?php print $path_host. '/tripal_hq/bio_data'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Add Biological Content.">Add Biological Content</a></li>
+
+               <?php if (user_access('administer site configuration')) { ?>
+               <li><a href="<?php print $path_host. '/tripal_hq/admin'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Approve Biological Content.">Approve Data</a></li>
+               <?php } ?>
+
                <li><a href="<?php print $path_host . '/user/logout'; ?>" class="kpfrontpage-navigation-white" title="Explore KnowPulse: Sign out.">Logout</a></li>
 
                <?php

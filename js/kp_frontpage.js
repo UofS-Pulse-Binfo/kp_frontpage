@@ -37,12 +37,6 @@
         }
       });
 
-      $('body').click(function() {
-        if ($('.kpfrontpage-popupwindow')) {
-          $('.kpfrontpage-popupwindow').fadeOut(300);
-        }
-      });
-
       // Delay events from firing so as not to become overly sensitive.
       var d;
 
