@@ -82,8 +82,6 @@
                ?>
 
                <ul>
-                 <li class="kpfrontpage-tools-spacer">&nbsp;</li>
-
                  <li>
                    <div><img src="<?php echo $path_images . 'tool-icon/trait-distribution.gif'; ?>" alt="Visualization tool to summarize the observed values for a specific trait in a particular phenotyping experiment." /></div>
                    <a href="phenotypes/trait-distribution">TRAIT DISTRIBUTION PLOT</a>
@@ -100,11 +98,20 @@
                  </li>
 
                  <li>
-                   <div><img src="<?php echo $path_images . 'tool-icon/position-convert.gif'; ?>" alt="Positino Convert converts marker positions from L.culinaris genome version 0.8 to 1.2." /></div>
+                   <div><img src="<?php echo $path_images . 'tool-icon/position-convert.gif'; ?>" alt="Position Convert converts marker positions from L.culinaris genome version 0.8 to 1.2." /></div>
                    <a href="posconvert">POSITION CONVERT</a>
                  </li>
 
-                 <li class="kpfrontpage-tools-spacer">&nbsp;</li>
+                 <li>
+                   <div><img src="<?php echo $path_images . 'tool-icon/vcf-position-search.gif'; ?>" alt="VCF Position search is a companion tool to VCF Bulk Export and allows searching for variants across all available VCF files." /></div>
+                   <a href="filter_vcf/Position_search">VCF POSITION SEARCH</a>
+                 </li>
+
+                 <li>
+                   <div><img src="<?php echo $path_images . 'tool-icon/map-viewer.gif'; ?>" alt="MapViewer is a graphical tool for viewing and comparing genetic maps. It includes dynamically scrollable maps, correspondence matrices, dot plots, links to details about map features, and exporting functionality." /></div>
+                   <a href="MapViewer">MAP VIEWER</a>
+                 </li>
+
                </ul>
 <?php
   // Defaults to show the first 2 rows (sets of 6). The frontend will add a reveal link to show
