@@ -94,7 +94,7 @@
            <!-- /#quick start -->
            <div id="kpfrontpage-copy-quickstart">
              <div class="kpfrontpage-element-left">
-               <h1>New to KnowPulse: <a href="https://knowpulse.usask.ca/MapViewer">Genetic Maps</a></h1>
+               <h1>New to KnowPulse: <a href="https://knowpulse.usask.ca/search/genetic-maps">Genetic Maps</a></h1>
              </div>
 
              <div class="kpfrontpage-element-right" title="Data in KnowPulse: Phenotypes, Genotypes and Germplasm">
