@@ -139,7 +139,8 @@
         $.get(p + source, 'null', function(response) {
           if (response != 0 && content.text.text().trim().length <= 0) {
             // Clear information content section.
-            content.text.text(response.description.trim());
+            var title = '<h5>' + response.name + '</h5>';
+            content.text.append(title + response.description.trim());
 
             if (response.projectLogo.length == 1) {
               // No logo found, create a dummy logotype.

@@ -626,6 +626,11 @@ a.kpfrontpage-navigation-white {
       margin: 30px 0 0 0;
     }
 
+    #kpfrontpage-experiment-summary h5 {
+      font-size: 1.3em;
+      line-height: 27px;
+    }
+
     .kpfrontpage-experiments-list {
       height: 40px;
       margin: 0 auto;
