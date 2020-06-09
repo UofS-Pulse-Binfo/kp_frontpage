@@ -925,4 +925,19 @@ a.kpfrontpage-navigation-white {
     width: 750px;
     margin: 0 auto;
   }
+
+  #kpfrontpage-experiment-summary .kpfrontpage-element-left,
+  #kpfrontpage-experiment-summary .kpfrontpage-element-right {
+    float: none;
+    display: block;
+    margin: 30px auto;
+  }
+
+  .kpfrontpage-bubble {
+    margin: 0 auto;
+  }
+
+  #kpfrontpage-experiment-slider div {
+    display: none;
+  }
 }
