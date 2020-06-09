@@ -243,7 +243,63 @@
 
              <!-- /#NEWS, UPDATS, UPCOMING EVENTS AND WORKSHOPS -->
              <div id="kpfrontpage-copy-explore-data-extra" class="kpfrontpage-bg-navyblue">
-               <div id="kpfrontpage-copy-explore-data-extra-news" class="kpfrontpage-element-left">
+               <?php
+               // Project summary slide.
+               if (count($promoted_genus) > 0) {
+                 // Cycle through the genus and pick one each page load.
+                 $default_crop  = array_rand($promoted_genus, 1);
+                 $select_option = '';
+
+                 foreach($promoted_genus as $i => $crop) {
+                   $default = ($crop == $default_crop) ? 'selected="selected"' : '';
+                   $select_option .= '<option value="' . $i . '" ' . $default . '>' . ucfirst($crop) . '</option>';
+                 }
+               ?>
+               <div id="kpfrontpage-copy-explore-data-extra-experiments">
+                 <div>
+                   <div class="kpfrontpage-element-left"><h2 style="display: inline">Our Experiments</h2>&nbsp;
+                     <select id="kpfrontpage-experiment-select" title="Choose a category">
+                       <?php print $select_option; ?>
+                     </select>
+                   </div>
+
+                   <div class="kpfrontpage-element-right">
+                     <a href="research/projects" class="kpfrontpage-navigation-white">View all experiments</a> |
+                     <a href="https://twitter.com/WildLentils" target="_blank" class="kpfrontpage-navigation-white">Follow us on <img src="<?php print $path_images . 'icon-twitter.png';?>" align="absmiddle" /></a>
+                   </div>
+                   <div class="kpfrontpage-clearfloat">&nbsp;</div>
+                 </div>
+
+                 <div id="kpfrontpage-experiments" class="kpfrontpage-bg-diagonallines">
+                   <div id="kpfonrpage-experiments-main-wrapper">
+                     <div id="kpfrontpage-wait"><!-- // Wait animation. --></div>
+
+                     <div id="kpfrontpage-experiment-slider">
+                       <div id="kpfrontpage-slide-left" class="kpfrontpage-slide-nav">⟨</div>
+                       <div id="kpfrontpage-list-wrapper"></div>
+                       <div id="kpfrontpage-slide-right" class="kpfrontpage-slide-nav">⟩</div>
+                     </div>
+
+                     <div id="kpfrontpage-experiment-summary">
+                       <div class="kpfrontpage-element-left">
+                        <div id="kpfrontpage-summary-logo"></div>
+                       </div>
+                       <div class="kpfrontpage-element-right" style="width: 70%">
+                         <p id="kpfrontpage-summary-text"></p>
+                         <div id="kpfrontpage-summary-funders-logo"></div>
+                         <a href="#" id="kpfrontpage-exeriment-page" class="kpfrontpage-element-right kpfrontpage-more">&#9724; More information</a>
+                       </div>
+                       <div class="kpfrontpage-clearfloat">&nbsp;</div>
+                     </div>
+
+                   </div>
+                 </div>
+               </div>
+               <?php
+               // End project summary slide.
+               } ?>
+
+               <div id="kpfrontpage-copy-explore-data-extra-news" class="kpfrontpage-element-left kpfrontpage-columns">
                  <h4>News and Updates</h4>
                  <div class="kpfrontpage-copy-explore-data-entry kpfrontpage-bg-diagonallines">
                    <?php print views_embed_view('kp_frontpage_news_and_update', 'default'); ?>
@@ -256,7 +312,7 @@
                    ?>
                  </div>
                </div>
-               <div id="kpfrontpage-copy-explore-data-extra-events" class="kpfrontpage-element-left">
+               <div id="kpfrontpage-copy-explore-data-extra-events" class="kpfrontpage-element-left kpfrontpage-columns">
                  <h4>Upcoming Events <a href="https://knowpulse.usask.ca/research/workshops" class="kpfrontpage-navigation-white">&#9724; Workshops</a></h4>
                  <div class="kpfrontpage-copy-explore-data-entry kpfrontpage-bg-diagonallines">
                    <?php print views_embed_view('kp_frontpage_upcoming_events', 'default'); ?>
