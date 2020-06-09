@@ -48,7 +48,7 @@ div, h1, h2, h3, li, p, ul, span, input {
 
 .kpfrontpage-more {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  margin: 20px 0 0 0;
+  margin: 0 0 15px 0;
 }
 
 .kpfrontpage-data-header {
@@ -582,7 +582,140 @@ a.kpfrontpage-navigation-white {
     margin: 30px 0 0 0;
   }
 
-  #kpfrontpage-copy-explore-data-extra > div {
+  #kpfrontpage-copy-explore-data-extra-experiments,
+  #kpfrontpage-copy-explore-data-extra-experiments h2 {
+    color: #FFFFFF;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.7);
+  }
+
+  #kpfrontpage-copy-explore-data-extra-experiments {
+    margin: 0 15px 30px 15px;
+  }
+
+  /* Experiments */
+  #kpfrontpage-experiments {
+    padding: 10px;
+    margin: 10px 0 0 0;
+    display: block;
+    position: relative;
+  }
+
+  #kpfrontpage-experiment-slider {
+    margin: 10px 0 0 0;
+  }
+
+  .kpfrontpage-hidden {
+    display: none;
+  }
+
+  .kpfrontpage-wait {
+    height: 220px;
+    background: url(images/wait-loading.gif) center no-repeat;
+  }
+
+    #kpfonrpage-experiments-main-wrapper {
+      min-height: 270px;
+      background-color: #FFFFFF;
+      color: #000000;
+      padding: 10px;
+      text-shadow: none;
+    }
+
+    #kpfrontpage-experiment-summary {
+      padding: 0 25px;
+      margin: 30px 0 0 0;
+    }
+
+    .kpfrontpage-experiments-list {
+      height: 40px;
+      margin: 0 auto;
+      width: 95%;
+    }
+
+    .kpfrontpage-slide-nav {
+      cursor: pointer;
+      font-size: 32px;
+      color: #CCCCCC;
+      position: absolute;
+      top: 20px;
+    }
+
+    #kpfrontpage-slide-left {
+      left: 30px;
+    }
+
+    #kpfrontpage-slide-right {
+      right: 30px;
+    }
+
+    #kpfrontpage-experiment-select {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.1em;
+      font-style: italic;
+      padding: 2px;
+    }
+
+    .kpfrontpage-experiments-list div {
+      background: url(images/forward-slash.gif) right no-repeat;
+      cursor: pointer;
+      float: left;
+      display: inline-block;
+      width: 290px;
+      margin: 0 2%;
+      padding: 0 5px;
+      font-size: 0.95em;
+      line-height: 15px;
+    }
+
+    .kpfrontpage-experiments-list div a {
+      height: 45px;
+      display: inline-block;
+    }
+
+    .kpfrontpage-experiments-list div a:hover {
+      text-decoration: none;
+    }
+
+    .kpfrontpage-experiments-list hr {
+      border: none;
+      border-top: 2px solid #398022;
+      width: 95%;
+      margin: 0;
+    }
+
+    .kpfrontpage-experiments-list div:first-child {
+      margin-left: 10px;
+    }
+
+    .kpfrontpage-experiments-list div:last-child {
+      margin-right: 0;
+      background: none;
+    }
+
+    p#kpfrontpage-summary-text {
+      color: #565759;
+      font-size: 1.2em;
+    }
+
+    .kpfrontpage-bubble {
+      background: #c0d9b2;
+      border-radius: 50%;
+      color: #FFFFFF;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 7em;
+      font-style: italic;
+      height: 120px;
+      line-height: 115%;
+      margin-left: 55%;
+      margin-bottom: 20px;
+      padding: 8px;
+      text-align: center;
+      width: 120px;
+
+      box-shadow: inset 0px -1px 61px -49px rgba(0,0,0,0.75);
+    }
+
+  #kpfrontpage-copy-explore-data-extra .kpfrontpage-columns {
     width: 46%;
     position: inherit;
     margin: 0 20px;
@@ -765,9 +898,20 @@ a.kpfrontpage-navigation-white {
     margin: 0 0 20px 0;
   }
 
-  #kpfrontpage-copy-explore-data-extra > div {
-    width: 93%;
+  #kpfrontpage-copy-explore-data-extra-experiments {
+    width: 96%;
     margin-bottom: 20px;
+    display: block;
+  }
+
+  #kpfrontpage-copy-explore-data-extra-news {
+    width: 92.5% !important;
+    display: block;
+  }
+
+  #kpfrontpage-copy-explore-data-extra-events {
+    width: 92.5% !important;
+    display: block;
   }
 
   #kpfrontpage-footer-info > div {

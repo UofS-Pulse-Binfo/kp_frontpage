@@ -18,6 +18,182 @@
         }
       });
       */
+      var slideSize;
+      enableContentWrappers(false);
+
+      var selectExperiment = $('#kpfrontpage-experiment-select');
+      createExperimentSlider(selectExperiment.val());
+
+      // Even listeners:
+      // Experiment and slide left or right clicked .
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('kpfrontpage-experiment-item')) {
+          slideSize = $('#kpfrontpage-list-wrapper > div').length;
+          var curSlide = currentSlide();
+          setActive(e.target.id, curSlide);
+          getExperiment(e.target.id);
+        }
+
+        if (e.target.classList.contains('kpfrontpage-slide-nav')) {
+          slideSize = $('#kpfrontpage-list-wrapper > div').length;
+          var curSlide = currentSlide();
+
+          slideSize -= 1;
+          var loadSlide;
+
+          // Disable all lists, then figure out which one to load.
+          $('#kpfrontpage-list-' + curSlide).addClass('kpfrontpage-hidden');
+
+          if (e.target.id == 'kpfrontpage-slide-left') {
+            loadSlide = (curSlide == 0 ? slideSize : (curSlide - 1));
+          }
+          else if (e.target.id == 'kpfrontpage-slide-right') {
+            loadSlide = (curSlide == slideSize ? 0 : (curSlide + 1));
+          }
+
+          // Set an active slide.
+          $('#kpfrontpage-list-' + loadSlide).removeClass('kpfrontpage-hidden');
+          var initialItem = $('#kpfrontpage-list-' + loadSlide + ' div').eq(0).find('a').attr('id');
+
+          setActive(initialItem, loadSlide);
+          getExperiment(initialItem);
+        }
+      });
+
+      // Genus changed.
+      selectExperiment.change(function() {
+        enableContentWrappers(false);
+
+        var genus = $(this).val();
+        createExperimentSlider(genus);
+      });
+
+
+      /**
+       * Find current slide.
+       */
+      function currentSlide() {
+        for(var i = 0; i <= (slideSize - 1); i++) {
+          if ($('#kpfrontpage-list-' + i).is(':visible')) {
+            return i;
+          }
+        }
+      }
+
+      /**
+       * Create experiments slider.
+       */
+      function createExperimentSlider(genus) {
+        var p = Drupal.settings.kp_frontpage.experiment;
+        var slideWrapper = $('#kpfrontpage-list-wrapper');
+
+        $.get(p + encodeURI(genus), null, function(response) {
+          if (response != 0) {
+            // Before adding slides, clear wrapper from previous genus.
+            slideWrapper.empty();
+            $.each(response, function(i, item) {
+              // Show the first slide.
+              var display = (i == 0) ? '' : 'kpfrontpage-hidden';
+              // Wrapper for slides.
+              var wrap = '<div id="kpfrontpage-list-' + i + '" class="kpfrontpage-experiments-list ' + display + '">';
+              slideWrapper.append(wrap);
+
+              // Optimal layout wise is 3 experiment per slide.
+              $.each(item, function(j, experiment) {
+                var activeExperiment = '';
+
+                // Load the experiment profile of the first experiment of a genus.
+                if (i == 0 && j == 0) {
+                  activeExperiment = '<hr />';
+                  getExperiment(experiment.genus + '/' + experiment.id);
+                }
+
+                var slide = '<div><a hrefr="#" id="' + experiment.genus + '/' + experiment.id + '" class="kpfrontpage-experiment-item">' + experiment.name + '</a>' + activeExperiment + '</div>';
+                $('#kpfrontpage-list-' + i).append(slide);
+              });
+            });
+
+            enableContentWrappers(true);
+          }
+        });
+      }
+
+      /**
+       * Fetch experiment.
+       */
+      function getExperiment(source) {
+        var p = Drupal.settings.kp_frontpage.experiment;
+
+        // Sections.
+        var content = {};
+        content.logo    = $('#kpfrontpage-summary-logo');
+        content.text    = $('#kpfrontpage-summary-text');
+        content.funders = $('#kpfrontpage-summary-funders-logo');
+        content.link    = $('#kpfrontpage-exeriment-page');
+
+        content.logo.empty();
+        content.text.empty();
+        content.funders.empty();
+        content.link.hide();
+
+        $.get(p + source, 'null', function(response) {
+          if (response != 0 && content.text.text().trim().length <= 0) {
+            // Clear information content section.
+            content.text.text(response.description.trim());
+
+            if (response.projectLogo.length == 1) {
+              // No logo found, create a dummy logotype.
+              response.projectLogo = '<div class="kpfrontpage-bubble">' + response.projectLogo + '</div>';
+            }
+            content.logo.append(response.projectLogo);
+            content.funders.append(response.funderLogo);
+
+            content.link.attr('href', response.entityId).show();
+          }
+        });
+      }
+
+      /**
+       * Set active experiment.
+       */
+      function setActive(id, curSlide) {
+        var slide = $('#kpfrontpage-list-' + curSlide);
+
+        // Drop active experiment highlight.
+        slide.find('hr').remove();
+        var slideWrap = $('#kpfrontpage-list-' + curSlide + ' div');
+
+        // Attach new highlight to clicked experiment.
+        for (var i = 0; i <= slideWrap.length - 1; i++) {
+          var matchId = slideWrap.eq(i).find('a').attr('id');
+
+          if (matchId == id) {
+            slideWrap.eq(i).append('<hr />');
+          }
+        }
+      }
+
+      /**
+       * Hide content wrappers.
+       */
+      function enableContentWrappers(show = true) {
+        // Slider experiment links and left or right slide link
+        // and experiment information section.
+        var sliderWrapper  = $('#kpfrontpage-experiment-slider');
+        var contentWrapper = $('#kpfrontpage-experiment-summary');
+        var waitAnimation  = $('#kpfrontpage-wait');
+
+        if (show) {
+          sliderWrapper.show();
+          contentWrapper.show();
+          waitAnimation.hide();
+        }
+        else {
+          sliderWrapper.hide();
+          contentWrapper.hide();
+          waitAnimation.show();
+        }
+      }
 
       /**
        Quick Access Updates while site-wide search in development.

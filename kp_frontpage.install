@@ -5,6 +5,42 @@
  */
 
 /**
+ * Implements hook_enable().
+ */
+function kp_frontpage_enable() {
+  // Initialize system variables reqiured (terms used) by this modules.
+
+  // Terms used to query projectprop (type taxrank genus) to fetch
+  // crop information of a project.
+  $taxrank_cv_id = chado_get_cv(array('name' => 'taxonomic_rank'))
+    ->cv_id;
+
+  $genus_term_id = chado_get_cvterm(['name' => 'genus', 'cv_id' => $taxrank_cv_id])
+    ->cvterm_id;
+
+  variable_set('kp_frontpage_genus', $genus_term_id);
+
+
+  // Higlighed term
+  $local_cv_id = chado_get_cv(array('name' => 'local'))
+    ->cv_id;
+
+  $highlighted_term_id = chado_get_cvterm(['name' => 'highlighted', 'cv_id' => $local_cv_id])
+    ->cvterm_id;
+
+  variable_set('kp_frontpage_highlighted', $highlighted_term_id);
+
+  // Bundle information.
+  $organization_logo_field = 'field_funding_organization_logos';
+  $table  = 'field_data_' . $organization_logo_field;
+  $sql = sprintf("SELECT bundle FROM %s LIMIT 1", $table);
+  $bundle = chado_query($sql)
+    ->fetchField();
+
+  variable_set('kp_frontpage_logos_bundle', $bundle);
+}
+
+/**
  * Implements hook_install().
  */
 function kp_frontpage_install() {
@@ -145,6 +181,24 @@ function kp_frontpage_install() {
   // Populate the mview.
   $mview_id = tripal_get_mview_id('kp_frontpage_stats');
   tripal_populate_mview($mview_id);
+
+  // Create cvterm entry used by promote to frontpage field.
+  $cv = 'local';
+  $cv_term = 'highlighted content';
+
+  $term = array(
+    'id' => $cv . ':' . $cv_term,
+    'name' => $cv_term,
+    'definition' => 'Promote experiment to frontpage',
+    'cv_name' => $cv,
+  );
+
+  if (function_exists('chado_insert_cvterm')) {
+    chado_insert_cvterm($term);
+  }
+  else {
+    tripal_insert_cvterm($term);
+  }
 }
 
 
@@ -177,4 +231,8 @@ function kp_frontpage_uninstall() {
   if (isset($mview_id) AND $mview_id > 0) {
     tripal_delete_mview($mview_id);
   }
+
+  variable_del('kp_frontpage_genus');
+  variable_del('kp_frontpage_highlighted');
+  variable_del('kp_frontpage_logos_bundle');
 }
