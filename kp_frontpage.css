@@ -169,10 +169,10 @@ a.kpfrontpage-navigation-white {
 }
 
 .kpfrontpage-popupwindow-effect-dropmenu .kpfrontpage-popupwindow {
-  left: -150px;
+  left: 90px;
   padding-top: 20px;
   text-align: left;
-  top: 60px;
+  top: 72px;
   width: 320px;
 }
 
@@ -250,8 +250,18 @@ a.kpfrontpage-navigation-white {
   #kpfrontpage-copy-summary .kpfrontpage-popupwindow-effect-dropmenu {
     cursor: pointer;
     position: absolute;
-    right: 20px;
+    right: 23px;
     top: 15px;
+  }
+
+  #kpfrontpage-copy-summary #kpfrontpage-overview {
+    margin: 0  7px 0 0;
+    padding: 0;
+  }
+
+  #kpfrontpage-copy-summary #kpfrontpage-help {
+    margin: 0 -4px 0 0;
+    padding: 0;
   }
 
   #kpfrontpage-copy-summary-menu {

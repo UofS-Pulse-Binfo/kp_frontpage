@@ -66,9 +66,14 @@
              <h2>&#9724; Explore KnowPulse:</h2>
              <p>a web-resource focused on <span class="kpfrontpage-text-italic">diversity data</span> for pulse crop improvement.</p>
 
-             <div class="kpfrontpage-popupwindow-element kpfrontpage-popupwindow-effect-dropmenu kpfrontpage-element-right">
-               <img src="<?php print $path_images . 'infographics/infographics-side-menu.png'; ?>" alt="Explore KnowPulse" title="Explore KnowPulse" />
+             <div class="kpfrontpage-popupwindow-effect-dropmenu kpfrontpage-element-right">
+               <a href="<?php print $path_host. '/overview'; ?>"><img src="<?php print $path_images . 'infographics/infographics-overview.png'; ?>" id="kpfrontpage-overview" border="0" alt="KnowPulse Overview" title="KnowPulse Overview" /></a>
+               <a href="<?php print $path_host. '/help'; ?>"><img src="<?php print $path_images . 'infographics/infographics-help.png'; ?>" id="kpfrontpage-help" border="0" alt="KnowPulse Help" title="KnowPulse Help" /></a>
+
+               <img src="<?php print $path_images . 'infographics/infographics-side-menu.png'; ?>" id="kpfrontpage-more" class="kpfrontpage-popupwindow-element" />
+
                <div id="kpfrontpage-copy-summary-menu" class="kpfrontpage-popupwindow">
+                 <div style="background-color: #FFFFFF; display: block; position: absolute; top: -5px; width: 55px; height: 5px; right: 0; margin: 0; padding: 0">&nbsp;</div>
                  <?php
                  // Render side navigation into a drop down menu.
                  print '<ul id="kpfrontpage-copy-summary-menu-main">';
