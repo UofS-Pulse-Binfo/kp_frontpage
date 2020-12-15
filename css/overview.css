@@ -245,7 +245,16 @@ canvas {
   width: 8px;
 }
 
+#kp-section-team .kp-green-round-bullet {
+  margin-top: -10px;
+}
+
+
 @media(max-width: 1800px) {
+  #kp-explore-sections ul li {
+    font-size: 1.3em;
+  }
+
   #kp-section-tools .kp-vr-list h2 {
     font-size: 1.8em;
   }
@@ -262,5 +271,9 @@ canvas {
   #kp-tools-stack {
     height: 90%;
     width: 100%;
+  }
+
+  #kp-section-management .kp-title-h2 {
+    font-size: 3em;
   }
 }

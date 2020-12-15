@@ -49,7 +49,8 @@
 
           if (txt[1]) {
             // Highlighted text plus sub text.
-            popText = '<h4>' + txt[0] + '</h4>' + '<i>' + txt[1] + '</i>';
+            var additionalInfo = (txt[2]) ? '<br /><i>' + txt[2] + '</i>' : '';
+            popText = '<h4>' + txt[0] + '</h4>' + '<i>' + txt[1] + '</i>' + additionalInfo;
           }
           else {
             // All text no formatting.

@@ -37,27 +37,27 @@
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Laura Jardine, M.Sc # Project Manager, EVOLVES Lentil Breeding and Genetics"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Laura Jardine, M.Sc # Project Manager # EVOLVES Lentil Breeding and Genetics"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Lacey Sanderson # Lead Developer, Bioinformaticist Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/lacey.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Lacey Sanderson # Lead Developer, Bioinformaticist # Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/lacey.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Ruobin Liu # Data Curator Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/ruobin.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Ruobin Liu # Data Curator # Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/ruobin.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Yichao Shen # Bioinformaticist Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/yichao.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Yichao Shen # Bioinformaticist # Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/yichao.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Carolyn Caron # Bioinformaticist Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/carolyn.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Carolyn Caron # Bioinformaticist # Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/carolyn.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Reynold Tan # Web Developer Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/rey.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Reynold Tan # Web Developer # Pulse Crop Breeding and Genetics"><img src="<?php print $path_images . 'team/rey.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
     </ul>
@@ -156,7 +156,7 @@
           KnowPulse employs only the best open-source technology available.</p>
 
           <center>
-            <img src="<?php print $path_images . 'application-cycle.jpg'; ?>" id="kp-applications-cycle" height="345" width="385" />
+            <img src="<?php print $path_images . 'application-cycle.jpg'; ?>" id="kp-applications-cycle" height="75%" width="80%" />
           </center>
 
           <div class="kp-quick-notes">
@@ -180,7 +180,7 @@
           <div class="kp-video-container">
             <div>
               <div class="kp-video-presenter">
-              <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Laura Jardin"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="90" width="90" /></a>
+              <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Laura Jardine"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="90" width="90" /></a>
               </div>
               <iframe title="vimeo-player" src="https://player.vimeo.com/video/463506198" height="290" frameborder="0" allowfullscreen></iframe>
             </div>

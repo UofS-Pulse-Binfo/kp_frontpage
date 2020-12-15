@@ -10,10 +10,10 @@
     <br />
     <div class="kp-copy">
       <h1 class="kp-h1-title-main-text">Getting started with KnowPulse</h1>
-      <h2 class="kp-h2-title-support-text">No matter which pulse crop data your are in,
+      <h2 class="kp-h2-title-support-text">No matter which pulse crop data your are interested in,
       <br />these tips will help you get off a quick start with KnowPulse.
 
-      <br /><br />Get to know KnowPulse in <a href="<?php print $path_host . 'overview'; ?>">KP Overview.</a>
+      <br /><br />Get to know KnowPulse in <a href="<?php print $path_host . 'overview'; ?>">KnowPulse Overview.</a>
       </h2>
 
      <br /><br />
@@ -136,9 +136,9 @@
          <div class="kp-col-clear-float"></div>
        </div>
 
-       <p><br />Roubin Liu talks about 2 breeding use cases: 1 How to use
+       <p><br />Ruobin Liu talks about 2 breeding use cases: 1) How to use
        pedigree tool and linked phenotypic data to explore a
-       specific cross in the field and 2 How to use germplasm
+       specific cross in the field and 2) How to use germplasm
        search to find parents for a crossing block.<br /><br /></p>
 
        <div class="kp-video-container">
@@ -175,8 +175,8 @@
        </div>
 
        <p><br />Laura Jardine talks about how KnowPulse helps manage
-       your research team. Specifically, It will show how KP was
-       used for our two large scale genomic projects - AGILE and EVOLVES Projects.<br /><br /></p>
+       your research team. Specifically, Laura will demonstrate how KnowPulse was used for our
+       two large-scale genomic projects - AGILE and EVOLVES.<br /><br /></p>
 
        <div class="kp-video-container">
          <div>
@@ -215,14 +215,14 @@
        <li>
          <img src="<?php print $path_images . 'crops/drybean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
-           <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>">Drybean</a>
+           <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>">Dry Bean</a>
            <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
          <img src="<?php print $path_images . 'crops/fababean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
-           <a href="<?php print $path_host . 'Vicia/faba'; ?>">Fababean</a>
+           <a href="<?php print $path_host . 'Vicia/faba'; ?>">Faba Bean</a>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
