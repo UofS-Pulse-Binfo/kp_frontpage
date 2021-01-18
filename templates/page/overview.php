@@ -84,7 +84,7 @@
     <div class="kp-hr-dotted-line">&nbsp;</div>
     <div class="kp-copy" id="kp-tools-info">
       <div class="kp-col-left">
-        <a href="<?php print $path_host; ?>"><img src="<?php print $path_images . 'web-application-stack.jpg'; ?>" id="kp-tools-stack" alt="see all tools" title="see all tools"  height="470" width="580" border="0" /></a>
+        <a href="<?php print $path_host; ?>#kp-tools"><img src="<?php print $path_images . 'web-application-stack.jpg'; ?>" id="kp-tools-stack" alt="see all tools" title="see all tools"  height="470" width="580" border="0" /></a>
       </div>
       <div class="kp-col-right" style="width: 40%">
         <div class="kp-section-copy">
@@ -110,7 +110,7 @@
           </ul>
 
           <p>KnowPulse is fully equipped with applications that will allow you to see data in a lot better perspective.
-          <a href="<?php print $path_host; ?>" style="color: #3A7F21">See all tools</a></p>
+          <a href="<?php print $path_host; ?>#kp-tools" style="color: #3A7F21">See all tools</a></p>
         </div>
       </div>
       <div class="kp-col-clear-float">&nbsp;</div>

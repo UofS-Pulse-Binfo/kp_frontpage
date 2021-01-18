@@ -131,7 +131,7 @@
 
              <!-- /#TOOLS -->
              <div id="kpfrontpage-copy-explore-data-tools">
-               <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Tools</span></h1>
+               <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Tools</span><a name="kp-tools"></a></h1>
                <div id="kpfrontpage-popupwindow-remote-window">
                  <div>&nbsp;</div>
                </div>
