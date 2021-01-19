@@ -14,16 +14,6 @@ module_load_include('inc', 'kp_frontpage', 'includes/TripalFields/kp_frontpage.f
 function kp_frontpage_menu() {
   $items = array();
 
-  // DATA SUMMARY:
-
-  // Main menu items for phenotypes: shows a beanplot -select trait and project.
-  $items['kp_frontpage/experiments'] = array(
-    'page callback' => 'kp_frontpage_experiments_json',
-    'access arguments' => array('access kp_frontpage experiments'),
-    'type' => MENU_CALLBACK,
-  );
-
-
   // KP overview and help pages.
   // menu key overview and help correspond to context menu
   // in the frontend.
@@ -231,18 +221,6 @@ function kp_frontpage_preprocess_page(&$vars) {
 }
 
 /**
- * Implements hook_permission().
- */
-function kp_frontpage_permission() {
-  return array(
-    // Access kp_frontpage experiments.
-    'access kp_frontpage experiments' => array(
-      'title' => t('Access KP Frontpage Experiments'),
-    ),
-  );
-}
-
-/**
  * Implements hook_preprocess_page().
  */
 function kptheme_preprocess_page(&$vars, $hook) {
@@ -272,26 +250,6 @@ function kptheme_preprocess_page(&$vars, $hook) {
     }
 
     $vars['data_stats'] = $arr_stats_bar;
-
-    // Project summary section.
-    // Fetch all genus in projectprop table used to create
-    // genus association per project but limit to only the projects that have
-    // been promoted to Frontpage.
-    $genus_term_id = variable_get('kp_frontpage_genus');
-    $highlighted_term_id = variable_get('kp_frontpage_highlighted');
-
-    $sql = "SELECT TRIM(value) FROM {projectprop} WHERE type_id = :genus AND
-      project_id IN (SELECT project_id FROM {projectprop} WHERE type_id = :highlighted)
-      GROUP BY value ORDER BY value ASC";
-    $result = chado_query($sql, array(':genus' => $genus_term_id, ':highlighted' => $highlighted_term_id))
-      ->fetchAllKeyed(0, 0);
-
-    $vars['promoted_genus'] = $result;
-
-    // Path to request experiments selected to be promoted.
-    // @see hook_menu().
-    $path = $vars['path_host'] . '/kp_frontpage/experiments/';
-    drupal_add_js(array('kp_frontpage' => array('experiment' => $path)), 'setting');
   }
 }
 
@@ -399,123 +357,4 @@ function kp_frontpage_shortval($value) {
   }
 
   return $value;
-}
-
-/**
- * Get experiments promoted to frontpage.
- *
- * @param $genus
- *   Get a set of projects promoted to frontpage based on genus.
- * @param $project_id
- *   In a genus, get a specific project.
- *
- * @return json
- *   JSON object.
- */
-function kp_frontpage_experiments_json($genus, $project_id = null) {
-  if (isset($genus) && strlen($genus) <= 15) {
-    // Get genus system variable.
-    $genus_term_id = variable_get('kp_frontpage_genus');
-    $highlighted_term_id = variable_get('kp_frontpage_highlighted');
-    $project_json = array();
-
-    $logos_bundle = variable_get('kp_frontpage_logos_bundle');
-    $table_logos  = 'field_funding_organization_logos';
-
-    // SQL to fetch funders logo.
-    $sql_project = "SELECT project.project_id, name, description
-      FROM {project} LEFT JOIN {projectprop} AS genus USING(project_id)
-        LEFT JOIN {projectprop} AS highlighted USING(project_id)
-      WHERE
-        genus.type_id = :term_genus AND genus.value = :genus AND
-        highlighted.type_id = :term_highlighted AND highlighted.value = '1' %s
-      ORDER BY highlighted.value DESC";
-
-    $sql_logos   = "SELECT %s_value FROM %s
-      WHERE entity_id = (SELECT entity_id FROM chado_%s WHERE record_id = :project_id LIMIT 1)";
-
-    // Text limit (# words) used to summarize project description.
-    $limit_text = 60;
-
-    if ($project_id == null) {
-      // Fetch all project promotd to frontpage in a genus.
-      $project = chado_query(sprintf($sql_project, ''),
-        array(':term_genus' => $genus_term_id, ':genus' => $genus, ':term_highlighted' => $highlighted_term_id));
-
-      if ($project->rowCount() > 0) {
-        $j = 0;
-        foreach($project as $i => $p) {
-          $name = htmlentities($p->name);
-          $project_json[$j][] = ['id' => $p->project_id, 'genus' => $genus, 'name' => $name];
-          if (($i+1) % 3 == 0) $j++;
-        }
-      }
-      else {
-        return 0;
-      }
-    }
-    else {
-      // An experiment record.
-      $project_id = (int)$project_id;
-
-      if (is_int($project_id) && $project_id > 0) {
-        // Fetch a specific project in a genus.
-        $project = chado_query(sprintf($sql_project, 'AND project_id = :project_id'),
-          array(':term_genus' => $genus_term_id, ':genus' => $genus,
-                ':term_highlighted' => $highlighted_term_id, ':project_id' => $project_id));
-
-        if ($project->rowCount() > 0) {
-          $p = $project->fetchObject();
-
-          $name = htmlentities($p->name);
-          preg_match_all('/<img[^>]+>/', $p->description, $images);
-
-          // Decide which image. At this point there could be images
-          // but only use the image tagged (class) kp-frontpage-logo as the logo
-          // image, otherwise.
-          $images = reset($images);
-          foreach($images as $i => $img) {
-            if (strpos($img, 'kp-frontpage-logo') !== FALSE) {
-              $index = $i;
-              break;
-            }
-          }
-
-          // Project logo.
-          $logo = (isset($images[ $index ])) ? $images[ $index ] : $name[0];
-
-          $d = trim(html_entity_decode(strip_tags($p->description)));
-          $ellipsis = (str_word_count($d) == $limit_text) ? '' : '...';
-          $description = preg_replace('/((\w+\W*){' . $limit_text . '}(\w+))(.*)/', '${1}', $d) . $ellipsis;
-
-          $result = chado_query(sprintf($sql_logos, $table_logos, 'field_data_' . $table_logos, $logos_bundle),
-            array(':project_id' => $p->project_id));
-
-          $funder_logo = ($result->rowCount() > 0) ? $result->fetchField() : '';
-
-          // Link.
-          $entity = chado_get_record_entity_by_table('project', $p->project_id);
-          $entity_id = 'bio_data/' . $entity;
-
-          $project_json = [
-            'id'          => $p->project_id, // Project id number.
-            'entityId'    => $entity_id,     // Entity id number.
-            'name'        => $name,          // Project name.
-            'description' => $description,   // Description.
-            'projectLogo' => $logo,          // Project logo.
-            'funderLogo'  => $funder_logo    // Funders logo.
-          ];
-        }
-        else {
-          return 0;
-        }
-      }
-      else {
-        // Not valid project id.
-        return 0;
-      }
-    }
-  }
-
-  drupal_json_output($project_json);
 }
