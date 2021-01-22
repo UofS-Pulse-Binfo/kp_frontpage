@@ -182,7 +182,7 @@
               <div class="kp-video-presenter">
               <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Laura Jardine"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="90" width="90" /></a>
               </div>
-              <iframe title="vimeo-player" src="https://player.vimeo.com/video/463506198" height="290" frameborder="0" allowfullscreen></iframe>
+              <iframe title="vimeo-player" src="https://player.vimeo.com/video/502723328" height="290" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
 
