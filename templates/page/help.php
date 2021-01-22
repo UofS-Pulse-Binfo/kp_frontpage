@@ -9,7 +9,7 @@
  // section of the homepage.
 
  // Redirect help page crops to this directory.
- $path_crop_img = str_replace('kp-page', 'crop-img', $path_images);
+ $path_crop_img = str_replace('kp-page', 'crops-img', $path_images);
 ?>
 
 <div id="kp-section-overview" class="kp-section">
