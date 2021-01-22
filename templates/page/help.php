@@ -174,13 +174,13 @@
          <div class="kp-col-clear-float"></div>
        </div>
 
-       <p><br />Laura Jardine talks about how KnowPulse helps manage
-       your research team. Specifically, Laura will demonstrate how KnowPulse was used for our
-       two large-scale genomic projects - AGILE and EVOLVES.<br /><br /></p>
+       <p><br />Laura Jardine talks about how KnowPulse provides the backbone structure that every
+         project needs. With all project data housed, organized and made available in one
+         versitile plantform, KnowPulse is also the face of a project.<br /><br /></p>
 
        <div class="kp-video-container">
          <div>
-           <iframe title="vimeo-player" src="https://player.vimeo.com/video/463506198" height="290" frameborder="0" allowfullscreen></iframe>
+           <iframe title="vimeo-player" src="https://player.vimeo.com/video/502777927" height="290" frameborder="0" allowfullscreen></iframe>
          </div>
        </div>
 
