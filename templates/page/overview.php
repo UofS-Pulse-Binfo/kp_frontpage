@@ -37,7 +37,7 @@
         <div></div>
       </li>
       <li>
-        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Laura Jardine, M.Sc # Project Manager # EVOLVES Lentil Breeding and Genetics"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="134" width="136" /></a>
+        <a href="#" class="kp-window-on kp-tip-bottom" data-text="Laura Jardine, M.Sc # Project Manager EVOLVES # Lentil Breeding and Genetics"><img src="<?php print $path_images . 'team/laura.png'; ?>" height="134" width="136" /></a>
         <div></div>
       </li>
       <li>
@@ -84,7 +84,7 @@
     <div class="kp-hr-dotted-line">&nbsp;</div>
     <div class="kp-copy" id="kp-tools-info">
       <div class="kp-col-left">
-        <a href="<?php print $path_host; ?>#kp-tools"><img src="<?php print $path_images . 'web-application-stack.jpg'; ?>" id="kp-tools-stack" alt="see all tools" title="see all tools"  height="470" width="580" border="0" /></a>
+        <a href="<?php print $path_host; ?>#kp-tools" target="_blank"><img src="<?php print $path_images . 'web-application-stack.jpg'; ?>" id="kp-tools-stack" alt="see all tools" title="see all tools"  height="470" width="580" border="0" /></a>
       </div>
       <div class="kp-col-right" style="width: 40%">
         <div class="kp-section-copy">
@@ -110,7 +110,7 @@
           </ul>
 
           <p>KnowPulse is fully equipped with applications that will allow you to see data in a lot better perspective.
-          <a href="<?php print $path_host; ?>#kp-tools" style="color: #3A7F21">See all tools</a></p>
+          <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="color: #3A7F21">See all tools</a></p>
         </div>
       </div>
       <div class="kp-col-clear-float">&nbsp;</div>
@@ -216,22 +216,22 @@
 
             <ul>
               <li>
-                <p>It was very easy to upload the excel sheet by just dragging the file. Another was the incorporation of procedures for data measurement within the excel file provided.</p>
-
-                <div class="kp-testimonial-by">
-                  <div class="kp-col-left">RD</div>
-                  <div class="kp-col-left">Rajeev Dhakal<small>Senior Program Officer<br />LI-BIRD (Nepal)</small></div>
-                </div>
-                <div class="kp-col-clear-float">&nbsp;</div>
-              </li>
-
-              <li>
                 <p>KnowPulse is an integrated and intuitive tool that allows users to easily
                 access genetic and phenotypic data, as well as germplasm information of pulses.</p>
 
                 <div class="kp-testimonial-by">
                   <div class="kp-col-left">AZ</div>
                   <div class="kp-col-left">Azalea Guerra Garcia, Ph.D.<small>Post-Doctoral Fellow<br />Pulse Crop Breeding and Genetics UofS</small></div>
+                </div>
+                <div class="kp-col-clear-float">&nbsp;</div>
+              </li>
+
+              <li>
+                <p>Having a single resource for our data, from sequencing runs to germplasm pedigrees, makes it easy to find whatever information I'm looking for quickly.</p>
+
+                <div class="kp-testimonial-by">
+                  <div class="kp-col-left">LR</div>
+                  <div class="kp-col-left">Larissa Ramsay<small>Senior Bioinformaticist<br />Pulse Crop Breeding and Genetics UofS</small></div>
                 </div>
                 <div class="kp-col-clear-float">&nbsp;</div>
               </li>
@@ -247,11 +247,11 @@
               </li>
 
               <li>
-                <p>Having a single resource for our data, from sequencing runs to germplasm pedigrees, makes it easy to find whatever information I'm looking for quickly.</p>
+                <p>It was very easy to upload the excel sheet by just dragging the file. Another was the incorporation of procedures for data measurement within the excel file provided.</p>
 
                 <div class="kp-testimonial-by">
-                  <div class="kp-col-left">LR</div>
-                  <div class="kp-col-left">Larissa Ramsay<small>Senior Bioinformaticist<br />Pulse Crop Breeding and Genetics UofS</small></div>
+                  <div class="kp-col-left">RD</div>
+                  <div class="kp-col-left">Rajeev Dhakal<small>Senior Program Officer<br />LI-BIRD (Nepal)</small></div>
                 </div>
                 <div class="kp-col-clear-float">&nbsp;</div>
               </li>

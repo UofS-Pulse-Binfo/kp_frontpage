@@ -13,7 +13,7 @@
     <li>
       <strong>Open source</strong> is code made freely available for possible modification and
       redistribution. Products include permission to use the source code, design documents, or
-      content of the product
+      content of the product.
       <br /><a href="http://opensource.org" target="_blank">www.opensource.org</a>
       <br /><br />
     </li>
@@ -22,7 +22,7 @@
       interoperability, and reusability. A March 2016 publication by a consortium of scientists
       and organizations specified the FAIR Guiding Principles for scientific data management and
       stewardship in Scientific Data, using FAIR as an acronym and making the concept easier to discuss.
-      <br /><a href="https://www.go-fair.org/fair-principles/" target="_blank">www.go-fair.org</a>
+      <br /><a href="https://www.go-fair.org/fair-principles" target="_blank">www.go-fair.org</a>
       <br /><br />
     </li>
     <li>
@@ -30,7 +30,7 @@
       in Nature Research’s Scientific Data, of the article, “The TRUST Principles for digital
       repositories”. These principles offer guidance for maintaining the trustworthiness of digital
       repositories, especially those responsible for the stewardship of research data.
-      <br /><a href="http://opensource.org" target="_blank">www.opensource.org</a>
+      <br /><a href="https://www.rdc-drc.ca/research-data-canada-endorses-trust-principles-for-trustworthy-digital-data-repositories" target="_blank">www.rdc-drc.ca</a>
       <br /><br />
     </li>
     <li>
@@ -38,7 +38,7 @@
       among plant breeding databases. BrAPI is a standardized RESTful web service API specification
       for communicating plant breeding data. This community driven standard is free to be used by
       anyone interested in plant breeding data management.
-      <br /><a href="http://opensource.org" target="_blank">www.opensource.org</a>
+      <br /><a href="https://brapi.docs.apiary.io" target="_blank">www.brapi.docs.apiary.io</a>
       <br /><br />
     </li>
   </ul>
