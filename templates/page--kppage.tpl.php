@@ -59,7 +59,7 @@
           <div class="kp-col-left">
             <ul class="kp-hr-list">
               <li>
-                <a href="#" target="_blank"><img src="<?php print $path_images . 'social-network-twitter.jpg'; ?>" height="30" width="30" border="0" alt="twitter" title="twitter" /></a>
+                <a href="https://twitter.com/WildLentils" target="_blank"><img src="<?php print $path_images . 'social-network-twitter.jpg'; ?>" height="30" width="30" border="0" alt="twitter" title="twitter" /></a>
               </li>
               <li>
                 <a href="https://vimeo.com/uofspulsebinfo" target="_blank"><img src="<?php print $path_images . 'social-network-vimeo.jpg'; ?>" height="30" width="30"  border="0" alt="vimeo" title="vimeo" /></a>
