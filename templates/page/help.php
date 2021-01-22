@@ -181,7 +181,7 @@
          <div class="kp-col-clear-float"></div>
        </div>
 
-       <p><br />Laura Jardine talks about how KnowPulse provides the backbone structure that every
+       <p><br />KnowPulse provides the backbone structure that every
          project needs. With all project data housed, organized and made available in one
          versitile plantform, KnowPulse is also the face of a project.<br /><br /></p>
 
