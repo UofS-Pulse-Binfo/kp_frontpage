@@ -227,7 +227,7 @@
          </div>
        </li>
        <li>
-         <img src="<?php print  $path_crop_img . 'fababean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'faba.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>">Faba Bean</a>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
