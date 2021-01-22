@@ -188,7 +188,7 @@ function kp_frontpage_preprocess_page(&$vars) {
         // When it is overview page.
         // JS
         // Particle JS - paticles ascending effect.
-        drupal_add_js ($path . '/js/particles-js/particles-js.min.js');
+        drupal_add_js ($path . '/js/particles-js.min.js');
         drupal_add_js ($path . '/js/particles-js.js', array('scope' => 'footer'));
 
         // CSS
