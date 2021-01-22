@@ -3,6 +3,13 @@
  * @file
  * help content.
  */
+
+ // $path_images points to module kp-page assets
+ // and crops sections uses image shared with crops
+ // section of the homepage.
+
+ // Redirect help page crops to this directory.
+ $path_crop_img = str_replace('kp-page', 'crop-img', $path_images);
 ?>
 
 <div id="kp-section-overview" class="kp-section">
@@ -199,35 +206,35 @@
    <div class="kp-copy">
      <ul class="kp-hr-list">
        <li>
-         <img src="<?php print $path_images . 'crops/chickpea.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'chickpea.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
            <a href="<?php print $path_host . 'Cicer/arietinum'; ?>">Chickpea</a>
            <a href="<?php print $path_host . 'Cicer/arietinum'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print $path_images . 'crops/lentil.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'lentil.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
            <a href="<?php print $path_host . 'Lens/culinaris'; ?>">Lentil</a>
            <a href="<?php print $path_host . 'Lens/culinaris'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print $path_images . 'crops/drybean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'drybean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
            <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>">Dry Bean</a>
            <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print $path_images . 'crops/fababean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'fababean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>">Faba Bean</a>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print $path_images . 'crops/pea.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'pea.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
          <div>
            <a href="<?php print $path_host . 'Pisum/sativum'; ?>">Pea</a>
            <a href="<?php print $path_host . 'Pisum/sativum'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
