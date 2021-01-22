@@ -22,4 +22,8 @@
       $(document).ready(function() {
         $('#kp-wait').fadeOut('fast').remove();
       });
+
+      // Disable system styles.
+      var stylesheet = document.styleSheets[4];
+      stylesheet.disabled = true;
 }}} (jQuery));
