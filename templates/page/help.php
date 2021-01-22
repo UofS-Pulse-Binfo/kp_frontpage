@@ -86,7 +86,7 @@
         ?>
 
         <tr class="<?php print $highlight; ?>">
-          <td width="97%"><a href="<?php print $value[2]; ?>"><?php print $value[0]; ?></a></td>
+          <td width="97%"><a href="<?php print $value[2]; ?>" target="_blank"><?php print $value[0]; ?></a></td>
           <td width="1%">
             <?php
             // No update link provided, do not show.
@@ -213,28 +213,28 @@
          </div>
        </li>
        <li>
-         <img src="<?php print  $path_crop_img . 'lentil.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'lentil.jpg'; ?>" height="90%" width="100%" border="0" alt="Lentil" title="Lentil" />
          <div>
            <a href="<?php print $path_host . 'Lens/culinaris'; ?>">Lentil</a>
            <a href="<?php print $path_host . 'Lens/culinaris'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print  $path_crop_img . 'drybean.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'drybean.jpg'; ?>" height="90%" width="100%" border="0" alt="Dry Bean" title="Dry Bean" />
          <div>
            <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>">Dry Bean</a>
            <a href="<?php print $path_host . 'Phaseolus/vulgaris'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print  $path_crop_img . 'faba.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'faba.jpg'; ?>" height="90%" width="100%" border="0" alt="Faba Bean" title="Faba Bean" />
          <div>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>">Faba Bean</a>
            <a href="<?php print $path_host . 'Vicia/faba'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
          </div>
        </li>
        <li>
-         <img src="<?php print  $path_crop_img . 'pea.jpg'; ?>" height="90%" width="100%" border="0" alt="Chickpea" title="Chickpea" />
+         <img src="<?php print  $path_crop_img . 'pea.jpg'; ?>" height="90%" width="100%" border="0" alt="Pea" title="Pea" />
          <div>
            <a href="<?php print $path_host . 'Pisum/sativum'; ?>">Pea</a>
            <a href="<?php print $path_host . 'Pisum/sativum'; ?>"><img src="<?php print $path_images . 'icon-go.png'; ?>" height="45" width="45" border="0" /></a>
@@ -252,7 +252,7 @@
     <div id="kp-section-info">
       <div class="kp-skew-container">
         <div class="kp-skew-container-wrapper">
-          <div class="kp-col-left" style="width: 15%;"><img src="<?php print $path_images . 'icon-pulses.png'; ?>" height="90%" width="100%" /></div>
+          <div class="kp-col-left" style="width: 15%;"><img src="<?php print $path_images . 'icon-pulses.png'; ?>" alt="Pulses" title="Pulses" height="90%" width="100%" /></div>
           <div class="kp-col-left kp-col" style="width: 80%;">
             <p>What are Pulses?<br /><br />
             Pulses are the dried, edible seeds of plants in the legume family and are both very high in protein and fibre,
