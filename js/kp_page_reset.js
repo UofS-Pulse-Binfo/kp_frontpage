@@ -24,7 +24,9 @@
       });
 
       // Disable system styles.
-      var stylesheet_id = (document.styleSheets[4]) ? 4 : 3;
+      var is_logged_in = Drupal.settings.kp_frontpage.is_logged_in;
+      var stylesheet_id = (is_logged_in) ? 4 : 3;
+      
       var stylesheet = document.styleSheets[ stylesheet_id ];
       stylesheet.disabled = true;
 }}} (jQuery));
