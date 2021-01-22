@@ -192,7 +192,7 @@ function kp_frontpage_preprocess_page(&$vars) {
         drupal_add_js ($path . '/js/particles-js.js', array('scope' => 'footer'));
 
         // CSS
-        drupal_add_css($path . '/css/overview.css');
+        drupal_add_css($path . '/css/overview.css', array('group' => CSS_THEME, 'weight' => -10));
 
         // Content.
         $vars['page_content'] = 'overview';
@@ -201,7 +201,7 @@ function kp_frontpage_preprocess_page(&$vars) {
         // When it is help page.
         // JS
         // CSS
-        drupal_add_css($path . '/css/help.css');
+        drupal_add_css($path . '/css/help.css', array('group' => CSS_THEME, 'weight' => -10));
 
         // Help topics.
         $vars['help_topics'] = kp_frontpage_get_help_topics();
