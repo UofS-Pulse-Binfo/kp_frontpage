@@ -178,6 +178,8 @@ function kp_frontpage_preprocess_page(&$vars) {
       // JS
       // This is a reset code to ensure that page is a blank and white canvas,
       // at the foot of the page, after DOM has been rendered.
+      $is_logged_in = user_is_logged_in();
+      drupal_add_js(array('kp_frontpage' => array('is_logged_in' => $is_logged_in)), 'setting');
       drupal_add_js ($path . '/js/kp_page_reset.js', array('scope' => 'footer'));
 
       // JS
