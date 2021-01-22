@@ -24,6 +24,7 @@
       });
 
       // Disable system styles.
-      var stylesheet = document.styleSheets[4];
+      var stylesheet_id = (document.styleSheets[4]) ? 4 : 3;
+      var stylesheet = document.styleSheets[ stylesheet_id ];
       stylesheet.disabled = true;
 }}} (jQuery));
