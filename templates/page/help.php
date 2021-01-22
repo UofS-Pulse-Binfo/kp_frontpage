@@ -50,7 +50,7 @@
       <div class="kp-section-title">
         <div>
           <div class="kp-col-left">
-            <h3 class="kp-title-h3" style="color:#000000">Got Questions?</h3>
+            <h3 class="kp-title-h3" style="color:#000000">Got Questions?<a name="questions"></a></h3>
           </div>
           <div class="kp-col-right" style="padding-top: 15px;">
             <a href="https://knowpulse-knowledgebase.github.io/" class="kp-window-on kp-tip-top" data-text="View all help topics using KP Data Carpentry Repository" target="_blank"><img src="<?php print $path_images . 'go-to-carpentry.jpg'; ?>" height="33" width="57" border="0"></a>
