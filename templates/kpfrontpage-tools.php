@@ -52,7 +52,7 @@
 
                  <li>
                    <div><img src="<?php echo $path_images . 'tool-icon/jbrowse.gif'; ?>" alt="JBrowse is a graphical means of exploring the features of a genome. KP has JBrowse instances available for Meicago (V4.0), Soybean (Phytosone v2.0), Common Bean (Phytozome v1.0) and Chickpea (Kabuli v1.0)." /></div>
-                   <a href="tools/jbrowse">JBROWSE</a>
+                   <a href="jbrowse">JBROWSE</a>
                  </li>
 
                  <li>
