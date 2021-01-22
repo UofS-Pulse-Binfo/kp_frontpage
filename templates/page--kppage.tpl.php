@@ -38,7 +38,7 @@
       among plant breeding databases. BrAPI is a standardized RESTful web service API specification
       for communicating plant breeding data. This community driven standard is free to be used by
       anyone interested in plant breeding data management.
-      <br /><a href="https://brapi.docs.apiary.io" target="_blank">www.brapi.docs.apiary.io</a>
+      <br /><a href="https://brapi.org" target="_blank">www.brapi.org/</a>
       <br /><br />
     </li>
   </ul>
