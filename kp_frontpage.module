@@ -4,6 +4,221 @@
  * The main code for KP Frontpage.
  */
 
+// Field bundle and info implementation of this module.
+module_load_include('inc', 'kp_frontpage', 'includes/TripalFields/kp_frontpage.fields');
+
+
+/**
+ * Implements hook_menu().
+ */
+function kp_frontpage_menu() {
+  $items = array();
+
+  // KP overview and help pages.
+  // menu key overview and help correspond to context menu
+  // in the frontend.
+  // @see templates/page--front.tpl.php
+
+  // Each page has template file.
+  // @see hook_theme() below.
+
+  $items['overview'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('kp_frontpage_pages'),
+    'access arguments' => array('access content'),
+    'type' =>  MENU_NORMAL_ITEM,
+  );
+
+  $items['help'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('kp_frontpage_pages'),
+    'access arguments' => array('access content'),
+    'type' =>  MENU_NORMAL_ITEM,
+  );
+
+    // Update help topics in KP knowledgebase page.
+    $items['admin/update/help'] = array(
+      'title' => t('KnowPulse Help Page'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('kp_frontpage_pages'),
+      'access arguments' => array('access administration pages'),
+      'type' =>  MENU_NORMAL_ITEM,
+    );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form.
+ * Page callback;
+ */
+function kp_frontpage_pages($form, &$form_state) {
+  $m = arg();
+
+  // This only applies to admin/update/help menu item above.
+  if ($m[0] == 'admin' && $m[1] == 'update' && $m[2] == 'help') {
+    $form['description'] = array(
+      '#type' => 'item',
+      '#description' => t('Upload TSV file to update help topics in KP_frontpage Help page.')
+    );
+
+    $rows = array(
+      array('<strong>title</strong>', 'The title of the help topic (Text)', 'required'),
+      array('<strong>new</strong>', 'Mark help topic as new item (T or F)', 'optional - set to F'),
+      array('<strong>content_link</strong>', 'Link to help topic page (include http://)', 'required'),
+      array('<strong>update_link</strong>', 'Link to help topic update page (include http://)', 'optional')
+    );
+
+    $head = array('Column Header', 'Content', 'Required/Optional');
+    $table = theme('table', array('header' => $head, 'rows' => $rows));
+
+    // Table to outline expected column headers.
+    $form['table_headers'] = array(
+      '#markup' => $table,
+    );
+
+    // File field - browse file.
+    $form['file'] = array(
+      '#type' => 'file',
+      '#title' => t('Upload Help Topics TSV file'),
+      '#size' => 48,
+    );
+
+    // Submit upload csv file.
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Upload'),
+    );
+  }
+
+  $topics = kp_frontpage_get_help_topics();
+  if ($topics) {
+    $rows = $topics['values'];
+    $head = $topics['headers'];
+    $table = theme('table', array('header' => $head, 'rows' => $rows));
+
+    $form['table_topics'] = array(
+      '#markup' => $table,
+    );
+  }
+
+  return $form;
+}
+
+/**
+ * Implements hook_form_submit - upload csv file.
+ */
+function kp_frontpage_pages_submit($form, $form_state) {
+  // Allow only csv file.
+  $validators = array('file_validate_extensions' => array('tsv'));
+  $file = file_save_upload('file', $validators, 'public://');
+
+  if ($file) {
+    // Rename file.
+    if ($file->filename != 'kp_help_topics.tsv') {
+      file_move($file, 'public://kp_help/kp_help_topics.tsv', FILE_EXISTS_REPLACE);
+      drupal_set_message('File uploaded successufully', 'status');
+    }
+  }
+}
+
+/**
+ * Get all help topics available in the csv file.
+ */
+function kp_frontpage_get_help_topics() {
+  // Source file.
+  $file = drupal_realpath('public://kp_help/kp_help_topics.tsv');
+  $handle = fopen($file, 'r');
+  $help = array();
+
+  if ($handle) {
+    $i = 0;
+    while (!feof($handle)) {
+      $row = fgets($handle);
+      // Line broken down to individual values.
+      $values = str_getcsv($row, "\t");
+
+      if (strlen($row) > 2) {
+        if ($i == 0) {
+          // Save headers.
+          $help['headers']  = $values;
+        }
+        else {
+          $help['values'][] = $values;
+        }
+      }
+
+      $i++;
+    }
+  }
+
+  return (empty($help)) ? '' : $help;
+}
+
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function kp_frontpage_preprocess_page(&$vars) {
+  if (isset($vars['page'])) {
+    $args = arg();
+    $page = $args[0];
+
+    if ($page == 'overview' || $page == 'help') {
+      // Template variables.
+      $path = drupal_get_path('module', 'kp_frontpage');
+
+      // Image directory. images/kp-page/.
+      $vars['path_images']  = $GLOBALS['base_url'] . '/' . $path . '/images/kp-page/';
+      // Host address.
+      $vars['path_host']    = $GLOBALS['base_url'] . '/';
+      // Used to indicate which content to load in the template.
+      $vars['page_content'] = '';
+
+      // JS
+      // This is a reset code to ensure that page is a blank and white canvas,
+      // at the foot of the page, after DOM has been rendered.
+      drupal_add_js ($path . '/js/kp_page_reset.js', array('scope' => 'footer'));
+
+      // JS
+      // Overall script.
+      drupal_add_js ($path . '/js/kp_page.js', array('scope' => 'footer'));
+
+      if ($page == 'overview') {
+        // When it is overview page.
+        // JS
+        // Particle JS - paticles ascending effect.
+        drupal_add_js ($path . '/js/particles-js.min.js');
+        drupal_add_js ($path . '/js/particles-js.js', array('scope' => 'footer'));
+
+        // CSS
+        drupal_add_css($path . '/css/overview.css');
+
+        // Content.
+        $vars['page_content'] = 'overview';
+      }
+      else {
+        // When it is help page.
+        // JS
+        // CSS
+        drupal_add_css($path . '/css/help.css');
+
+        // Help topics.
+        $vars['help_topics'] = kp_frontpage_get_help_topics();
+
+        // Content.
+        $vars['page_content'] = 'help';
+      }
+
+      // Suggest theme - use kppage template.
+      $suggests = &$vars['theme_hook_suggestions'];
+      // Template file, template name.
+      $type = 'page__kppage';
+      unset($args[0]);
+      $suggests = array_merge($suggests, array($type), theme_get_suggestions($args, $type));
+    }
+  }
+}
 
 /**
  * Implements hook_preprocess_page().
@@ -55,7 +270,6 @@ function kp_frontpage_contextual_links_view_alter(&$element, $items) {
  * Implements hook_theme_registry_alter().
  */
 function kp_frontpage_theme_registry_alter(&$theme_registry) {
-
   // Defined path to the current module.
   $module_path = drupal_get_path('module', 'kp_frontpage') . '/templates';
 

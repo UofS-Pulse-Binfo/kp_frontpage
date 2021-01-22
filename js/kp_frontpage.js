@@ -43,7 +43,7 @@
       // CONTROL PANEL AND DROP MENU:
       // Raw Phenotypes, context menu.
       $('.kpfrontpage-popupwindow-element').bind('mouseenter click', function() {
-        var element = $(this);
+        var element = $(this).parent();
 
         // Start with a non timer in case it was set previously
         if (d) {
@@ -59,6 +59,15 @@
             element.find('.kpfrontpage-popupwindow').fadeOut(300);
           });
         }, 400);
+      });
+
+
+
+
+      $('#kpfrontpage-help').bind('mouseenter click', function() {
+        if ($('.kpfrontpage-popupwindow')) {
+          $('.kpfrontpage-popupwindow').fadeOut(300);
+        }
       });
 
       // Listen to main menu items, allow to go back to main selection.
