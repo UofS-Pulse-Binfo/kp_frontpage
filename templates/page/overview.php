@@ -126,7 +126,7 @@
             <div class="kp-video-presenter">
             <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Carolyn Caron"><img src="<?php print $path_images . 'team/carolyn.png'; ?>" height="90" width="90" /></a>
             </div>
-            <iframe title="vimeo-player" src="https://player.vimeo.com/video/463506198" height="450" frameborder="0" allowfullscreen></iframe>
+            <iframe title="vimeo-player" src="https://player.vimeo.com/video/503551496" height="450" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
 
