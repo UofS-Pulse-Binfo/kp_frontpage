@@ -26,7 +26,15 @@
       // Disable system styles.
       var is_logged_in = Drupal.settings.kp_frontpage.is_logged_in;
       var stylesheet_id = (is_logged_in) ? 4 : 3;
-      
+
       var stylesheet = document.styleSheets[ stylesheet_id ];
       stylesheet.disabled = true;
+
+      // Disable admin navigation menu. This is the last attempt
+      // since Drupal seems to drop it and sometimes not despite
+      // exception set in structure/block.
+      if ($('#admin-menu')) {
+        $('#admin-menu').hide();
+      }
+
 }}} (jQuery));
