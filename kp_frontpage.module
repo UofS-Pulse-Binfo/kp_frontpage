@@ -117,6 +117,20 @@ function kp_frontpage_pages_submit($form, $form_state) {
     // Rename file.
     if ($file->filename != 'kp_help_topics.tsv') {
       file_move($file, 'public://kp_help/kp_help_topics.tsv', FILE_EXISTS_REPLACE);
+
+      // Make this tsv file permanent.
+      // Update new location.
+      $file->uri = 'public://kp_help/kp_help_topics.tsv';
+      // File is permanent.
+      $file->status = FILE_STATUS_PERMANENT;
+      // Rename file to this, matches callback that reads the file.
+      $file->filename = 'kp_help_topics.tsv';
+
+      // Instruct Drupal kp_frontpage uses this file.
+      // Save.
+      file_save($file);
+      file_usage_add($file, 'kp_frontpage', 'file', 1);
+
       drupal_set_message('File uploaded successufully', 'status');
     }
   }
