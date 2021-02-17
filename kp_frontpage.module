@@ -117,6 +117,20 @@ function kp_frontpage_pages_submit($form, $form_state) {
     // Rename file.
     if ($file->filename != 'kp_help_topics.tsv') {
       file_move($file, 'public://kp_help/kp_help_topics.tsv', FILE_EXISTS_REPLACE);
+
+      // Make this tsv file permanent.
+      // Update new location.
+      $file->uri = 'public://kp_help/kp_help_topics.tsv';
+      // File is permanent.
+      $file->status = FILE_STATUS_PERMANENT;
+      // Rename file to this, matches callback that reads the file.
+      $file->filename = 'kp_help_topics.tsv';
+
+      // Instruct Drupal kp_frontpage uses this file.
+      // Save.
+      file_save($file);
+      file_usage_add($file, 'kp_frontpage', 'file', 1);
+
       drupal_set_message('File uploaded successufully', 'status');
     }
   }
@@ -178,6 +192,8 @@ function kp_frontpage_preprocess_page(&$vars) {
       // JS
       // This is a reset code to ensure that page is a blank and white canvas,
       // at the foot of the page, after DOM has been rendered.
+      $is_logged_in = user_is_logged_in();
+      drupal_add_js(array('kp_frontpage' => array('is_logged_in' => $is_logged_in)), 'setting');
       drupal_add_js ($path . '/js/kp_page_reset.js', array('scope' => 'footer'));
 
       // JS
@@ -192,7 +208,7 @@ function kp_frontpage_preprocess_page(&$vars) {
         drupal_add_js ($path . '/js/particles-js.js', array('scope' => 'footer'));
 
         // CSS
-        drupal_add_css($path . '/css/overview.css');
+        drupal_add_css($path . '/css/overview.css', array('group' => CSS_THEME, 'weight' => -10));
 
         // Content.
         $vars['page_content'] = 'overview';
@@ -201,7 +217,7 @@ function kp_frontpage_preprocess_page(&$vars) {
         // When it is help page.
         // JS
         // CSS
-        drupal_add_css($path . '/css/help.css');
+        drupal_add_css($path . '/css/help.css', array('group' => CSS_THEME, 'weight' => -10));
 
         // Help topics.
         $vars['help_topics'] = kp_frontpage_get_help_topics();
