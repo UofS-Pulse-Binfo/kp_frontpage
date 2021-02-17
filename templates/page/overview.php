@@ -241,7 +241,7 @@
 
                 <div class="kp-testimonial-by">
                   <div class="kp-col-left">HY</div>
-                  <div class="kp-col-left">Hai Ying, Ph.D.<small>Professional Research Associate<br />Pulse Crop Breeding and Genetics UofS</small></div>
+                  <div class="kp-col-left">Hai Ying Yuan, Ph.D.<small>Professional Research Associate<br />Pulse Crop Breeding and Genetics UofS</small></div>
                 </div>
                 <div class="kp-col-clear-float">&nbsp;</div>
               </li>
