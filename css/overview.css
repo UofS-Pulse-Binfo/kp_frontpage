@@ -276,4 +276,23 @@ canvas {
   #kp-section-management .kp-title-h2 {
     font-size: 3em;
   }
+
+  #kp-section-team ul li a img {
+    width: 125px;
+    height: 124px;
+  }	
+}
+
+@media(max-width: 1700px) {
+  #kp-section-team ul li a img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media(max-width: 1500px) {
+  #kp-section-team ul li a img {
+    width: 90px;
+    height: 90px;
+  }
 }
