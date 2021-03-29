@@ -113,6 +113,28 @@
           }
         ?>
       </table>
+
+      <div id="kp-section-help-border">&nbsp;</div>
+      <div class="kp-section-title">
+        <h3 class="kp-title-h3">KnowPulse KnowledgeBase Overview</h3>
+        <div class="kp-video-container">
+          <div>
+            <div class="kp-video-presenter">
+              <a class="kp-window-on kp-top-top" href="#" data-text="Presented by: # Lacey Sanderson"><img src="https://knowpulse2.usask.ca/fresh/sites/all/modules/custom/kp_frontpage/images/kp-page/team/lacey.png" width="90" height="90"></a>
+            </div>
+            <iframe title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/503668210" height="450" frameborder="0"></iframe>
+          </div>
+        </div>        
+        <div class="kp-quick-notes">
+          <div>
+            <div class="kp-green-round-bullet kp-col-left">&nbsp;</div>
+            <div class="kp-col-left">Lacey Sanderson</div>
+          </div>
+
+          <div class="kp-col-clear-float">&nbsp;</div>
+          <small><i>Lead Developer, Bioinformaticist<br>Pulse Crop Breeding and Genetics</i></small>
+        </div>
+      </div>      
     </div>
   </div>
 </div>

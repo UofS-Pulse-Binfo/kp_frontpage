@@ -121,6 +121,13 @@
   background: #EAEAEA !important;
 }
 
+/* Bottom border of search */
+#kp-section-help-border {
+  border-top: 8px solid #314355;
+  height: 1px;
+  margin-top: 7px;
+}
+
 #kp-section-crop-links {
   margin: 55px auto 0 auto;
 }
