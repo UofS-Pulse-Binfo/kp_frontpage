@@ -249,13 +249,13 @@
 
         if (switchId == 'kp-switch-overview') {
           // Load overview, hide showcase 
-          $('#' + switchId).show();
+          $('#kp-tools-info').show();
           $('#kp-switch-showcase').hide();
         }
         else {
           // Load showcase, hide overview.
-          $('#kp-switch-overview').hide();
-          $('#' + switchId).show();          
+          $('#kp-tools-info').hide();
+          $('#kp-tools-showcase').show();          
         }
       });
 
