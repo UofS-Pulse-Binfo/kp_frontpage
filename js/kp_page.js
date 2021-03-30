@@ -244,9 +244,6 @@
       });
 
       // Switch tools overview and tools showcase.
-      var iframe = $('#vimeo-player').eq(0);
-      var player = $f(iframe);
-
       $('.kp-switch').click(function() {
         var switchId = $(this).attr('id');
 
@@ -276,8 +273,6 @@
             .removeClass('kp-active-switch kp-switch-left-active')
             .addClass('kp-standard-switch kp-switch-left-standard');
         }
-
-        player.api('pause');
       });
 
 
