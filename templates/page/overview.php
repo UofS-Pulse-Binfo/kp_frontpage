@@ -82,7 +82,7 @@
 <div id="kp-section-tools" class="kp-section kp-2-section">
   <div class="kp-section-wrapper kp-section-span">
     <div class="kp-hr-dotted-line">&nbsp;</div>
-    <div id="kp-tools-switch-container">
+    <div id="kp-tools-switch-container" title="Click to switch between tools info overview or tools showcase video">
       <div id="kp-switch-overview" class="kp-switch kp-active-switch kp-switch-left">Overview</div>
       <div id="kp-switch-showcase" class="kp-switch kp-standard-switch kp-switch-right">Tools Showcase</div>
       <div class="kp-center-post">&nbsp;</div>

@@ -250,12 +250,28 @@
         if (switchId == 'kp-switch-overview') {
           // Load overview, hide showcase 
           $('#kp-tools-info').show();
-          $('#kp-switch-showcase').hide();
+          $('#kp-tools-showcase').hide();
+
+          $('#' + switchId)
+            .removeClass('kp-standard-switch')
+            .addClass('kp-active-switch');
+          
+          $('#kp-switch-showcase')
+            .removeClass('kp-active-switch')
+            .addClass('kp-standard-switch') ;
         }
         else {
           // Load showcase, hide overview.
           $('#kp-tools-info').hide();
           $('#kp-tools-showcase').show();          
+
+          $('#' + switchId)
+            .removeClass('kp-standard-switch')
+            .addClass('kp-active-switch');
+        
+          $('#kp-switch-overview')
+            .removeClass('kp-active-switch')
+            .addClass('kp-standard-switch');
         }
       });
 
@@ -276,7 +292,7 @@
           searchTable.find('tr').eq(i).fadeIn();
         });
 
-        searchTable.parent().find('small').text('We found ' + indexSet.length + ' results:');
+        searchTable.parent().find('small').eq(0).text('We found ' + indexSet.length + ' results:');
       }
 
       /**
