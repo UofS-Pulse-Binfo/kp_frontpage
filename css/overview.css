@@ -193,6 +193,91 @@ canvas {
   font-size: 2em;
 }
 
+/* Switch tools */
+#kp-tools-switch-container {
+  display: block;
+  margin: -30px auto 50px auto; 
+  position: relative; 
+  width: 400px; 
+}
+
+.kp-switch {
+  font-family: Arial, Helvetica, sans-serif; 
+  float:left;    
+  height:40px; 
+  line-height: 35px;
+  text-align: center; 
+  width: 200px; 
+}
+
+.kp-switch:hover {
+  -webkit-animation: swing 1s ease;
+  animation: swing 1s ease;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+
+  box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
+}
+
+.kp-active-switch {
+  background-color: #324353;
+  color: #FFFFFF;
+
+  box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
+  -webkit-box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
+  -moz-box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
+}
+
+.kp-standard-switch {
+  background-color: #DDDDDD; 
+  color: #868686; 
+}
+
+.kp-center-post {
+  display: block; 
+  height: 60px; 
+  left: 47%;
+  position: absolute; 
+  top: -10px; 
+  width: 15px;  
+
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 90px solid #ededed;
+}
+
+.kp-switch-left:after {
+  border-color: #324354; 
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 20px;
+  border-style: solid;
+  content: "";
+  height: 0; 
+  position: absolute; 
+  right: 100%; 
+  top: 0; 
+  width: 0; 
+}
+
+.kp-switch-right:after {
+  border-color: #DDDDDD; 
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-width: 20px;
+  border-style: solid;
+  content: "";
+  height: 0; 
+  left: 100%; 
+  position: absolute; 
+  top: 0; 
+  width: 0;
+}
+
 #kp-section-management p {
   margin: 20px 0;
 }
@@ -249,6 +334,9 @@ canvas {
   margin-top: -10px;
 }
 
+.kp-section-copy p {
+  font-family: Arial, Helvetica, sans-serif; 
+}
 
 @media(max-width: 1800px) {
   #kp-explore-sections ul li {
@@ -271,6 +359,11 @@ canvas {
   #kp-tools-stack {
     height: 90%;
     width: 100%;
+  }
+
+  #kp-tools-showcase {
+    margin-top: -50px; 
+    margin-bottom: 40px;
   }
 
   #kp-section-management .kp-title-h2 {

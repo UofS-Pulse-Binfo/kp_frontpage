@@ -82,6 +82,13 @@
 <div id="kp-section-tools" class="kp-section kp-2-section">
   <div class="kp-section-wrapper kp-section-span">
     <div class="kp-hr-dotted-line">&nbsp;</div>
+    <div id="kp-tools-switch-container">
+      <div id="kp-switch-overview" class="kp-switch kp-active-switch kp-switch-left">Overview</div>
+      <div id="kp-switch-showcase" class="kp-switch kp-standard-switch kp-switch-right">Tools Showcase</div>
+      <div class="kp-center-post">&nbsp;</div>
+      <div class="kp-col-clear-float">&nbsp;</div>
+    </div>
+    
     <div class="kp-copy" id="kp-tools-info">
       <div class="kp-col-left">
         <a href="<?php print $path_host; ?>#kp-tools" target="_blank"><img src="<?php print $path_images . 'web-application-stack.jpg'; ?>" id="kp-tools-stack" alt="see all tools" title="see all tools"  height="470" width="580" border="0" /></a>
@@ -114,6 +121,32 @@
         </div>
       </div>
       <div class="kp-col-clear-float">&nbsp;</div>
+    </div>
+    
+    <div class="kp-copy" id="kp-tools-showcase" style="display: none">
+      <br><br>
+      <div class="kp-section-title">
+        <h3 class="kp-title-h3">Tools Showcase</h3>
+
+        <div class="kp-video-container">
+          <div>
+            <div class="kp-video-presenter">
+            <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Lacey Sanderson"><img src="<?php print $path_images . 'team/lacey.png'; ?>" width="90" height="90"></a>
+            </div>
+            <iframe title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/504453761" height="450" frameborder="0"></iframe>
+          </div>
+        </div>
+
+        <div class="kp-quick-notes">
+          <div>
+            <div class="kp-green-round-bullet kp-col-left">&nbsp;</div>
+            <div class="kp-col-left">Lacey Sanderson</div>
+          </div>
+
+          <div class="kp-col-clear-float">&nbsp;</div>
+          <small><i>Lead Developer, Bioinformaticist <br>Pulse Crop Breeding and Genetics</i></small>
+        </div>
+      </div>
     </div>
 
     <div class="kp-copy">

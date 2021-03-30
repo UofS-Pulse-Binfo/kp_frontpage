@@ -243,6 +243,21 @@
         });
       });
 
+      // Switch tools overview and tools showcase.
+      $('.kp-switch').click(function() {
+        var switchId = $(this).attr('id');
+
+        if (switchId == 'kp-switch-overview') {
+          // Load overview, hide showcase 
+          $('#' + switchId).show();
+          $('#kp-switch-showcase').hide();
+        }
+        else {
+          // Load showcase, hide overview.
+          $('#kp-switch-overview').hide();
+          $('#' + switchId).show();          
+        }
+      });
 
 
       // Function:
