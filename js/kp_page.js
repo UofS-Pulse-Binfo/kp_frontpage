@@ -246,7 +246,7 @@
       // Switch tools overview and tools showcase.
       $('.kp-switch').click(function() {
         var iframe = $('#vimeo-player')[0];
-        var player = $f(iframe);
+        var player = $(iframe);
         player.api('pause');
 
         var switchId = $(this).attr('id');
