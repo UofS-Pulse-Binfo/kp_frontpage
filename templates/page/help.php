@@ -120,12 +120,12 @@
         <div class="kp-video-container">
           <div>
             <div class="kp-video-presenter">
-              <a class="kp-window-on kp-top-top" href="#" data-text="Presented by: # Lacey Sanderson"><img src="https://knowpulse2.usask.ca/fresh/sites/all/modules/custom/kp_frontpage/images/kp-page/team/lacey.png" width="90" height="90"></a>
+              <a class="kp-window-on kp-top-top" href="#" data-text="Presented by: # Lacey Sanderson"><img src="<?php print $path_images . 'team/lacey.png'; ?>" width="90" height="90"></a>
             </div>
             <iframe title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/503668210" height="450" frameborder="0"></iframe>
           </div>
         </div>        
-        <div class="kp-quick-notes">
+        <div class="kp-quick-notes" style="position: relative">
           <div>
             <div class="kp-green-round-bullet kp-col-left">&nbsp;</div>
             <div class="kp-col-left">Lacey Sanderson</div>
@@ -133,6 +133,9 @@
 
           <div class="kp-col-clear-float">&nbsp;</div>
           <small><i>Lead Developer, Bioinformaticist<br>Pulse Crop Breeding and Genetics</i></small>
+          <div id="kp-knowledgebase">
+            <a href="https://knowpulse-knowledgebase.github.io/" target="_blank">knowpulse-knowledgebase.github.io</a>
+          </div>
         </div>
       </div>      
     </div>
