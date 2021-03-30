@@ -249,7 +249,7 @@ canvas {
   border-top: 90px solid #ededed;
 }
 
-.kp-switch-active:after {
+.kp-switch-left-active:after {
   border-color: #324354; 
   border-top-color: transparent;
   border-bottom-color: transparent;
@@ -264,7 +264,38 @@ canvas {
   width: 0; 
 }
 
-.kp-switch-standard:after {
+.kp-switch-left-standard:after {
+  border-color: #DDDDDD; 
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 20px;
+  border-style: solid;
+  content: "";
+  height: 0; 
+  position: absolute; 
+  right: 100%; 
+  top: 0; 
+  width: 0; 
+}
+
+
+.kp-switch-right-active:after {
+  border-color: #324354; 
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-width: 20px;
+  border-style: solid;
+  content: "";
+  height: 0; 
+  left: 100%; 
+  position: absolute; 
+  top: 0; 
+  width: 0;
+}
+
+.kp-switch-right-standard:after {
   border-color: #DDDDDD; 
   border-top-color: transparent;
   border-bottom-color: transparent;

@@ -253,12 +253,12 @@
           $('#kp-tools-showcase').hide();
 
           $('#' + switchId)
-            .removeClass('kp-standard-switch kp-switch-standard')          
-            .addClass('kp-active-switch kp-switch-active');
+            .removeClass('kp-standard-switch kp-switch-left-standard')          
+            .addClass('kp-active-switch kp-switch-left-active');
           
           $('#kp-switch-showcase')
-            .removeClass('kp-active-switch kp-switch-active')
-            .addClass('kp-standard-switch kp-switch-standard') ;
+            .removeClass('kp-active-switch kp-switch-right-active')
+            .addClass('kp-standard-switch kp-switch-right-standard') ;
         }
         else {
           // Load showcase, hide overview.
@@ -266,12 +266,12 @@
           $('#kp-tools-showcase').show();          
 
           $('#' + switchId)
-            .removeClass('kp-standard-switch kp-switch-standard')
-            .addClass('kp-active-switch kp-switch-active');
+            .removeClass('kp-standard-switch kp-switch-right-standard')
+            .addClass('kp-active-switch kp-switch-right-active');
         
           $('#kp-switch-overview')
-            .removeClass('kp-active-switch kp-switch-active')
-            .addClass('kp-standard-switch kp-switch-standard');
+            .removeClass('kp-active-switch kp-switch-left-active')
+            .addClass('kp-standard-switch kp-switch-left-standard');
         }
       });
 
