@@ -117,7 +117,7 @@
           </ul>
 
           <p>KnowPulse is fully equipped with applications that will allow you to see data in a lot better perspective.
-          <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="color: #3A7F21">See all tools</a></p>
+          <br /><a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="color: #3A7F21">See all tools</a></p>
         </div>
       </div>
       <div class="kp-col-clear-float">&nbsp;</div>

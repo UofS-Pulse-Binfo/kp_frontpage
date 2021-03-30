@@ -248,8 +248,6 @@
       var player = $f(iframe);
 
       $('.kp-switch').click(function() {
-        player.api('pause');
-
         var switchId = $(this).attr('id');
 
         if (switchId == 'kp-switch-overview') {
@@ -278,6 +276,8 @@
             .removeClass('kp-active-switch kp-switch-left-active')
             .addClass('kp-standard-switch kp-switch-left-standard');
         }
+
+        player.api('pause');
       });
 
 
