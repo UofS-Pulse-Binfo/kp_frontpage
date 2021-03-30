@@ -253,12 +253,12 @@
           $('#kp-tools-showcase').hide();
 
           $('#' + switchId)
-            .removeClass('kp-standard-switch')
-            .addClass('kp-active-switch');
+            .removeClass('kp-standard-switch kp-switch-standard')          
+            .addClass('kp-active-switch kp-switch-active');
           
           $('#kp-switch-showcase')
-            .removeClass('kp-active-switch')
-            .addClass('kp-standard-switch') ;
+            .removeClass('kp-active-switch kp-switch-active')
+            .addClass('kp-standard-switch kp-switch-standard') ;
         }
         else {
           // Load showcase, hide overview.
@@ -266,12 +266,12 @@
           $('#kp-tools-showcase').show();          
 
           $('#' + switchId)
-            .removeClass('kp-standard-switch')
-            .addClass('kp-active-switch');
+            .removeClass('kp-standard-switch kp-switch-standard')
+            .addClass('kp-active-switch kp-switch-active');
         
           $('#kp-switch-overview')
-            .removeClass('kp-active-switch')
-            .addClass('kp-standard-switch');
+            .removeClass('kp-active-switch kp-switch-active')
+            .addClass('kp-standard-switch kp-switch-standard');
         }
       });
 

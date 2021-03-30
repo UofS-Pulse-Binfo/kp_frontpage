@@ -249,7 +249,7 @@ canvas {
   border-top: 90px solid #ededed;
 }
 
-.kp-switch-left:after {
+.kp-switch-active:after {
   border-color: #324354; 
   border-top-color: transparent;
   border-bottom-color: transparent;
@@ -264,7 +264,7 @@ canvas {
   width: 0; 
 }
 
-.kp-switch-right:after {
+.kp-switch-standard:after {
   border-color: #DDDDDD; 
   border-top-color: transparent;
   border-bottom-color: transparent;
