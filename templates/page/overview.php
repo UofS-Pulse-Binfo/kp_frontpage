@@ -133,7 +133,7 @@
             <div class="kp-video-presenter">
             <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Lacey Sanderson"><img src="<?php print $path_images . 'team/lacey.png'; ?>" width="90" height="90"></a>
             </div>
-            <iframe title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/504453761" height="450" frameborder="0"></iframe>
+            <iframe id="vimeo-player" title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/504453761" height="450" frameborder="0"></iframe>
           </div>
         </div>
 

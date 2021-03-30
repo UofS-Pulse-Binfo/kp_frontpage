@@ -245,6 +245,10 @@
 
       // Switch tools overview and tools showcase.
       $('.kp-switch').click(function() {
+        var iframe = $('#vimeo-player')[0];
+        var player = $f(iframe);
+        player.api('pause');
+
         var switchId = $(this).attr('id');
 
         if (switchId == 'kp-switch-overview') {
@@ -258,7 +262,7 @@
           
           $('#kp-switch-showcase')
             .removeClass('kp-active-switch kp-switch-right-active')
-            .addClass('kp-standard-switch kp-switch-right-standard') ;
+            .addClass('kp-standard-switch kp-switch-right-standard');
         }
         else {
           // Load showcase, hide overview.
