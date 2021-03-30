@@ -244,7 +244,7 @@
       });
 
       // Switch tools overview and tools showcase.
-      var iframe = $('#vimeo-player')[0];
+      var iframe = $('#vimeo-player').eq(0);
       var player = $f(iframe);
 
       $('.kp-switch').click(function() {
