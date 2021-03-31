@@ -124,7 +124,6 @@
     </div>
     
     <div class="kp-copy" id="kp-tools-showcase" style="display: none">
-      <br><br>
       <div class="kp-section-title">
         <h3 class="kp-title-h3">Tools Showcase</h3>
 
