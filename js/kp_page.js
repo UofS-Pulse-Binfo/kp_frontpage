@@ -244,7 +244,7 @@
       });
 
       // Switch tools overview and tools showcase.
-      $('.kp-switch').click(function() {
+      $('.kp-switch, #kp-switch-showcase-video').click(function() {
         var switchId = $(this).attr('id');
 
         if (switchId == 'kp-switch-overview') {
@@ -274,8 +274,8 @@
             .addClass('kp-standard-switch kp-switch-left-standard');
         }
       });
-
-
+      
+      
       // Function:
 
 

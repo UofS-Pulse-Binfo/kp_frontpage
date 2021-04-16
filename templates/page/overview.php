@@ -116,11 +116,11 @@
             </li>
           </ul>
 
-	  <p>
+	        <p>
             KnowPulse is fully equipped with applications that will allow you to see data in a better perspective.
-	    <br />
+	          <br />
             <a href="#" id="kp-switch-showcase-video">Watch Tools Showcase Video</a>
-	    <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="display: block; color: #3A7F21; text-decoration: none;">See all Tools</a>
+	          <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="display: block; color: #3A7F21; text-decoration: none;">See all Tools</a>
           </p>
         </div>
       </div>
