@@ -244,7 +244,7 @@
       });
 
       // Switch tools overview and tools showcase.
-      $('.kp-switch, #kp-switch-showcase-video').click(function() {
+      $('.kp-switch, #kp-switch-showcase-video').click(function(e) {
         var switchId = $(this).attr('id');
 
         if (switchId == 'kp-switch-overview') {
@@ -262,6 +262,10 @@
         }
         else {
           // Load showcase, hide overview.
+          if (switchId == 'kp-switch-showcase-video') {
+            e.preventDefault();
+          }
+
           $('#kp-tools-info').hide();
           $('#kp-tools-showcase').show();          
 
@@ -275,7 +279,7 @@
         }
       });
       
-      
+
       // Function:
 
 
