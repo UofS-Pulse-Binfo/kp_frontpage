@@ -198,17 +198,19 @@ canvas {
   display: block;
   margin: -30px auto 70px auto; 
   position: relative; 
-  width: 400px; 
+  width: 500px; 
 }
 
 .kp-switch {
   cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  font-weight: 300; 
   float: left;    
   height: 40px; 
   line-height: 35px;
   text-align: center; 
-  width: 200px; 
+  width: 250px; 
 }
 
 .kp-switch:hover {
@@ -223,17 +225,13 @@ canvas {
 }
 
 .kp-active-switch {
-  background-color: #324353;
-  color: #FFFFFF;
-
   box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
   -webkit-box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
   -moz-box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.56);
 }
 
 .kp-standard-switch {
-  background-color: #DDDDDD; 
-  color: #868686; 
+  box-shadow: none;
 }
 
 .kp-center-post {
@@ -250,7 +248,7 @@ canvas {
 }
 
 .kp-switch-left-active:after {
-  border-color: #324354; 
+  border-color: #314355; 
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -265,7 +263,7 @@ canvas {
 }
 
 .kp-switch-left-standard:after {
-  border-color: #DDDDDD; 
+  border-color: #314355; 
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -281,7 +279,7 @@ canvas {
 
 
 .kp-switch-right-active:after {
-  border-color: #324354; 
+  border-color: #397E21; 
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-right-color: transparent;
@@ -296,7 +294,7 @@ canvas {
 }
 
 .kp-switch-right-standard:after {
-  border-color: #DDDDDD; 
+  border-color: #397E21; 
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-right-color: transparent;
@@ -309,6 +307,30 @@ canvas {
   top: 0; 
   width: 0;
 }
+
+#kp-switch-overview {
+  background-color: #314355;
+  color: #FFFFFF;
+}
+
+#kp-switch-showcase {
+  background-color: #397E21;
+  color: #FFFFFF;
+}
+
+#kp-switch-showcase-video {
+  border-radius: 7px; 
+  font-size: 0.8em; 
+  font-weight: 300; 
+  text-align: center; 
+  margin: 10px 0 10px 0; 
+  color: #FFFFFF; 
+  padding: 7px 15px; 
+  display: inline-block; 
+  background-color: #397E21;
+  text-decoration: none;
+}
+
 
 #kp-section-management p {
   margin: 20px 0;

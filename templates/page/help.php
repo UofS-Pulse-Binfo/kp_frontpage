@@ -134,7 +134,7 @@
           <div class="kp-col-clear-float">&nbsp;</div>
           <small><i>Lead Developer, Bioinformaticist<br>Pulse Crop Breeding and Genetics</i></small>
           <div id="kp-knowledgebase">
-            <a href="https://knowpulse-knowledgebase.github.io/" target="_blank">knowpulse-knowledgebase.github.io</a>
+            <a href="https://knowpulse-knowledgebase.github.io/" id="kp-link-help-repo" target="_blank">See all the Lessons in KnowledgeBase</a>
           </div>
         </div>
       </div>      

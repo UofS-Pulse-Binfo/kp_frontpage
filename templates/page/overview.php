@@ -83,8 +83,8 @@
   <div class="kp-section-wrapper kp-section-span">
     <div class="kp-hr-dotted-line">&nbsp;</div>
     <div id="kp-tools-switch-container" title="Click to switch between tools info overview or tools showcase video">
-      <div id="kp-switch-overview" class="kp-switch kp-active-switch kp-switch-left-active">Overview</div>
-      <div id="kp-switch-showcase" class="kp-switch kp-standard-switch kp-switch-right-standard">Tools Showcase</div>
+      <div id="kp-switch-overview" class="kp-switch kp-active-switch kp-switch-left-active">Tools Overview</div>
+      <div id="kp-switch-showcase" class="kp-switch kp-standard-switch kp-switch-right-standard">Watch Tools Showcase Video</div>
       <div class="kp-center-post">&nbsp;</div>
       <div class="kp-col-clear-float">&nbsp;</div>
     </div>
@@ -116,8 +116,12 @@
             </li>
           </ul>
 
-          <p>KnowPulse is fully equipped with applications that will allow you to see data in a lot better perspective.
-          <br /><a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="color: #3A7F21">See all tools</a></p>
+	  <p>
+            KnowPulse is fully equipped with applications that will allow you to see data in a better perspective.
+	    <br />
+            <a href="#" id="kp-switch-showcase-video">Watch Tools Showcase Video</a>
+	    <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="display: block; color: #3A7F21; text-decoration: none;">See all Tools</a>
+          </p>
         </div>
       </div>
       <div class="kp-col-clear-float">&nbsp;</div>

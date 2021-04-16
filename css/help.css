@@ -121,6 +121,20 @@
   background: #EAEAEA !important;
 }
 
+#kp-link-help-repo {
+  border-radius: 7px; 
+  font-size: 0.8em; 
+  font-weight: 300;
+  height: 30px; 
+  text-align: center; 
+  margin: 10px 0 10px 0; 
+  color: #FFFFFF; 
+  padding: 0 15px 15px 15px; 
+  display: inline-block; 
+  background-color: #397E21;
+  text-decoration: none;
+}
+
 /* Bottom border of search */
 #kp-section-help-border {
   border-top: 8px solid #314355;
