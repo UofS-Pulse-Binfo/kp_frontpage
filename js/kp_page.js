@@ -244,7 +244,7 @@
       });
 
       // Switch tools overview and tools showcase.
-      $('.kp-switch, #kp-switch-showcase-video').click(function(e) {
+      $('.kp-switch').click(function(e) {
         var switchId = $(this).attr('id');
 
         if (switchId == 'kp-switch-overview') {
@@ -262,10 +262,6 @@
         }
         else {
           // Load showcase, hide overview.
-          if (switchId == 'kp-switch-showcase-video') {
-            e.preventDefault();
-          }
-
           $('#kp-tools-info').hide();
           $('#kp-tools-showcase').show();          
 
@@ -279,6 +275,23 @@
         }
       });
       
+      // Alternative link to switch to showcase video.
+      $('#kp-switch-showcase-video').click(function(e) {
+        e.preventDefault();
+	
+	// Load showcase, hide overview.      
+	$('#kp-tools-info').hide();
+	$('#kp-tools-showcase').show();
+
+	$('#kp-switch-showcase')
+	  .removeClass('kp-standard-switch kp-switch-right-standard')
+	  .addClass('kp-active-switch kp-switch-right-standard');
+	
+        $('#kp-switch-overview')
+	  .removeClass('kp-active-switch kp-switch-left-active')
+	  .addClass('kp-standard-switch kp-switch-left-standard');
+      });      
+
 
       // Function:
 

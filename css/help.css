@@ -135,6 +135,12 @@
   text-decoration: none;
 }
 
+#kp-link-help-repo:hover {
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+}
+
 /* Bottom border of search */
 #kp-section-help-border {
   border-top: 8px solid #314355;

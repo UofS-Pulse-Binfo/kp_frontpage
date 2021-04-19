@@ -331,6 +331,12 @@ canvas {
   text-decoration: none;
 }
 
+#kp-switch-showcase-video:hover {
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+}
+
 
 #kp-section-management p {
   margin: 20px 0;
