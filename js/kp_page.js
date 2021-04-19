@@ -243,6 +243,54 @@
         });
       });
 
+      // Switch tools overview and tools showcase.
+      $('.kp-switch').click(function(e) {
+        var switchId = $(this).attr('id');
+
+        if (switchId == 'kp-switch-overview') {
+          // Load overview, hide showcase 
+          $('#kp-tools-info').show();
+          $('#kp-tools-showcase').hide();
+
+          $('#' + switchId)
+            .removeClass('kp-standard-switch kp-switch-left-standard')          
+            .addClass('kp-active-switch kp-switch-left-active');
+          
+          $('#kp-switch-showcase')
+            .removeClass('kp-active-switch kp-switch-right-active')
+            .addClass('kp-standard-switch kp-switch-right-standard');
+        }
+        else {
+          // Load showcase, hide overview.
+          $('#kp-tools-info').hide();
+          $('#kp-tools-showcase').show();          
+
+          $('#' + switchId)
+            .removeClass('kp-standard-switch kp-switch-right-standard')
+            .addClass('kp-active-switch kp-switch-right-active');
+        
+          $('#kp-switch-overview')
+            .removeClass('kp-active-switch kp-switch-left-active')
+            .addClass('kp-standard-switch kp-switch-left-standard');
+        }
+      });
+      
+      // Alternative link to switch to showcase video.
+      $('#kp-switch-showcase-video').click(function(e) {
+        e.preventDefault();
+	
+	// Load showcase, hide overview.      
+	$('#kp-tools-info').hide();
+	$('#kp-tools-showcase').show();
+
+	$('#kp-switch-showcase')
+	  .removeClass('kp-standard-switch kp-switch-right-standard')
+	  .addClass('kp-active-switch kp-switch-right-standard');
+	
+        $('#kp-switch-overview')
+	  .removeClass('kp-active-switch kp-switch-left-active')
+	  .addClass('kp-standard-switch kp-switch-left-standard');
+      });      
 
 
       // Function:
@@ -261,7 +309,7 @@
           searchTable.find('tr').eq(i).fadeIn();
         });
 
-        searchTable.parent().find('small').text('We found ' + indexSet.length + ' results:');
+        searchTable.parent().find('small').eq(0).text('We found ' + indexSet.length + ' results:');
       }
 
       /**

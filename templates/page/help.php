@@ -113,6 +113,31 @@
           }
         ?>
       </table>
+
+      <div id="kp-section-help-border">&nbsp;</div>
+      <div class="kp-section-title">
+        <h3 class="kp-title-h3">KnowPulse KnowledgeBase Overview</h3>
+        <div class="kp-video-container">
+          <div>
+            <div class="kp-video-presenter">
+              <a class="kp-window-on kp-tip-top" href="#" data-text="Presented by: # Lacey Sanderson"><img src="<?php print $path_images . 'team/lacey.png'; ?>" width="90" height="90"></a>
+            </div>
+            <iframe title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/503668210" height="450" frameborder="0"></iframe>
+          </div>
+        </div>        
+        <div class="kp-quick-notes" style="position: relative">
+          <div>
+            <div class="kp-green-round-bullet kp-col-left">&nbsp;</div>
+            <div class="kp-col-left">Lacey Sanderson</div>
+          </div>
+
+          <div class="kp-col-clear-float">&nbsp;</div>
+          <small><i>Lead Developer, Bioinformaticist<br>Pulse Crop Breeding and Genetics</i></small>
+          <div id="kp-knowledgebase">
+            <a href="https://knowpulse-knowledgebase.github.io/" id="kp-link-help-repo" target="_blank">See all the Lessons in KnowledgeBase</a>
+          </div>
+        </div>
+      </div>      
     </div>
   </div>
 </div>

@@ -82,6 +82,13 @@
 <div id="kp-section-tools" class="kp-section kp-2-section">
   <div class="kp-section-wrapper kp-section-span">
     <div class="kp-hr-dotted-line">&nbsp;</div>
+    <div id="kp-tools-switch-container" title="Click to switch between tools info overview or tools showcase video">
+      <div id="kp-switch-overview" class="kp-switch kp-active-switch kp-switch-left-active">Tools Overview</div>
+      <div id="kp-switch-showcase" class="kp-switch kp-standard-switch kp-switch-right-standard">Watch Tools Showcase Video</div>
+      <div class="kp-center-post">&nbsp;</div>
+      <div class="kp-col-clear-float">&nbsp;</div>
+    </div>
+    
     <div class="kp-copy" id="kp-tools-info">
       <div class="kp-col-left">
         <a href="<?php print $path_host; ?>#kp-tools" target="_blank"><img src="<?php print $path_images . 'web-application-stack.jpg'; ?>" id="kp-tools-stack" alt="see all tools" title="see all tools"  height="470" width="580" border="0" /></a>
@@ -109,11 +116,40 @@
             </li>
           </ul>
 
-          <p>KnowPulse is fully equipped with applications that will allow you to see data in a lot better perspective.
-          <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="color: #3A7F21">See all tools</a></p>
+	        <p>
+            KnowPulse is fully equipped with applications that will allow you to see data in a better perspective.
+	          <br />
+            <a href="#" id="kp-switch-showcase-video">Watch Tools Showcase Video</a>
+	          <a href="<?php print $path_host; ?>#kp-tools" target="_blank" style="display: block; color: #3A7F21; text-decoration: none;">See all Tools</a>
+          </p>
         </div>
       </div>
       <div class="kp-col-clear-float">&nbsp;</div>
+    </div>
+    
+    <div class="kp-copy" id="kp-tools-showcase" style="display: none">
+      <div class="kp-section-title">
+        <h3 class="kp-title-h3">Tools Showcase</h3>
+
+        <div class="kp-video-container">
+          <div>
+            <div class="kp-video-presenter">
+            <a href="#" class="kp-window-on kp-tip-top" data-text="Presented by: # Lacey Sanderson"><img src="<?php print $path_images . 'team/lacey.png'; ?>" width="90" height="90"></a>
+            </div>
+            <iframe id="vimeo-player" title="vimeo-player" allowfullscreen="" src="https://player.vimeo.com/video/504453761" height="450" frameborder="0"></iframe>
+          </div>
+        </div>
+
+        <div class="kp-quick-notes">
+          <div>
+            <div class="kp-green-round-bullet kp-col-left">&nbsp;</div>
+            <div class="kp-col-left">Lacey Sanderson</div>
+          </div>
+
+          <div class="kp-col-clear-float">&nbsp;</div>
+          <small><i>Lead Developer, Bioinformaticist <br>Pulse Crop Breeding and Genetics</i></small>
+        </div>
+      </div>
     </div>
 
     <div class="kp-copy">
