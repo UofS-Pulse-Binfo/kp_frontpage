@@ -61,8 +61,8 @@
                  </li>
 
                  <li>
-                   <div><img src="<?php echo $path_images . 'tool-icon/genome-assembly.gif'; ?>" alt="The Genome Assembly Search Tool provides access to important metadata including source attribution, download information and statistics for pulse genome assemblies." /></div>
-                   <a href="genome-assemblies">GENOME ASSEMBLY</a>
+                   <div><img src="<?php echo $path_images . 'tool-icon/genome-assembly.gif'; ?>" alt="The Genome Assemblies Search Tool provides access to important metadata including source attribution, download information and statistics for pulse genome assemblies." /></div>
+                   <a href="genome-assemblies">GENOME ASSEMBLIES</a>
                  </li>
 
                  <li>
