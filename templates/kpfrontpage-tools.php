@@ -85,8 +85,8 @@
                <ul>
 
                  <li>
-                   <div><img src="<?php echo $path_images . 'tool-icon/experiments.gif'; ?>" alt="Many projects produce multiple types of data which are made available as a dataset for easy lookup of project deliverables." /></div>
-                   <a href="research/projects">EXPERIMENTS</a>
+                   <div><img src="<?php echo $path_images . 'tool-icon/experiments.gif'; ?>" alt="Many research studies produce multiple types of data which are made available for download on linked experiments for easy lookup of grant deliverables." /></div>
+                   <a href="research/studies">RESEARCH STUDIES</a>
                  </li>
 
                  <li>
