@@ -115,10 +115,20 @@
 
         var remoteWindow = $('#kpfrontpage-popupwindow-remote-window');
         remoteWindow.find('div').text(altText).show();
-
+        
         element.mouseout(function() {
           remoteWindow.find('div').text('').hide();
         });
+      });
+      
+      // Helium Tool warning about permission requirement.
+      var heliumTip = $('#kp-frontpage-helium-tool-warning'); 
+      $('#kp-frontpage-tool-helium').mouseover(function() { 
+        heliumTip.fadeIn(); 
+      });
+      
+      $('#kp-frontpage-tool-helium').mouseout(function() {
+        heliumTip.fadeOut();
       });
 
       // Expose more tools option.

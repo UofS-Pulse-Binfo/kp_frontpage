@@ -114,6 +114,29 @@
                    <a href="MapViewer">MAP VIEWER</a>
                  </li>
                </ul>
+               
+               <?php if (user_is_logged_in()) {
+                 // BELOW ARE TOOLS THAT REQUIRE SIGN IN.
+                 // Helium Data Exporter requires additional permission.
+               ?>
+                 <ul style="margin: 0 0 0 25.7%">
+                   <li>
+                     <div><img src="<?php echo $path_images . 'tool-icon/graphical-filtering.gif'; ?>" alt="Phenotype Graphical Filtering tool is a fully BRAPI compliant tool for graphically building complex search and filter queries of observational data." /></div>
+                     <a href="brapps/graphical-filtering"><small style="display: block; font-size: 11px">PHENOTYPE</small>GRAPHICAL FILTERING</a>
+                   </li>
+
+                   <li>
+                     <div><img src="<?php echo $path_images . 'tool-icon/study-comparison.gif'; ?>" alt="Phenotype Study Comparison tool is a fully BRAPI compliant tool for comparing the performance of germplasm across studies." /></div>
+                     <a href="brapps/study-comparison"><small style="display: block; font-size: 11px">PHENOTYPE</small>STUDY COMPARISON</a>
+                   </li>
+
+                   <li id="kp-frontpage-tool-helium">
+                     <div><img src="<?php echo $path_images . 'tool-icon/helium-exporter.gif'; ?>" alt="Helium Data Exporter prepares germplasm/lines and raw phenotypic data for visualization using Helium Pedigree Visualization Framework." /></div>
+                     <a href="helium-exporter">HELIUM DATA EXPORTER*</a>
+                     <span id="kp-frontpage-helium-tool-warning"><i><strong>*</strong> Please contact the KnowPulse Team if you have <u>no access</u> to this tool.</i></span>
+                   </li>
+                 </ul>
+               <?php } ?>
 <?php
   // Defaults to show the first 2 rows (sets of 6). The frontend will add a reveal link to show
   // other sets beyond this point. Link is unavailable when only showing this 2 sets.
