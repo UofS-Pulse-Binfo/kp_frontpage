@@ -99,8 +99,12 @@
            <!-- /#quick start -->
            <div id="kpfrontpage-copy-quickstart">
              <div class="kpfrontpage-element-left">
-               <h1>New to KnowPulse: <a href="https://knowpulse.usask.ca/search/genetic-maps">Genetic Maps</a></h1>
-             </div>
+               <?php if (user_is_logged_in()) { ?>
+                <h1>New to KnowPulse: <small><a id="go-phenotools" href="#" alt="*Require permissions" title="*Require permissions">Additional Phenotype-Focused Tools*</a></small></h1>
+               <?php } else { ?>            
+                 <h1>New to KnowPulse: <a href="https://knowpulse.usask.ca/search/genetic-maps">Genetic Maps</a></h1>   
+               <?php } ?>
+              </div>
 
              <div class="kpfrontpage-element-right" title="Data in KnowPulse: Phenotypes, Genotypes and Germplasm">
                <ul class="kpfrontpage-horizontal-list kpfrontpage-link-slide">
@@ -152,7 +156,7 @@
                <h1 class="kpfrontpage-data-header"><span class="kpfrontpage-text-italic">Data</span></h1>
                <div>
                  <div>
-                   <div id ="data-go-phenotypes" class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Phenotypes']['long_value']; ?>">
+                   <div id="data-go-phenotypes" class="kpfrontpage-copy-explore-data-data-summary-count kpfrontpage-bg-diagonallines" title="<?php print $data_stats['Phenotypes']['long_value']; ?>">
                      <span><?php print $data_stats['Phenotypes']['short_value']; ?></span> Phenotypes
                    </div>
                    <h2><img src="<?php print $path_images . 'infographics/infographics-data.gif'; ?>" align="absmiddle" /> Phenotypic Data</h2>

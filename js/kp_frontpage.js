@@ -36,6 +36,14 @@
           }, 700);
         }
       });
+      
+      // New tools - scroll to tools section.
+      $('#go-phenotools').click(function(e) {
+        e.preventDefault();
+        $('html, body').stop().animate({
+          scrollTop: ($('#kpfrontpage-copy-explore-data-tools').offset().top)
+        }, 700);
+      });
 
       // Delay events from firing so as not to become overly sensitive.
       var d;
